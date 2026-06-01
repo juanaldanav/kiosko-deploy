@@ -547,8 +547,8 @@ const getPromoVideoSources = () => {
           >
             {/* Vista principal */}
             {!openFolder && !openSubFolder && !showCombosFolder && (
-              <div className="h-full flex items-center justify-center py-8">
-                <div className="w-full space-y-8">
+              <div className="min-h-full flex flex-col">
+                <div className="w-full space-y-8 my-auto py-8">
                 {/* Botón de Combos */}
                 {combos.length > 0 && (
                   <div className="mb-8">
