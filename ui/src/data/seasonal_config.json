@@ -1,0 +1,73 @@
+{
+  "enabled": true,
+  "badge": {
+    "emoji": "",
+    "text": "",
+    "gradientFrom": "pink-500",
+    "gradientTo": "rose-500"
+  },
+  "sectionTitle": "Especiales",
+  "drinks": [
+    {
+      "seasonalKey": "frappuccino_nutella",
+      "name": "FRAPPUCCINO NUTELLA",
+      "displayName": "FRAPPUCCINO NUTELLA",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/11160/54227de8-1c02-4af6-9e58-da6b62ccf68f.jpg",
+      "badge": { "text": "TEMPORADA" },
+      "variants": {
+        "frappe": {
+          "productId": "2439",
+          "name": "FRAPPUCCINO NUTELLA GDE"
+        }
+      }
+    },
+    {
+      "seasonalKey": "espresso_mandarina",
+      "name": "ESPRESSO MANDARINA",
+      "displayName": "ESPRESSO MANDARINA",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/11160/6b1e78f3-3562-4d76-8468-ca6a1e847c7e.jpg",
+      "variants": {
+        "rocas": {
+          "productId": "2431",
+          "name": "ESPRESSO MANDARINA GDE"
+        }
+      }
+    },
+    {
+      "seasonalKey": "espresso_horchata",
+      "name": "ESPRESSO HORCHATA",
+      "displayName": "ESPRESSO HORCHATA",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/11160/a599d9a1-5a34-4ae8-8e7a-89e1ae0d4476.jpg",
+      "variants": {
+        "rocas": {
+          "productId": "2429",
+          "name": "ESPRESSO HORCHATA GDE"
+        }
+      }
+    },
+    {
+      "seasonalKey": "cold_brew_jamaica",
+      "name": "COLD BREW JAMAICA",
+      "displayName": "COLD BREW JAMAICA",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/11160/157039c6-b763-4d3d-9d11-c835f40c5f8e.jpg",
+      "variants": {
+        "rocas": {
+          "productId": "2433",
+          "name": "COLD BREW JAMAICA GDE"
+        }
+      }
+    },
+    {
+      "seasonalKey": "cold_brew_frutos_rojos",
+      "name": "COLD BREW FRUTOS ROJOS",
+      "displayName": "COLD BREW FRUTOS ROJOS",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/11160/5f6efaf7-de25-4604-9731-0af9ddd3cba2.jpg",
+      "variants": {
+        "rocas": {
+          "productId": "2435",
+          "name": "COLD BREW FRUTOS ROJOS GDE"
+        }
+      }
+    }
+  ]
+}
