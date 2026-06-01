@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+}
+
+:root{
+  --mint:#8EE1EC;
+  --mint-strong:#67CDD9;
+  --brand:#2A97A8;
+  --bgkiosk:#EFF8FA;
+}
+
+.bg-mint{ background-color: var(--mint); }
+.bg-mint-strong{ background-color: var(--mint-strong); }
+.text-brand{ color: var(--brand); }
+.bg-bgkiosk{ background-color: var(--bgkiosk); }
+
+/* sombras suaves */
+.shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+
+/* anim */
+@keyframes pop { from{transform:scale(.98);opacity:0} to{transform:scale(1);opacity:1} }
+.animate-pop{ animation:pop .18s ease-out; }
+
+/* skeleton shimmer (onda de carga, gris suave) */
+@keyframes skeletonWave { 0%{ background-position:-200% 0 } 100%{ background-position:200% 0 } }
+.skeleton-shimmer{
+  background: linear-gradient(90deg, #f3f4f6 25%, #e9ebef 37%, #f3f4f6 63%);
+  background-size: 200% 100%;
+  animation: skeletonWave 1.4s ease-in-out infinite;
+}

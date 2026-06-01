@@ -247,7 +247,7 @@ function OptTile({ tipo, opt, onClick, product, group, layout }) {
       {hasRealIcon && (
         <div className={`flex-shrink-0 relative ${layout.iconSize}`}>
           {!iconLoaded && (
-            <div className="absolute inset-0 rounded-xl bg-slate-200 animate-pulse" />
+            <div className="absolute inset-0 rounded-xl skeleton-shimmer" />
           )}
           <img
             ref={imgRef}
