@@ -28,6 +28,7 @@ $files = @(
   'ui/src/data/modifiersImages.js',
   'ui/src/pages/MenuPage.jsx',
   'ui/src/components/SeasonalDrinkOverlay.jsx',
+  'ui/src/components/ModifierStep.jsx',
   'ui/public/videos/TEMPORADA_JUNIO.mp4'
 )
 
