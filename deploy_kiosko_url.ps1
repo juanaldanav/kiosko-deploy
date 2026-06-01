@@ -25,6 +25,7 @@ $files = @(
   'ui/src/data/catalog_app.json',
   'ui/src/data/seasonal_config.json',
   'ui/src/data/products.js',
+  'ui/src/data/modifiersImages.js',
   'ui/src/pages/MenuPage.jsx',
   'ui/src/components/SeasonalDrinkOverlay.jsx',
   'ui/public/videos/TEMPORADA_JUNIO.mp4'

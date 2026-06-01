@@ -1,6 +1,7 @@
 // src/pages/MenuPage.jsx - VERSIÓN CON ZOOM 125% EN CONTENIDO PRINCIPAL
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { loadCatalog } from "../data/products";
+import { preloadModifierIcons } from "../data/modifiersImages";
 import CustomizePage from "./CustomizePage";
 import ComboFlowOverlay from "../components/ComboFlowOverlay";
 import SeasonalDrinkOverlay from "../components/SeasonalDrinkOverlay";
@@ -198,7 +199,7 @@ export default function MenuPage() {
   const [showCombosFolder, setShowCombosFolder] = useState(false);
   const contentRef = useDragScroll();
   
-  const [lastActivity, setLastActivity] = useState(Date.now());
+  const lastActivityRef = useRef(Date.now());
   const [showInactivity, setShowInactivity] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [orderNo, setOrderNo] = useState("");
@@ -209,29 +210,29 @@ export default function MenuPage() {
     const INACTIVITY_TIME = 30000;
     
     const resetActivity = () => {
-      setLastActivity(Date.now());
-      setShowInactivity(false);
+      lastActivityRef.current = Date.now();   // ref: NO re-render por toque
+      setShowInactivity(false);               // si ya es false, React no re-renderiza
     };
-    
+
     const events = ['touchstart', 'touchmove', 'click', 'keypress'];
     events.forEach(event => {
-      window.addEventListener(event, resetActivity);
+      window.addEventListener(event, resetActivity, { passive: true });
     });
-    
+
     const checkInactivity = setInterval(() => {
-      const timeSinceActivity = Date.now() - lastActivity;
+      const timeSinceActivity = Date.now() - lastActivityRef.current;
       if (timeSinceActivity > INACTIVITY_TIME && items.length > 0 && !showInactivity) {
         setShowInactivity(true);
       }
     }, 1000);
-    
+
     return () => {
       events.forEach(event => {
         window.removeEventListener(event, resetActivity);
       });
       clearInterval(checkInactivity);
     };
-  }, [lastActivity, items.length, showInactivity]);
+  }, [items.length, showInactivity]);
 
   // Polling para detectar señal de refresh desde admin
   useEffect(() => {
@@ -275,6 +276,9 @@ export default function MenuPage() {
         
         const reorganizedFolders = reorganizeBeverages(folderTiles || []);
         setFolders(reorganizedFolders);
+
+        // Precargar iconos de mods en idle -> sin lag al abrir personalizacion
+        preloadModifierIcons();
       })
       .catch((err) => {
         console.error("loadCatalog error:", err);
@@ -780,7 +784,7 @@ const getPromoVideoSources = () => {
         isOpen={showInactivity}
         onContinue={() => {
           setShowInactivity(false);
-          setLastActivity(Date.now());
+          lastActivityRef.current = Date.now();
         }}
         onExit={() => {
           clear();
