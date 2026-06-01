@@ -110,7 +110,8 @@ const SEASONAL_DRINK_DEFINITIONS = seasonalConfig.enabled && seasonalConfig.drin
       image: drink.image,
       isSeasonal: true,
       description: drink.description,
-      badge: drink.badge
+      badge: drink.badge,
+      variantIds: Object.values(drink.variants || {}).map(v => Number(v.productId))
     }))
   : [];
 
@@ -579,7 +580,9 @@ export async function loadCatalog() {
   // 1. Primero agregar bebidas de temporada SI están habilitadas
   if (seasonalConfig.enabled && SEASONAL_DRINK_DEFINITIONS.length > 0) {
     for (const seasonal of SEASONAL_DRINK_DEFINITIONS) {
-      if (!isProductHidden(seasonal.seasonalKey)) {
+      const vids = seasonal.variantIds || [];
+      const allVariantsHidden = vids.length > 0 && vids.every(id => isProductHidden(id));
+      if (!isProductHidden(seasonal.seasonalKey) && !allVariantsHidden) {
         featured.push({
           id: seasonal.seasonalKey,
           nombre: seasonal.displayName,
