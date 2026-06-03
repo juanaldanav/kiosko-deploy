@@ -131,16 +131,16 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
 
     {/* Etiqueta de temporada: sobresale de la esquina. badge.image = logo PNG (ej. Nutella) */}
     {isSeasonal && (
-      <div className="absolute -top-2 -right-2 z-20 pointer-events-none">
+      <div className="absolute -top-4 -right-4 z-20 pointer-events-none">
         {badge && badge.image ? (
           <img
             src={badge.image}
             alt={seasonalText}
-            className="h-10 w-auto drop-shadow-lg -rotate-6 origin-center"
+            className="h-9 w-auto -rotate-12 drop-shadow-xl"
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
         ) : (
-          <span className="block bg-red-600 text-white text-[11px] leading-none font-extrabold uppercase tracking-wide px-2.5 py-1.5 rounded-md shadow-lg ring-2 ring-white -rotate-6">
+          <span className="block bg-red-600 text-white text-[11px] leading-none font-extrabold uppercase tracking-wide px-2.5 py-1.5 rounded-md shadow-lg ring-2 ring-white -rotate-12">
             {seasonalText}
           </span>
         )}
@@ -469,7 +469,7 @@ const getPromoVideoSources = () => {
   
   // Videos fijos que van SIEMPRE primero
   const fixedVideos = [
-    "./videos/matchapostre.mp4",
+   "./videos/matchapostre.mp4",
     "./videos/TEMPORADA_JUNIO.mp4",
     "./videos/HORAFELIZ.mp4",
     "./videos/NUTELLA.mp4",
