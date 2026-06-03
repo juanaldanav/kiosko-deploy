@@ -13,7 +13,10 @@
       "name": "FRAPPUCCINO NUTELLA",
       "displayName": "FRAPPUCCINO NUTELLA",
       "image": "https://prod-wansoft-app-cdn.payclip.io/11160/54227de8-1c02-4af6-9e58-da6b62ccf68f.jpg",
-      "badge": { "text": "TEMPORADA" },
+      "badge": {
+        "text": "TEMPORADA",
+        "image": "/images/Nutella-logo.png"
+      },
       "variants": {
         "frappe": {
           "productId": "2439",

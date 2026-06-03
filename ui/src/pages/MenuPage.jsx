@@ -472,6 +472,7 @@ const getPromoVideoSources = () => {
     "./videos/matchapostre.mp4",
     "./videos/TEMPORADA_JUNIO.mp4",
     "./videos/HORAFELIZ.mp4",
+    "./videos/NUTELLA.mp4",
     
   ];
 
