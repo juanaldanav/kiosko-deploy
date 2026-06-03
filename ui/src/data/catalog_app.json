@@ -13825,6 +13825,26 @@
       "modifiers": []
     },
     {
+      "productId": 1869,
+      "productName": "R. TRES LECHES CAJETA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5327/43555a63-bfaf-4d51-ab1b-535e70f28ad1.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1869,
+          "productName": "R. TRES LECHES CAJETA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5327/43555a63-bfaf-4d51-ab1b-535e70f28ad1.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1895,
       "productName": "VELA MARKELAN",
       "category": "VELAS",
