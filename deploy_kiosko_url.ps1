@@ -1,6 +1,6 @@
 <#
   deploy_kiosko_url.ps1  —  SELF-CONTAINED para TeamViewer "Gestionar scripts".
-  Corre EN el kiosko, descarga los 5 archivos de GitHub (raw) y los coloca en su
+  Corre EN el kiosko, descarga los archivos de GitHub (raw) y los coloca en su
   lugar (detecta la raiz: kiosko/interfaz/nomina/cualquiera). Backup de lo reemplazado.
   NO compila, NO mata procesos, NO toca KIOSKO.bat. Opcional F5 a Chrome.
 
@@ -30,6 +30,8 @@ $files = @(
   'ui/src/components/SeasonalDrinkOverlay.jsx',
   'ui/src/components/ModifierStep.jsx',
   'ui/src/index.css',
+  'ui/public/images/Nutella-logo.png',
+  'ui/public/videos/NUTELLA.mp4',
   'ui/public/videos/TEMPORADA_JUNIO.mp4'
 )
 
