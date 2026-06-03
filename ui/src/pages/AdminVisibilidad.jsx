@@ -1,6 +1,18 @@
 // pages/AdminVisibilidad.jsx
 import { useState, useEffect, useMemo } from 'react';
 import catalogData from '../data/catalog_app.json';
+import { getModifierIcon } from '../data/modifiersImages';
+
+// Clave canonica de insumo: sin acentos, mayusculas, sin puntuacion en bordes.
+// Unifica variantes como ".AVENA" / "AVENA" (mismo insumo, ids distintos por tamano).
+function canonInsumo(s = '') {
+  return String(s)
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^[^A-Z0-9]+|[^A-Z0-9]+$/g, '');
+}
 
 const API_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:3001'
@@ -36,23 +48,39 @@ export default function AdminVisibilidad() {
     return products.filter(p => Array.isArray(p.colorOptions) && p.colorOptions.length > 0);
   }, [products]);
 
-  // Insumos: nombres unicos de opciones de modificadores en todo el catalog
-  // (por NOMBRE, no por id — el mismo insumo tiene ids distintos por tamano/producto)
+  // Insumos: nombres unicos de opciones de modificadores en todo el catalog,
+  // agrupados por clave canonica (".AVENA" y "AVENA" = un solo insumo).
+  // Por NOMBRE, no por id — el mismo insumo tiene ids distintos por tamano/producto.
   const insumos = useMemo(() => {
-    const map = new Map(); // nombre -> { name, count, types }
+    const map = new Map(); // canonKey -> { key, name, count, types, variants, icon }
     products.forEach(p => {
       (p.modifiers || []).forEach(m => {
         (m.options || []).forEach(o => {
           if (!o?.name) return;
-          if (!map.has(o.name)) map.set(o.name, { name: o.name, count: 0, types: new Set() });
-          const entry = map.get(o.name);
+          const key = canonInsumo(o.name);
+          if (!key) return;
+          if (!map.has(key)) {
+            map.set(key, { key, name: o.name, count: 0, types: new Set(), variants: new Set(), icon: null });
+          }
+          const entry = map.get(key);
           entry.count += 1;
+          entry.variants.add(o.name);
           if (m.type) entry.types.add(m.type);
+          // Nombre a mostrar: preferir variante limpia (sin punto/asterisco inicial)
+          if (/^[^A-Z0-9]/i.test(entry.name) && /^[A-Z0-9]/i.test(o.name)) entry.name = o.name;
+          if (!entry.icon) {
+            try { entry.icon = getModifierIcon(m, p, o.name); } catch { /* sin icono */ }
+          }
         });
       });
     });
     return [...map.values()]
-      .map(e => ({ ...e, types: [...e.types].sort().join(', ') }))
+      .map(e => ({
+        ...e,
+        types: [...e.types].sort().join(', '),
+        variants: [...e.variants].sort(),
+        icon: e.icon ? e.icon.replace(/^\.\//, '/') : null,
+      }))
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [products]);
   
@@ -138,8 +166,11 @@ export default function AdminVisibilidad() {
     setSaving(false);
   };
 
-  const toggleInsumo = async (name) => {
-    const isHidden = hiddenInsumos.includes(name);
+  const toggleInsumo = async (insumo) => {
+    // Ocultar guarda el nombre limpio; mostrar quita el nombre tal como quedo guardado
+    const stored = hiddenInsumos.find(n => canonInsumo(n) === insumo.key);
+    const isHidden = Boolean(stored);
+    const name = isHidden ? stored : insumo.name;
     setSaving(true);
     try {
       const res = await fetch(`${API_URL}/api/visibility/insumos`, {
@@ -186,9 +217,18 @@ export default function AdminVisibilidad() {
     });
   }, [products, search, categoryFilter, showOnlyHidden, hidden]);
 
+  const hiddenInsumosCanon = useMemo(
+    () => new Set(hiddenInsumos.map(n => canonInsumo(n))),
+    [hiddenInsumos]
+  );
+
   const filteredInsumos = useMemo(() => {
     if (!searchInsumo) return insumos;
-    return insumos.filter(i => i.name.toLowerCase().includes(searchInsumo.toLowerCase()));
+    const q = searchInsumo.toLowerCase();
+    return insumos.filter(i =>
+      i.name.toLowerCase().includes(q) ||
+      i.variants.some(v => v.toLowerCase().includes(q))
+    );
   }, [insumos, searchInsumo]);
 
   const filteredPasteles = useMemo(() => {
@@ -507,21 +547,25 @@ export default function AdminVisibilidad() {
           <div style={styles.productListContainer}>
             <div style={styles.productList}>
               {filteredInsumos
-                .filter(i => !showOnlyHidden || hiddenInsumos.includes(i.name))
+                .filter(i => !showOnlyHidden || hiddenInsumosCanon.has(i.key))
                 .map(insumo => {
-                  const isHidden = hiddenInsumos.includes(insumo.name);
+                  const isHidden = hiddenInsumosCanon.has(insumo.key);
                   return (
-                    <div key={insumo.name} style={{...styles.productCard, ...(isHidden ? styles.productHidden : {})}}>
+                    <div key={insumo.key} style={{...styles.productCard, ...(isHidden ? styles.productHidden : {})}}>
                       <div style={styles.productInfo}>
+                        {insumo.icon && (
+                          <img src={insumo.icon} alt={insumo.name} style={styles.productImage} onError={e => e.target.style.display = 'none'}/>
+                        )}
                         <div style={styles.productDetails}>
                           <span style={styles.productName}>{insumo.name}</span>
                           <span style={styles.productCategory}>
                             en {insumo.count} producto(s) | {insumo.types}
+                            {insumo.variants.length > 1 ? ` | unifica: ${insumo.variants.join(' + ')}` : ''}
                           </span>
                         </div>
                       </div>
                       <button
-                        onClick={() => toggleInsumo(insumo.name)}
+                        onClick={() => toggleInsumo(insumo)}
                         disabled={saving}
                         style={{...styles.toggleBtn, ...(isHidden ? styles.toggleBtnHidden : styles.toggleBtnVisible)}}
                       >

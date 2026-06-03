@@ -100,12 +100,18 @@ function isColorHidden(productId, colorId) {
 // ========================================
 // FUNCIONES DE VISIBILIDAD - INSUMOS (OPCIONES DE MODIFICADORES POR NOMBRE)
 // ========================================
+// Clave canonica de insumo: sin acentos, mayusculas, sin puntuacion en los bordes.
+// ".AVENA" y "AVENA" son el mismo insumo (ids distintos por tamano/producto).
+function canonInsumoKey(s = "") {
+  return normKey(s).replace(/^[^A-Z0-9]+|[^A-Z0-9]+$/g, "");
+}
+
 async function fetchHiddenInsumos() {
   try {
     const res = await fetch(`${API_URL}/api/visibility/insumos`);
     const data = await res.json();
     if (data.ok) {
-      _HIDDEN_INSUMOS = new Set((data.hiddenInsumos || []).map((n) => normKey(n)));
+      _HIDDEN_INSUMOS = new Set((data.hiddenInsumos || []).map((n) => canonInsumoKey(n)));
     }
   } catch {
     _HIDDEN_INSUMOS = new Set();
@@ -114,7 +120,7 @@ async function fetchHiddenInsumos() {
 }
 
 function isInsumoHidden(name) {
-  return _HIDDEN_INSUMOS.has(normKey(name || ""));
+  return _HIDDEN_INSUMOS.has(canonInsumoKey(name || ""));
 }
 
 // Filtra opciones de modificadores cuyo nombre este oculto.
