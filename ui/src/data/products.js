@@ -4,6 +4,7 @@ let _CACHE = null;
 let _HIDDEN_PRODUCTS = [];
 let _HIDDEN_SIZES = []; // Tamanos ocultos (formato "productId:sizeLabel")
 let _HIDDEN_COLORS = []; // Colores ocultos (formato "productId:colorId")
+let _HIDDEN_INSUMOS = new Set(); // Insumos ocultos (nombres canonicos normalizados, ej "AVELLANA")
 
 // === DETECCIÓN AUTOMÁTICA DE IP ===
 // Si entras como localhost, usa localhost. Si entras por IP (192.168...), usa esa IP.
@@ -94,6 +95,38 @@ async function fetchHiddenColors() {
 
 function isColorHidden(productId, colorId) {
   return _HIDDEN_COLORS.includes(`${productId}:${colorId}`);
+}
+
+// ========================================
+// FUNCIONES DE VISIBILIDAD - INSUMOS (OPCIONES DE MODIFICADORES POR NOMBRE)
+// ========================================
+async function fetchHiddenInsumos() {
+  try {
+    const res = await fetch(`${API_URL}/api/visibility/insumos`);
+    const data = await res.json();
+    if (data.ok) {
+      _HIDDEN_INSUMOS = new Set((data.hiddenInsumos || []).map((n) => normKey(n)));
+    }
+  } catch {
+    _HIDDEN_INSUMOS = new Set();
+  }
+  return _HIDDEN_INSUMOS;
+}
+
+function isInsumoHidden(name) {
+  return _HIDDEN_INSUMOS.has(normKey(name || ""));
+}
+
+// Filtra opciones de modificadores cuyo nombre este oculto.
+// Grupos que quedan sin opciones se eliminan completos.
+function filterHiddenInsumos(mods) {
+  if (!Array.isArray(mods) || _HIDDEN_INSUMOS.size === 0) return mods || [];
+  return mods
+    .map((m) => ({
+      ...m,
+      options: (m.options || []).filter((o) => !isInsumoHidden(o?.name)),
+    }))
+    .filter((m) => (m.options || []).length > 0);
 }
 
 // ========================================
@@ -330,15 +363,17 @@ function mapProduct(p) {
   const defaultBase = basePriceOf(p, defaultLabel);
   const variants = computeVariantsWithDelta(p, defaultLabel, p?.productId);
 
-  const modifiers = Array.isArray(p?.modifiers)
-    ? p.modifiers
+  const visibleMods = filterHiddenInsumos(p?.modifiers);
+
+  const modifiers = Array.isArray(visibleMods)
+    ? visibleMods
         .slice()
         .sort((a, b) => Number(a?.level ?? 0) - Number(b?.level ?? 0))
         .map((g) => normModGroup(g))
     : [];
 
   const Modifiers =
-    p?.modifiers?.map((m) => ({
+    visibleMods?.map((m) => ({
       ...m,
       type: m.type,
       title: m.title,
@@ -427,6 +462,7 @@ export async function loadCatalog() {
   await fetchHiddenProducts();
   await fetchHiddenSizes();
   await fetchHiddenColors();
+  await fetchHiddenInsumos();
   
   const data = await fetchCatalogJSON();
   const products = Array.isArray(data) ? data : data?.catalog || [];

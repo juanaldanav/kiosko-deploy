@@ -27,6 +27,8 @@ $files = @(
   'ui/src/data/products.js',
   'ui/src/data/modifiersImages.js',
   'ui/src/pages/MenuPage.jsx',
+  'ui/src/pages/AdminVisibilidad.jsx',
+  'kiosko-puente/routes/visibility.js',
   'ui/src/components/SeasonalDrinkOverlay.jsx',
   'ui/src/components/ModifierStep.jsx',
   'ui/src/index.css',
