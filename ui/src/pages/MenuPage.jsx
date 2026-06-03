@@ -136,7 +136,7 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
           <img
             src={badge.image}
             alt={seasonalText}
-            className="h-10 w-auto drop-shadow-lg"
+            className="h-10 w-auto drop-shadow-lg -rotate-6 origin-center"
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
         ) : (
