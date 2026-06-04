@@ -13485,6 +13485,26 @@
       "modifiers": []
     },
     {
+      "productId": 2442,
+      "productName": "ROL NUTELLA",
+      "category": "PANADERIA",
+      "subcategory": "panaderia",
+      "defaultSize": " ",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5327/b767fd4f-892b-4225-85b1-126cea505faa.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2442,
+          "productName": "ROL NUTELLA",
+          "basePrice": 85,
+          "tamanoId": 1,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5327/b767fd4f-892b-4225-85b1-126cea505faa.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1870,
       "productName": "R. COCO",
       "category": "REBANADAS",
