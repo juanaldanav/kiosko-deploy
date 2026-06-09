@@ -12696,6 +12696,26 @@
       "modifiers": []
     },
     {
+      "productId": 2443,
+      "productName": "M. ROL NUTELLA",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5327/64835b4d-20ac-4e22-b57b-f769137ef4fa.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2443,
+          "productName": "M. ROL NUTELLA",
+          "basePrice": 45,
+          "tamanoId": 1,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5327/64835b4d-20ac-4e22-b57b-f769137ef4fa.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 2147,
       "productName": "M. BROOKIE",
       "category": "MINIPOSTRES",
