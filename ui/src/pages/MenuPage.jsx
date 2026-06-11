@@ -16,6 +16,8 @@ import seasonalConfig from "../data/seasonal_config.json";
 
 // Tile mejorado para postres con diseño tipo tarjeta
 function ProductTile({ product, onClick, size = "default" }) {
+  const { items, addItem, removeItem } = useCart();
+
   const sizeConfigs = {
     minipostre: {
       container: "w-[280px]",
@@ -39,13 +41,103 @@ function ProductTile({ product, onClick, size = "default" }) {
       priceSize: "text-base"
     }
   };
-  
+
   const config = sizeConfigs[size] || sizeConfigs.default;
-  
+
+  // Minipostres: agregar directo al carrito con stepper, sin abrir CustomizePage.
+  // Tienen 1 sola talla y 0 modificadores, así que no requieren personalización.
+  const isMinipostre = product?.category === "MINIPOSTRES" || product?.grupo === "MINIPOSTRES";
+
+  if (isMinipostre) {
+    const variant = product?.ProductsBySize?.[0] || {};
+    const base = Number(variant.BasePrice ?? product.precio ?? 0);
+    const pid = variant.ProductId || product.id;
+    const nombre = product.displayName || product.nombre;
+    const talla = product.DefaultSizeLabel || variant.label || "";
+
+    const matchIdx = items.reduce((acc, it, i) => {
+      if (it.productoId === pid) acc.push(i);
+      return acc;
+    }, []);
+    const count = matchIdx.length;
+
+    const buildItem = () => ({
+      product,
+      selectedSize: talla,
+      quantity: 1,
+      cantidad: 1,
+      selectedModifiers: {},
+      productoId: pid,
+      nombre,
+      foto: product.foto,
+      talla,
+      base,
+      modificadores: [],
+      totalItem: base,
+    });
+
+    const inc = (e) => { e.stopPropagation(); addItem(buildItem()); };
+    const dec = (e) => {
+      e.stopPropagation();
+      if (matchIdx.length) removeItem(matchIdx[matchIdx.length - 1]);
+    };
+
+    return (
+      <div
+        onClick={inc}
+        className={`${config.container} relative bg-white rounded-2xl shadow-lg hover:shadow-2xl
+                  overflow-hidden transition-all duration-200 hover:scale-105 active:scale-95 flex flex-col cursor-pointer
+                  ${count > 0 ? "border-2 border-[#00B7C6] ring-2 ring-[#00B7C6]/30" : "border border-gray-200"}`}
+      >
+        {count > 0 && (
+          <div className="absolute top-2 right-2 z-10 w-9 h-9 rounded-full bg-[#00B7C6] text-white text-lg font-bold grid place-items-center shadow-lg">
+            {count}
+          </div>
+        )}
+
+        <div className={`${config.imageHeight} w-full overflow-hidden bg-gray-100`}>
+          <img
+            src={product.foto || "./images/placeholder.png"}
+            onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
+            className="w-full h-full object-cover"
+            alt={product.nombre}
+          />
+        </div>
+
+        <div className={`${config.padding} flex flex-col justify-between flex-1`}>
+          <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
+            {product.nombre}
+          </h3>
+          <p className={`${config.priceSize} font-bold text-[#00B7C6] text-center mb-2`}>
+            ${product.precio || 0}
+          </p>
+
+          {/* Stepper -N+ por postre (compacto) */}
+          <div className="flex items-center justify-center gap-2 bg-slate-100 rounded-full px-1 py-0.5 w-fit mx-auto">
+            <button
+              onClick={dec}
+              disabled={count === 0}
+              className="w-8 h-8 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-xl font-bold transition-all"
+            >
+              −
+            </button>
+            <span className="w-6 text-center text-lg font-bold text-slate-800">{count}</span>
+            <button
+              onClick={inc}
+              className="w-8 h-8 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-xl font-bold transition-all"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <button
       onClick={() => onClick(product)}
-      className={`${config.container} bg-white rounded-2xl shadow-lg hover:shadow-2xl 
+      className={`${config.container} bg-white rounded-2xl shadow-lg hover:shadow-2xl
                 border border-gray-200 overflow-hidden transition-all duration-200
                 hover:scale-105 active:scale-95 flex flex-col`}
     >
@@ -57,7 +149,7 @@ function ProductTile({ product, onClick, size = "default" }) {
           alt={product.nombre}
         />
       </div>
-      
+
       <div className={`${config.padding} flex flex-col justify-between flex-1`}>
         <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
           {product.nombre}
@@ -714,18 +806,25 @@ const getPromoVideoSources = () => {
                       setShowCombosFolder(false);
                     }
                   }}
-                  className="w-32 h-32 rounded-full bg-[#67CDD9] text-white text-5xl shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+                  className="w-32 h-32 rounded-full bg-[#67CDD9] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
                   title="Volver"
                 >
-                  ←
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                  </svg>
                 </button>
-                
+
                 <button
                   onClick={handleGoHome}
-                  className="w-32 h-32 rounded-full bg-[#00B7C6] text-white text-4xl shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+                  className="w-32 h-32 rounded-full bg-[#00B7C6] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
                   title="Inicio"
                 >
-                  🏠
+                  <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9.5L12 3l9 6.5"></path>
+                    <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
+                    <path d="M9 21v-6h6v6"></path>
+                  </svg>
                 </button>
               </div>
             </div>
