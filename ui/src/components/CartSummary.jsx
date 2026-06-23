@@ -213,24 +213,24 @@ export default function CartSummary({ className = "", onPay = () => {}, hideActi
 
               {/* Contenido */}
               <div className="flex-1 min-w-0">
-                <div className="text-base font-bold leading-tight truncate text-slate-800">
+                <div className="text-xl font-extrabold leading-tight truncate text-slate-900">
                   {item.nombre}
                 </div>
 
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-sm text-slate-500">
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-base font-semibold text-slate-600">
                     {item.talla || item.selectedSize}
                   </span>
                   {tienePromo && g.dto.mensajePromo && (
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold ${getPromoTheme(g.dto.tipoPromo).tag}`}>
-                      <PromoIcon tipo={g.dto.tipoPromo} className="w-3 h-3" />
+                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-bold ${getPromoTheme(g.dto.tipoPromo).tag}`}>
+                      <PromoIcon tipo={g.dto.tipoPromo} className="w-4 h-4" />
                       {g.dto.mensajePromo}
                     </span>
                   )}
                 </div>
 
                 {Array.isArray(item.modificadores) && item.modificadores.length > 0 && (
-                  <div className="text-xs text-slate-500 truncate mt-0.5">
+                  <div className="text-base font-medium text-slate-600 truncate mt-1">
                     {item.modificadores
                       .map((m) => formatModifierLabelForView(m?.opcion?.nombre || m?.opcion?.name || ""))
                       .filter(Boolean)
@@ -238,7 +238,7 @@ export default function CartSummary({ className = "", onPay = () => {}, hideActi
                   </div>
                 )}
 
-                <div className={`text-lg font-bold mt-0.5 ${tienePromo ? getPromoTheme(g.dto.tipoPromo).price : "text-green-600"}`}>
+                <div className={`text-2xl font-extrabold mt-1 ${tienePromo ? getPromoTheme(g.dto.tipoPromo).price : "text-green-700"}`}>
                   ${formatPrice(g.total)}
                 </div>
               </div>
@@ -376,7 +376,7 @@ export default function CartSummary({ className = "", onPay = () => {}, hideActi
 
               {/* Precio y botones */}
               <div className="flex items-center justify-between mt-4 pt-4 border-t-2">
-                <div className={`text-2xl font-bold ${tienePromo ? getPromoTheme(itemConDescuento.tipoPromo).price : 'text-green-600'}`}>
+                <div className={`text-2xl font-bold ${tienePromo ? getPromoTheme(itemConDescuento.tipoPromo).price : 'text-green-700'}`}>
                   ${formatPrice(item.totalItem)}
                 </div>
                 

@@ -353,9 +353,15 @@ export default function MenuPage() {
         setFeatured(featured || []);
         setCombos(catalogCombos || []);
         
-        // Banner de combo: imagen fija del combo armable (refresher). Sin carrusel.
-        if (catalogCombos && catalogCombos.length > 0 && catalogCombos[0].foto) {
-          setComboButtonImage(catalogCombos[0].foto);
+        // Banner de combo: imagen ALEATORIA entre las variantes (rota en cada carga). Solo visual,
+        // no afecta el flujo del combo (ComboFlowOverlay arma alimento + bebida).
+        const BANNER_COMBO_IMAGES = [
+          './images/camb.jpg', './images/camc.jpg', './images/ciamb.jpg', './images/ciamc.jpg',
+          './images/cbmic.jpg', './images/ccmic.jpg', './images/lmb.jpg', './images/lmc.jpg',
+          './images/cbiar.jpg', './images/biml.jpg', './images/cbiic.jpg', './images/refresher_combo.png'
+        ];
+        if (catalogCombos && catalogCombos.length > 0) {
+          setComboButtonImage(BANNER_COMBO_IMAGES[Math.floor(Math.random() * BANNER_COMBO_IMAGES.length)]);
         }
         
         const reorganizedFolders = reorganizeBeverages(folderTiles || []);

@@ -25,12 +25,12 @@ const COMBO_FLOWS = {
         name: "Elige tu bebida",
         forceSize: "Grande",
         options: [
-          { productId: "1965", name: "LATTE" },
           { productId: "1931", name: "REFRESHER MANGO LIMÓN" },
           { productId: "1930", name: "REFRESHER FRESA LIMÓN" },
-          { productId: "1963", name: "ESPRESSO AMERICANO" },
+          { productId: "1913", name: "ICED COFFEE" },
           { productId: "1917", name: "AMERICANO A LAS ROCAS" },
-          { productId: "1913", name: "ICED COFFEE" }
+          { productId: "1965", name: "LATTE" },
+          { productId: "1963", name: "ESPRESSO AMERICANO" }
         ]
       }
     ]
