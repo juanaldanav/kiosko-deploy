@@ -13,7 +13,7 @@ function formatModifierLabelForView(text = "") {
   return value;
 }
 
-export default function CustomizePage({ producto, onClose, onGoHome, onNavigateToCategory, onPay, preferOnCloseOnAdd = false, showSendButton = true, autoAddOnFinal = false }) {
+export default function CustomizePage({ producto, onClose, onGoHome, onNavigateToCategory, onPay, preferOnCloseOnAdd = false, showSendButton = true, autoAddOnFinal = false, onBuildItem = null }) {
   const { addItem, checkout, isProcessing } = useCart();
   const contentRef = useRef(null);
   const [showSuggested, setShowSuggested] = useState(false);
@@ -138,7 +138,12 @@ export default function CustomizePage({ producto, onClose, onGoHome, onNavigateT
 
   const handleAdd = () => {
     const cartItem = buildCartItem();
-    addItem(cartItem);
+    // En combo: onBuildItem recolecta el item SIN agregarlo al carrito (commit atómico al final).
+    if (onBuildItem) {
+      onBuildItem(cartItem);
+    } else {
+      addItem(cartItem);
+    }
 
     if (preferOnCloseOnAdd && onClose) {
       onClose();

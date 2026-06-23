@@ -1,12 +1,12 @@
-﻿// src/components/ComboFlowOverlay.jsx - VERSIÓN CORREGIDA
-import React, { useState, useEffect } from "react";
+// src/components/ComboFlowOverlay.jsx - ARMA TU COMBO (alimento + bebida)
+import React, { useState, useEffect, useRef } from "react";
 import CustomizePage from "../pages/CustomizePage";
 import { getProductById, getHiddenProducts } from "../data/products";
+import { useCart } from "../context/CartContext";
 
-// Configuración de combos con TAMAÑOS ESPECÍFICOS
+// Único flujo: el cliente arma su combo eligiendo 1 alimento salado + 1 bebida.
+// Las opciones bloqueadas en AdminVisibilidad se filtran solas (getHiddenProducts).
 const COMBO_FLOWS = {
-  // === ARMA TU COMBO: elige 1 alimento salado + 1 bebida ===
-  // Las opciones bloqueadas en AdminVisibilidad se filtran solas (getHiddenProducts).
   combo_arma_tu_combo: {
     name: "ARMA TU COMBO",
     steps: [
@@ -34,224 +34,16 @@ const COMBO_FLOWS = {
         ]
       }
     ]
-  },
-  combo_americano_baguette: {
-    name: "COMBO AMERICANO + BAGUETTE",
-    steps: [
-      { 
-        type: "food", 
-        name: "Elige tu Baguette",
-        options: [
-          { productId: "1899", name: "BAGUETTE JAMÓN, PANELA Y ESPINACA", image: "./images/espanela.jpg" },
-          { productId: "1900", name: "BAGUETTE JAMÓN CON QUESO", image: "./images/quesomon.jpg" }
-        ]
-      },
-      { 
-        type: "drink", 
-        productId: "1963",
-        name: "ESPRESSO AMERICANO",
-        forceSize: "Grande" // FORZAR TAMAÑO GRANDE
-      }
-    ]
-  },
-  combo_americano_croissant: {
-    name: "COMBO AMERICANO + CROISSANT",
-    steps: [
-      { 
-        type: "food", 
-        productId: "1901",
-        name: "CROISSANT JAMÓN Y QUESO" 
-      },
-      { 
-        type: "drink", 
-        productId: "1963",
-        name: "ESPRESSO AMERICANO",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_iced_americano_baguette: {
-    name: "COMBO ICED AMERICANO + BAGUETTE",
-    steps: [
-      { 
-        type: "food", 
-        name: "Elige tu Baguette",
-        options: [
-          { productId: "1899", name: "BAGUETTE JAMÓN, PANELA Y ESPINACA", image: "./images/espanela.jpg" },
-          { productId: "1900", name: "BAGUETTE JAMÓN CON QUESO", image: "./images/quesomon.jpg" }
-        ]
-      },
-      { 
-        type: "drink", 
-        productId: "1917",
-        name: "AMERICANO A LAS ROCAS",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_iced_americano_croissant: {
-    name: "COMBO ICED AMERICANO + CROISSANT",
-    steps: [
-      { 
-        type: "food", 
-        productId: "1901",
-        name: "CROISSANT JAMÓN Y QUESO" 
-      },
-      { 
-        type: "drink", 
-        productId: "1917",
-        name: "AMERICANO A LAS ROCAS",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_iced_chocolate_doradito: {
-    name: "COMBO ICED CHOCOLATE + SANDWICH DORADITO",
-    steps: [
-      { 
-        type: "food", 
-        productId: "2180", // Verifica que este ID existe en tu catálogo
-        name: "SANDWICH DORADITO" 
-      },
-      { 
-        type: "drink", 
-        productId: "2000",
-        name: "ICED CHOCOLATE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_iced_coffee_baguette: {
-    name: "COMBO ICED COFFEE + BAGUETTE",
-    steps: [
-      { 
-        type: "food", 
-        name: "Elige tu Baguette",
-        options: [
-          { productId: "1899", name: "BAGUETTE JAMÓN, PANELA Y ESPINACA", image: "./images/espanela.jpg" },
-          { productId: "1900", name: "BAGUETTE JAMÓN CON QUESO", image: "./images/quesomon.jpg" }
-        ]
-      },
-      { 
-        type: "drink", 
-        productId: "1913",
-        name: "ICED COFFEE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_iced_coffee_croissant: {
-    name: "COMBO ICED COFFEE + CROISSANT",
-    steps: [
-      { 
-        type: "food", 
-        productId: "1901",
-        name: "CROISSANT JAMÓN Y QUESO" 
-      },
-      { 
-        type: "drink", 
-        productId: "1913",
-        name: "ICED COFFEE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_latte_baguette: {
-    name: "COMBO LATTE + BAGUETTE",
-    steps: [
-      { 
-        type: "food", 
-        name: "Elige tu Baguette",
-        options: [
-          { productId: "1899", name: "BAGUETTE JAMÓN, PANELA Y ESPINACA", image: "./images/espanela.jpg" },
-          { productId: "1900", name: "BAGUETTE JAMÓN CON QUESO", image: "./images/quesomon.jpg" }
-        ]
-      },
-      { 
-        type: "drink", 
-        productId: "1965",
-        name: "LATTE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-   // === NUEVOS: BAGUETTE ITALIANO + {BEBIDA} ===
-  combo_italiano_americano_rocks: {
-    name: "COMBO BAGUETTE ITALIANO + ICED AMERICANO",
-    steps: [
-      { 
-        type: "food",
-        productId: "2342",
-        name: "BAGUETTE ITALIANO"
-      },
-      { 
-        type: "drink",
-        productId: "1917", // AMERICANO A LAS ROCAS
-        name: "AMERICANO A LAS ROCAS",
-        forceSize: "Grande"
-      }
-    ]
-  },
-
-  combo_italiano_latte: {
-    name: "COMBO BAGUETTE ITALIANO + LATTE",
-    steps: [
-      { 
-        type: "food",
-        productId: "2342",
-        name: "BAGUETTE ITALIANO"
-      },
-      { 
-        type: "drink",
-        productId: "1965", // LATTE
-        name: "LATTE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-
-  combo_italiano_iced_coffee: {
-    name: "COMBO BAGUETTE ITALIANO + ICED COFFEE",
-    steps: [
-      { 
-        type: "food",
-        productId: "2342",
-        name: "BAGUETTE ITALIANO"
-      },
-      { 
-        type: "drink",
-        productId: "1913", // ICED COFFEE
-        name: "ICED COFFEE",
-        forceSize: "Grande"
-      }
-    ]
-  },
-  combo_latte_croissant: {
-    name: "COMBO LATTE + CROISSANT",
-    steps: [
-      { 
-        type: "food", 
-        productId: "1901",
-        name: "CROISSANT JAMÓN Y QUESO" 
-      },
-      { 
-        type: "drink", 
-        productId: "1965",
-        name: "LATTE",
-        forceSize: "Grande"
-      },
-    ]
   }
 };
 
-// Componente para seleccionar entre opciones de baguette
+// Selector de opciones: tarjetas del MISMO tamaño, 2 por fila, centradas en vertical.
 function OptionSelector({ options, onSelect, title, onBack, onHome }) {
   return (
     <div className="h-full flex flex-col bg-[#E8FBFF] pt-6 pb-32">
       <h2 className="text-4xl font-bold text-center mb-8 text-slate-700 flex-shrink-0 px-6">
         {title}
       </h2>
-      {/* Grid de tarjetas del MISMO tamaño, 2 por fila, scroll vertical */}
       <div
         className="flex-1 overflow-y-auto px-6"
         style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
@@ -259,28 +51,28 @@ function OptionSelector({ options, onSelect, title, onBack, onHome }) {
         {/* min-h-full + center => centrado vertical cuando caben, scroll cuando no */}
         <div className="min-h-full flex items-center justify-center py-4">
           <div className="flex flex-wrap justify-center gap-6 max-w-[680px]">
-          {options.map((option) => (
-            <button
-              key={option.productId}
-              onClick={() => onSelect(option)}
-              className="w-[300px] bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all p-4 border-2 border-transparent hover:border-[#00B7C6] group active:scale-95 flex flex-col"
-            >
-              <img
-                src={option.image || "./images/placeholder.png"}
-                alt={option.name}
-                className="w-full h-[200px] object-cover rounded-2xl group-hover:brightness-110 transition-all"
-                onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
-              />
-              <h3 className="text-2xl font-bold text-slate-700 text-center mt-4 h-[68px] flex items-center justify-center leading-tight">
-                {option.name}
-              </h3>
-            </button>
-          ))}
+            {options.map((option) => (
+              <button
+                key={option.productId}
+                onClick={() => onSelect(option)}
+                className="w-[300px] bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all p-4 border-2 border-transparent hover:border-[#00B7C6] group active:scale-95 flex flex-col"
+              >
+                <img
+                  src={option.image || "./images/placeholder.png"}
+                  alt={option.name}
+                  className="w-full h-[200px] object-cover rounded-2xl group-hover:brightness-110 transition-all"
+                  onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
+                />
+                <h3 className="text-2xl font-bold text-slate-700 text-center mt-4 h-[68px] flex items-center justify-center leading-tight">
+                  {option.name}
+                </h3>
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Botones de navegación para el selector */}
+      {/* Navegación */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex gap-4">
         <button
           onClick={onBack}
@@ -310,26 +102,18 @@ function OptionSelector({ options, onSelect, title, onBack, onHome }) {
   );
 }
 
-// Componente personalizado para bebidas con tamaño forzado
-function ForcedSizeCustomizePage({ producto, onClose, onGoHome, forcedSize, autoAddOnFinal = false }) {
-  // Clonar el producto y ajustar para el tamaño forzado
+// Bebida con tamaño forzado (Grande): recorta ProductsBySize a esa talla -> sin paso de tamaño.
+function ForcedSizeCustomizePage({ producto, onClose, onGoHome, forcedSize, onBuildItem }) {
   const adjustedProduct = {
     ...producto,
     DefaultSizeLabel: forcedSize,
-    // Filtrar solo la variante del tamaño correcto
-    ProductsBySize: producto.ProductsBySize?.filter(v => v.label === forcedSize) || []
+    ProductsBySize: producto.ProductsBySize?.filter((v) => v.label === forcedSize) || []
   };
-  
-  // Si solo hay un tamaño, no mostrar selector de tamaño
   if (adjustedProduct.ProductsBySize.length === 1) {
-    // Quitar el step de tamaño de los modificadores si existe
-    const modifiersWithoutSize = adjustedProduct.modifiers?.filter(m => 
-      (m.tipo || m.type) !== "size"
-    ) || [];
-    
-    adjustedProduct.modifiers = modifiersWithoutSize;
+    adjustedProduct.modifiers = (adjustedProduct.modifiers || []).filter(
+      (m) => (m.tipo || m.type) !== "size"
+    );
   }
-  
   return (
     <CustomizePage
       producto={adjustedProduct}
@@ -337,27 +121,32 @@ function ForcedSizeCustomizePage({ producto, onClose, onGoHome, forcedSize, auto
       onGoHome={onGoHome}
       preferOnCloseOnAdd={true}
       showSendButton={false}
-      autoAddOnFinal={autoAddOnFinal}
+      autoAddOnFinal={true}
+      onBuildItem={onBuildItem}
     />
   );
 }
 
 export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
+  const { addItem } = useCart();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [currentProduct, setCurrentProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
   const [visibleOptions, setVisibleOptions] = useState([]);
-  const [comboItems, setComboItems] = useState([]);
-  
+
+  // Items construidos del combo: NO se agregan al carrito hasta completar TODO (commit atómico).
+  const builtItemsRef = useRef([]);
+  // true justo después de que CustomizePage construyó un item (para distinguir avanzar vs regresar).
+  const justBuiltRef = useRef(false);
+
   const comboDefinition = COMBO_FLOWS[flowKey];
-  
   if (!comboDefinition) {
     console.error(`Combo no definido: ${flowKey}`);
     onClose();
     return null;
   }
-  
+
   const currentStep = comboDefinition.steps[currentStepIndex];
   const isLastStep = currentStepIndex === comboDefinition.steps.length - 1;
 
@@ -366,148 +155,124 @@ export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
     const hidden = new Set((getHiddenProducts() || []).map((id) => Number(id)));
     return step.options.filter((option) => !hidden.has(Number(option.productId)));
   };
-  
-  // Completa la foto de cada opción desde el catálogo (para tarjetas sin imagen fija)
-  const enrichOptionImages = async (options) => {
-    if (!options.some((o) => !o.image)) return;
-    try {
-      const updated = await Promise.all(
-        options.map(async (o) => {
-          if (o.image) return o;
-          try {
-            const p = await getProductById(o.productId);
-            return p?.foto ? { ...o, image: p.foto } : o;
-          } catch {
-            return o;
-          }
-        })
-      );
-      setVisibleOptions(updated);
-    } catch {
-      /* deja las opciones sin foto; el selector usa placeholder */
-    }
-  };
 
-  // Verificar si el paso actual tiene opciones múltiples
+  // Completa la foto de cada opción desde el catálogo (devuelve el array, no hace setState).
+  const enrichOptions = async (options) =>
+    Promise.all(
+      options.map(async (o) => {
+        if (o.image) return o;
+        try {
+          const p = await getProductById(o.productId);
+          return p?.foto ? { ...o, image: p.foto } : o;
+        } catch {
+          return o;
+        }
+      })
+    );
+
+  // Al cambiar de paso: resuelve fotos CON spinner (evita el flash de placeholders) y muestra opciones.
   useEffect(() => {
-    if (currentStep?.options) {
+    let cancelled = false;
+    (async () => {
+      if (!currentStep?.options) return;
       const options = getVisibleStepOptions(currentStep);
-      setVisibleOptions(options);
-
       if (options.length === 0) {
         alert("Este combo no esta disponible por el momento.");
         onClose();
         return;
       }
-
-      setShowOptions(true);
-      setCurrentProduct(null);
-      enrichOptionImages(options);
-    } else if (currentStep?.productId) {
+      setIsLoading(true);
       setShowOptions(false);
-      setVisibleOptions([]);
-      loadProduct(currentStep.productId, currentStep.forceSize);
-    }
+      setCurrentProduct(null);
+      const enriched = await enrichOptions(options);
+      if (cancelled) return;
+      setVisibleOptions(enriched);
+      setShowOptions(true);
+      setIsLoading(false);
+    })();
+    return () => { cancelled = true; };
   }, [currentStepIndex]);
-  
+
   const loadProduct = async (productId, forceSize = null) => {
     setIsLoading(true);
+    setShowOptions(false);
     try {
       const product = await getProductById(productId);
-      
-      if (product) {
-        console.log(`Producto cargado:`, product);
-        console.log(`Tamaño forzado:`, forceSize);
-        
-        // Si hay un tamaño forzado, ajustar el producto
-        if (forceSize) {
-          const adjustedProduct = {
-            ...product,
-            DefaultSizeLabel: forceSize,
-            forcedSize: forceSize,
-            // Verificar que el tamaño existe
-            hasRequestedSize: product.ProductsBySize?.some(v => v.label === forceSize)
-          };
-          setCurrentProduct(adjustedProduct);
-        } else {
-          setCurrentProduct(product);
-        }
-      } else {
-        console.error(`⚠️ Producto ${productId} no encontrado en el catálogo`);
-        alert(`Error: El producto ${currentStep.name} (ID: ${productId}) no se encuentra en el catálogo. Por favor verifica el ID.`);
-        
-        // Producto fallback para evitar que se rompa
-        setCurrentProduct({
-          id: String(productId),
-          nombre: currentStep.name || "Producto no encontrado",
-          displayName: currentStep.name || "Producto no encontrado",
-          foto: "./images/placeholder.png",
-          precio: 0,
-          modifiers: [],
-          Modifiers: [],
-          ProductsBySize: [{
-            label: forceSize || "Grande",
-            ProductId: productId,
-            ProductName: currentStep.name || "Producto",
-            BasePrice: 0
-          }],
-          DefaultSizeLabel: forceSize || "Grande",
-          forcedSize: forceSize
-        });
+      if (!product) {
+        alert(`El producto ${currentStep.name} (ID: ${productId}) no está en el catálogo.`);
+        goBack();
+        return;
       }
+      setCurrentProduct(
+        forceSize
+          ? { ...product, DefaultSizeLabel: forceSize, forcedSize: forceSize }
+          : product
+      );
     } catch (error) {
-      console.error("Error cargando producto:", error);
       alert(`Error cargando ${currentStep.name}: ${error.message}`);
+      goBack();
     } finally {
       setIsLoading(false);
     }
   };
-  
+
   const handleOptionSelected = (option) => {
-    const productId = typeof option === "object" ? option.productId : option;
+    const productId = option.productId;
     const hidden = new Set((getHiddenProducts() || []).map((id) => Number(id)));
     if (hidden.has(Number(productId))) {
       alert("Ese producto ya no esta disponible. Por favor elige otra opcion.");
       return;
     }
-
-    setShowOptions(false);
-    // Bebidas: talla forzada (del step o de la opción). Alimentos: sin forzar.
-    const forceSize = currentStep?.forceSize || (typeof option === "object" ? option.forceSize : null) || null;
+    const forceSize = currentStep?.forceSize || option.forceSize || null;
     loadProduct(productId, forceSize);
   };
-  
-  const handleProductAdded = () => {
-    const itemInfo = currentStep.name || currentProduct?.displayName || "Producto";
-    setComboItems([...comboItems, itemInfo]);
-    console.log(`✅ Producto agregado al combo: ${itemInfo}`);
-    
-    if (isLastStep) {
-      console.log("🎉 Combo completado con:", comboItems);
-      if (onComplete) {
-        onComplete();
+
+  // CustomizePage construyó el item (aún NO va al carrito).
+  const handleItemBuilt = (item) => {
+    builtItemsRef.current.push(item);
+    justBuiltRef.current = true;
+  };
+
+  // onClose de CustomizePage: si acaba de construir -> avanza/commit; si no (back en paso 0) -> regresar.
+  const handleStepClose = () => {
+    if (justBuiltRef.current) {
+      justBuiltRef.current = false;
+      if (isLastStep) {
+        // Commit atómico: ahora sí se agregan todos los items del combo al carrito.
+        builtItemsRef.current.forEach((it) => addItem(it));
+        builtItemsRef.current = [];
+        (onComplete || onClose)();
       } else {
-        onClose();
+        setCurrentStepIndex((i) => i + 1);
       }
     } else {
-      // Siguiente paso
-      setCurrentStepIndex(currentStepIndex + 1);
+      goBack();
     }
   };
-  
-  const handleBack = () => {
+
+  const goBack = () => {
+    // Personalizando un producto de un paso con opciones -> volver a sus opciones (sin agregar nada).
+    if (!showOptions && currentProduct && currentStep?.options) {
+      setCurrentProduct(null);
+      setShowOptions(true);
+      return;
+    }
+    // Mostrando opciones -> retroceder de paso, descartando el item del paso anterior.
     if (currentStepIndex > 0) {
-      setCurrentStepIndex(currentStepIndex - 1);
-      setComboItems(comboItems.slice(0, -1));
+      builtItemsRef.current.pop();
+      setCurrentProduct(null);
+      setCurrentStepIndex((i) => i - 1);
     } else {
+      builtItemsRef.current = [];
       onClose();
     }
   };
-  
+
   const handleHome = () => {
+    builtItemsRef.current = [];
     onClose();
   };
-  
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 z-50 bg-white flex items-center justify-center">
@@ -518,10 +283,10 @@ export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
       </div>
     );
   }
-  
+
   return (
     <div className="fixed inset-0 z-50 bg-white">
-      {/* Header del combo - Versión compacta */}
+      {/* Header con progreso */}
       <div className="absolute top-0 left-0 right-0 z-[60] bg-[#00B7C6] text-white shadow-lg pointer-events-none">
         <div className="flex items-center justify-between px-4 py-2">
           <div className="flex-1">
@@ -531,43 +296,41 @@ export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
             </p>
           </div>
         </div>
-        
-        {/* Progress bar */}
         <div className="h-1 bg-white/30">
-          <div 
+          <div
             className="h-full bg-white transition-all duration-300"
             style={{ width: `${((currentStepIndex + 1) / comboDefinition.steps.length) * 100}%` }}
           />
         </div>
       </div>
-      
-      {/* Contenido */}
+
       <div className="pt-14 h-full">
         {showOptions ? (
           <OptionSelector
             options={visibleOptions}
             onSelect={handleOptionSelected}
             title={currentStep.name}
-            onBack={handleBack}
+            onBack={goBack}
             onHome={handleHome}
           />
         ) : currentProduct ? (
           currentProduct.forcedSize ? (
             <ForcedSizeCustomizePage
               producto={currentProduct}
-              onClose={handleProductAdded}
+              onClose={handleStepClose}
               onGoHome={handleHome}
               forcedSize={currentProduct.forcedSize}
-              autoAddOnFinal={true}
+              onBuildItem={handleItemBuilt}
             />
           ) : (
             <CustomizePage
               producto={currentProduct}
-              onClose={handleProductAdded}
+              onClose={handleStepClose}
               onGoHome={handleHome}
               preferOnCloseOnAdd={true}
               showSendButton={false}
               autoAddOnFinal={true}
+              onBuildItem={handleItemBuilt}
             />
           )
         ) : null}

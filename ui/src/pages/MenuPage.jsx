@@ -288,7 +288,6 @@ export default function MenuPage() {
   const [selected, setSelected] = useState(null);
   const [activeComboFlow, setActiveComboFlow] = useState(null);
   const [activeSeasonalDrink, setActiveSeasonalDrink] = useState(null);
-  const [showCombosFolder, setShowCombosFolder] = useState(false);
   const contentRef = useDragScroll();
   
   const lastActivityRef = useRef(Date.now());
@@ -486,7 +485,6 @@ export default function MenuPage() {
         setSelected(null);
         setOpenFolder(null);
         setOpenSubFolder(null);
-        setShowCombosFolder(false);
         setActiveSeasonalDrink(null);
       } else if (resultado) {
         // Fallback
@@ -510,7 +508,6 @@ export default function MenuPage() {
     setSelected(null);
     setOpenFolder(null);
     setOpenSubFolder(null);
-    setShowCombosFolder(false);
     setActiveSeasonalDrink(null);
   };
 
@@ -597,7 +594,7 @@ const getPromoVideoSources = () => {
   return [...fixedVideos, ...dailyVideos];
 };
 
-  const showNavFooter = openFolder || openSubFolder || showCombosFolder;
+  const showNavFooter = openFolder || openSubFolder;
   const isAnyFlowOverlayOpen = Boolean(selected || activeComboFlow || activeSeasonalDrink || showConfirm);
 
   // Determinar el título de la sección de populares/temporada
@@ -636,7 +633,7 @@ const getPromoVideoSources = () => {
             }}
           >
             {/* Vista principal */}
-            {!openFolder && !openSubFolder && !showCombosFolder && (
+            {!openFolder && !openSubFolder && (
               <div className="min-h-full flex flex-col">
                 <div className="w-full space-y-8 my-auto py-8">
                 {/* Botón de Combos */}
@@ -706,31 +703,8 @@ const getPromoVideoSources = () => {
               </div>
             )}
 
-            {/* Vista de Combos */}
-            {showCombosFolder && (
-              <div className="min-h-[calc(80vh-200px)] flex flex-col justify-center px-6">
-                <div className="text-center mb-8">
-                  <h2 className="text-4xl font-bold text-[#00B7C6]">COMBOS ESPECIALES</h2>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-6">
-                  {combos.map((combo) => (
-                    <CategoryTile 
-                      key={combo.id} 
-                      title={combo.nombre || combo.displayName} 
-                      img={combo.foto} 
-                      onClick={() => handleProductClick(combo)}
-                      isCombo={true}
-                      displayPrice={combo.displayPrice}
-                      size="default"
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Vista de carpeta abierta */}
-            {openFolder && !openSubFolder && !showCombosFolder && (
+            {openFolder && !openSubFolder && (
               <div className="min-h-[calc(80vh-200px)] flex flex-col justify-center px-6">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold">{openFolder.title}</h2>
@@ -795,8 +769,6 @@ const getPromoVideoSources = () => {
                       setOpenSubFolder(null);
                     } else if (openFolder) {
                       setOpenFolder(null);
-                    } else if (showCombosFolder) {
-                      setShowCombosFolder(false);
                     }
                   }}
                   className="w-32 h-32 rounded-full bg-[#67CDD9] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
