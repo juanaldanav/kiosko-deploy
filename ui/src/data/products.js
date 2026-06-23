@@ -166,89 +166,27 @@ const POPULAR = [
 ];
 
 // Definición de combos disponibles
+// Modelo "Arma tu combo": una sola tarjeta. El cliente elige 1 alimento salado
+// + 1 bebida (latte / refresher / americano / iced...). El flujo paso a paso vive
+// en COMBO_FLOWS de ComboFlowOverlay.jsx.
 const COMBO_DEFINITIONS = [
-  { 
-    flowKey: "combo_americano_baguette", 
-    productName: "COMBO AMERICANO + BAGUETTE",
-    image: "./images/camb.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_americano_croissant", 
-    productName: "COMBO AMERICANO + CROISSANT",
-    image: "./images/camc.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_iced_americano_baguette", 
-    productName: "COMBO ICED AMERICANO + BAGUETTE",
-    image: "./images/ciamb.jpg",
-    displayPrice: 139 
-  },
-  { 
-    flowKey: "combo_iced_americano_croissant", 
-    productName: "COMBO ICED AMERICANO + CROISSANT",
-    image: "./images/ciamc.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_iced_coffee_baguette", 
-    productName: "COMBO ICED COFFEE + BAGUETTE",
-    image: "./images/cbmic.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_iced_coffee_croissant", 
-    productName: "COMBO ICED COFFEE + CROISSANT",
-    image: "./images/ccmic.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_latte_baguette",
-    productName: "COMBO LATTE + BAGUETTE",
-    image: "./images/lmb.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_latte_croissant",
-    productName: "COMBO LATTE + CROISSANT",
-    image: "./images/lmc.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_italiano_americano_rocks", 
-    productName: "COMBO BAGUETTE ITALIANO + ICED AMERICANO",
-    image: "./images/cbiar.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_italiano_latte",
-    productName: "COMBO BAGUETTE ITALIANO + LATTE",
-    image: "./images/biml.jpg",
-    displayPrice: 139
-  },
-  { 
-    flowKey: "combo_italiano_iced_coffee", 
-    productName: "COMBO BAGUETTE ITALIANO + ICED COFFEE",
-    image: "./images/cbiic.jpg",
+  {
+    flowKey: "combo_arma_tu_combo",
+    productName: "ARMA TU COMBO",
+    image: "./images/refresher_combo.png",
     displayPrice: 139
   }
 ];
 
+// IDs elegibles del combo armable (deben coincidir con COMBO_FLOWS.combo_arma_tu_combo)
+const COMBO_ARMA_ALIMENTOS = [1899, 1900, 1901, 2342];
+const COMBO_ARMA_BEBIDAS = [1965, 1931, 1930, 1963, 1917, 1913];
+
 // Reglas de dependencia para mostrar combos.
 // Cada grupo interno representa alternativas: al menos una debe estar visible.
+// El combo armable necesita >=1 alimento Y >=1 bebida disponibles.
 const COMBO_REQUIRED_PRODUCT_GROUPS = {
-  combo_americano_baguette: [[1899, 1900]],
-  combo_americano_croissant: [[1901]],
-  combo_iced_americano_baguette: [[1899, 1900]],
-  combo_iced_americano_croissant: [[1901]],
-  combo_iced_coffee_baguette: [[1899, 1900]],
-  combo_iced_coffee_croissant: [[1901]],
-  combo_latte_baguette: [[1899, 1900]],
-  combo_latte_croissant: [[1901]],
-  combo_italiano_americano_rocks: [[2342]],
-  combo_italiano_latte: [[2342]],
-  combo_italiano_iced_coffee: [[2342]],
+  combo_arma_tu_combo: [COMBO_ARMA_ALIMENTOS, COMBO_ARMA_BEBIDAS],
 };
 
 function isComboAvailable(flowKey) {

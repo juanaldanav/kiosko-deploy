@@ -27,12 +27,18 @@ $files = @(
   'ui/src/data/products.js',
   'ui/src/data/modifiersImages.js',
   'ui/src/pages/MenuPage.jsx',
+  'ui/src/pages/CustomizePage.jsx',
   'ui/src/pages/AdminVisibilidad.jsx',
   'kiosko-puente/routes/visibility.js',
   'ui/src/components/SeasonalDrinkOverlay.jsx',
   'ui/src/components/ModifierStep.jsx',
+  'ui/src/components/FloatingCart.jsx',
+  'ui/src/components/CartSummary.jsx',
+  'ui/src/components/ComboFlowOverlay.jsx',
+  'ui/src/context/CartContext.jsx',
   'ui/src/index.css',
   'ui/public/images/Nutella-logo.png',
+  'ui/public/images/refresher_combo.png',
   'ui/public/videos/NUTELLA.mp4',
   'ui/public/videos/TEMPORADA_JUNIO.mp4'
 )

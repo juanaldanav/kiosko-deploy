@@ -354,16 +354,9 @@ export default function MenuPage() {
         setFeatured(featured || []);
         setCombos(catalogCombos || []);
         
-        // Seleccionar imagen aleatoria de los combos para el botón
-        if (catalogCombos && catalogCombos.length > 0) {
-          const validImages = catalogCombos
-            .map(c => c.foto)
-            .filter(img => img && img !== './images/placeholder.png');
-          
-          if (validImages.length > 0) {
-            const randomImage = validImages[Math.floor(Math.random() * validImages.length)];
-            setComboButtonImage(randomImage);
-          }
+        // Banner de combo: imagen fija del combo armable (refresher). Sin carrusel.
+        if (catalogCombos && catalogCombos.length > 0 && catalogCombos[0].foto) {
+          setComboButtonImage(catalogCombos[0].foto);
         }
         
         const reorganizedFolders = reorganizeBeverages(folderTiles || []);
@@ -652,7 +645,7 @@ const getPromoVideoSources = () => {
                     <h2 className="text-2xl font-bold text-slate-700 mb-4">Ofertas Especiales</h2>
                     <div className="flex justify-center">
                       <button
-                        onClick={() => setShowCombosFolder(true)}
+                        onClick={() => handleProductClick(combos[0])}
                         className="relative rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 overflow-hidden w-[900px] h-[200px]"
                         style={{
                           backgroundImage: `url(${comboButtonImage})`,

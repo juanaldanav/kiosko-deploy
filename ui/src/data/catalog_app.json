@@ -11052,6 +11052,75 @@
       "categoryOrderIndex": 0
     },
     {
+      "productId": 2444,
+      "productName": "SLUSH LIMON",
+      "category": "BEBIDAS FRÍAS SIN CAFÉ",
+      "subcategory": "bebidas_frias_sin_cafe",
+      "defaultSize": "Grande",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5327/17fc9fa5-6052-4bba-822b-d7cfdb8adb06.jpg",
+      "sizes": [
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "productId": 2444,
+          "productName": "SLUSH LIMON GDE",
+          "basePrice": 75,
+          "tamanoId": 16,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5327/17fc9fa5-6052-4bba-822b-d7cfdb8adb06.jpg"
+        },
+        {
+          "label": "XL",
+          "ozLabel": "20 oz",
+          "productId": 2445,
+          "productName": "SLUSH LIMON XL",
+          "basePrice": 80,
+          "tamanoId": 20,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5327/17fc9fa5-6052-4bba-822b-d7cfdb8adb06.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": null,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2266,
+                "XL": 2269
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2049,
+                "XL": 2049
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS FRÍAS",
+      "beverageGroup": "SIN CAFÉ",
+      "parentKey": "frias",
+      "beverageKey": "sin_cafe",
+      "categoryOrderIndex": 0
+    },
+    {
       "productId": 1933,
       "productName": "TE A LAS ROCAS",
       "category": "BEBIDAS FRÍAS SIN CAFÉ",
@@ -14915,9 +14984,51 @@
           ]
         },
         {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 2239,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 1987,
+                "XL": 2278
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "DESCAFEINADO.",
+                "XL": "DESCAFEINADO_"
+              }
+            },
+            {
+              "id": 2240,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 393,
+                "XL": 2240
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "GRANO REGULAR.",
+                "XL": "GRANO REGULAR_"
+              }
+            }
+          ]
+        },
+        {
           "type": "leche",
           "title": "Tipo de Leche",
-          "level": 2,
+          "level": 3,
           "required": true,
           "options": [
             {
@@ -15044,7 +15155,7 @@
         {
           "type": "cremaBatida",
           "title": "Crema Batida",
-          "level": 3,
+          "level": 4,
           "required": false,
           "options": [
             {
