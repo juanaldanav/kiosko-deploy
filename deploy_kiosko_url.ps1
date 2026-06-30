@@ -40,7 +40,10 @@ $files = @(
   'ui/public/images/Nutella-logo.png',
   'ui/public/images/refresher_combo.png',
   'ui/public/videos/NUTELLA.mp4',
-  'ui/public/videos/TEMPORADA_JUNIO.mp4'
+  'ui/public/videos/TEMPORADA_JUNIO.mp4',
+  'ui/public/videos/SLUSH.mp4',
+  'ui/public/videos/MARTES.mp4',
+  'ui/public/videos/KIOSKO_REFRESHER.mp4'
 )
 
 # ---- 1. Detectar la raiz de la app ----

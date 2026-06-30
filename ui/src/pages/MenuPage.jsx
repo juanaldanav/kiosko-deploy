@@ -561,12 +561,12 @@ const getPromoVideoSources = () => {
     "./videos/TEMPORADA_JUNIO.mp4",
     "./videos/HORAFELIZ.mp4",
     "./videos/NUTELLA.mp4",
-    
+    "./videos/SLUSH.mp4",
   ];
 
   // Todos los videos del día (usados completos en finde)
   const allDailyVideos = [
-    "./videos/COMBO.mp4",
+    "./videos/KIOSKO_REFRESHER.mp4",
     "./videos/MARTES.mp4",
     "./videos/MIERCOLES.mp4",
     "./videos/JUEVES.mp4",
@@ -581,7 +581,7 @@ const getPromoVideoSources = () => {
       dailyVideos = allDailyVideos;
       break;
     case 1: // Lunes
-      dailyVideos = ["./videos/COMBO.mp4"];
+      dailyVideos = ["./videos/KIOSKO_REFRESHER.mp4"];
       break;
     case 2: // Martes
       dailyVideos = ["./videos/MARTES.mp4"];
