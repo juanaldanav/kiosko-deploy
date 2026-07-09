@@ -12470,7 +12470,7 @@
       "category": "MINIPOSTRES",
       "subcategory": "minipostres",
       "defaultSize": " ",
-      "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2026/04/29/05f06080-a6e7-463c-8cfd-0e87e378eb8e.jpg",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5067/2af91481-1cc5-4771-bb6e-503efa3ac334.jpg",
       "sizes": [
         {
           "label": " ",
@@ -12479,7 +12479,7 @@
           "productName": "M. MATCHA FRUTOS ROJOS",
           "basePrice": 45,
           "tamanoId": 17,
-          "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2026/04/29/05f06080-a6e7-463c-8cfd-0e87e378eb8e.jpg"
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5067/2af91481-1cc5-4771-bb6e-503efa3ac334.jpg"
         }
       ],
       "modifiers": []
@@ -13036,7 +13036,7 @@
           "productName": "COPITA CONFETTI",
           "basePrice": 120,
           "tamanoId": 1,
-          "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2026/04/29/05f06080-a6e7-463c-8cfd-0e87e378eb8e.jpg"
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5067/2af91481-1cc5-4771-bb6e-503efa3ac334.jpg"
         }
       ],
       "modifiers": []
