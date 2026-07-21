@@ -10,7 +10,10 @@ $ErrorActionPreference = 'Stop'
 
 $rels = @(
   'ui/src/data/catalog_app.json',
-  'kiosko-puente/routes/order.js'
+  'kiosko-puente/routes/order.js',
+  'ui/public/images/ZANAHORIA_MEDIANO.png',
+  'ui/public/images/RED_VELVET_MEDIANO.png',
+  'ui/public/images/VOLCANO_MEDIANO.jpg'
 )
 
 # Detectar raiz de la app (la que contiene ui\src\data\catalog_app.json)
