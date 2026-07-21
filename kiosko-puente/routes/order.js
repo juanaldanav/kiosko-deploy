@@ -368,7 +368,7 @@ router.post('/order', async (req, res) => {
       // 🔥 CALCULAR TAMANO (índice de precio para inventario en la nube)
       // Pasteles: usa índice de precio (1, 3, 4, etc.)
       // Otros productos: siempre 1
-      const tamano = ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787)
+      const tamano = ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817)
         ? obtenerIndicePrecioPastel(sizeLabel)
         : 1;
       
