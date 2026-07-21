@@ -13329,6 +13329,55 @@
           "basePrice": 520,
           "tamanoId": 1,
           "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2024/11/27/25b6ea10-61b2-4429-9909-435e1942a45d.jpg"
+        },
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 1730,
+          "productName": "ZANAHORIA",
+          "basePrice": 850,
+          "tamanoId": 4,
+          "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2024/11/27/25b6ea10-61b2-4429-9909-435e1942a45d.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1800,
+      "productName": "RED VELVET",
+      "category": "REPOSTERIA",
+      "subcategory": "reposteria",
+      "defaultSize": "Mediano",
+      "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2026/01/7/a5c5a13c-42f8-4928-a25d-eedd585a84d9.jpg",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 1800,
+          "productName": "RED VELVET",
+          "basePrice": 800,
+          "tamanoId": 4,
+          "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2026/01/7/a5c5a13c-42f8-4928-a25d-eedd585a84d9.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1817,
+      "productName": "CHEESECAKE VOLCANO BROWNIE",
+      "category": "REPOSTERIA",
+      "subcategory": "reposteria",
+      "defaultSize": "Mediano",
+      "image": "",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 1817,
+          "productName": "CHEESECAKE VOLCANO BROWNIE",
+          "basePrice": 850,
+          "tamanoId": 4,
+          "image": ""
         }
       ],
       "modifiers": []
