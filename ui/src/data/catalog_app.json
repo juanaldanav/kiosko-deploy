@@ -13142,6 +13142,66 @@
       "modifiers": []
     },
     {
+      "productId": 2453,
+      "productName": "COPITA FRESA",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2453,
+          "productName": "COPITA FRESA",
+          "basePrice": 120,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2455,
+      "productName": "COPITA MANGO",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2455,
+          "productName": "COPITA MANGO",
+          "basePrice": 120,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2454,
+      "productName": "COPITA PIÑA COLADA",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2454,
+          "productName": "COPITA PIÑA COLADA",
+          "basePrice": 120,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1725,
       "productName": "SUSPIRO DE FRESA",
       "category": "REPOSTERIA",
@@ -13378,6 +13438,26 @@
           "basePrice": 850,
           "tamanoId": 4,
           "image": "./images/VOLCANO_MEDIANO.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1814,
+      "productName": "CHEESECAKE FRESA",
+      "category": "REPOSTERIA",
+      "subcategory": "reposteria",
+      "defaultSize": "Mediano",
+      "image": "",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 1814,
+          "productName": "CHEESECAKE FRESA",
+          "basePrice": 850,
+          "tamanoId": 4,
+          "image": ""
         }
       ],
       "modifiers": []
