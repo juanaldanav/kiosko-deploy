@@ -43,6 +43,7 @@ $files = @(
   'ui/public/images/ZANAHORIA_MEDIANO.png',
   'ui/public/images/RED_VELVET_MEDIANO.png',
   'ui/public/images/VOLCANO_MEDIANO.jpg',
+  'ui/public/images/CHEESECAKE_FRESA.jpg',
   'ui/public/videos/NUTELLA.mp4',
   'ui/public/videos/TEMPORADA_JUNIO.mp4',
   'ui/public/videos/matchapostre.mp4',

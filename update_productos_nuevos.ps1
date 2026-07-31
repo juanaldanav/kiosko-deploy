@@ -12,7 +12,8 @@ $ErrorActionPreference = 'Stop'
 $rels = @(
   'ui/src/data/catalog_app.json',
   'kiosko-puente/routes/order.js',
-  'ui/public/videos/matchapostre.mp4'
+  'ui/public/videos/matchapostre.mp4',
+  'ui/public/images/CHEESECAKE_FRESA.jpg'
 )
 
 $cands = @('C:\kiosko','C:\Kiosko','C:\interfaz','C:\Interfaz',

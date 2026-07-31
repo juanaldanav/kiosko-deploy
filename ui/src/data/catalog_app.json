@@ -13147,7 +13147,7 @@
       "category": "MINIPOSTRES",
       "subcategory": "minipostres",
       "defaultSize": " ",
-      "image": "",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5067/54a1cede-9b6d-4aa5-bd1c-c8654f3f21b7.jpg",
       "sizes": [
         {
           "label": " ",
@@ -13156,7 +13156,7 @@
           "productName": "COPITA FRESA",
           "basePrice": 120,
           "tamanoId": 1,
-          "image": ""
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5067/54a1cede-9b6d-4aa5-bd1c-c8654f3f21b7.jpg"
         }
       ],
       "modifiers": []
@@ -13167,7 +13167,7 @@
       "category": "MINIPOSTRES",
       "subcategory": "minipostres",
       "defaultSize": " ",
-      "image": "",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5067/7919a208-4421-403b-b6b1-8b7f148e318f.jpg",
       "sizes": [
         {
           "label": " ",
@@ -13176,7 +13176,7 @@
           "productName": "COPITA MANGO",
           "basePrice": 120,
           "tamanoId": 1,
-          "image": ""
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5067/7919a208-4421-403b-b6b1-8b7f148e318f.jpg"
         }
       ],
       "modifiers": []
@@ -13187,7 +13187,7 @@
       "category": "MINIPOSTRES",
       "subcategory": "minipostres",
       "defaultSize": " ",
-      "image": "",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5067/4cffe3d2-9cc9-4b85-89b0-d506df1036fa.jpg",
       "sizes": [
         {
           "label": " ",
@@ -13196,7 +13196,7 @@
           "productName": "COPITA PIÑA COLADA",
           "basePrice": 120,
           "tamanoId": 1,
-          "image": ""
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5067/4cffe3d2-9cc9-4b85-89b0-d506df1036fa.jpg"
         }
       ],
       "modifiers": []
@@ -13448,7 +13448,7 @@
       "category": "REPOSTERIA",
       "subcategory": "reposteria",
       "defaultSize": "Mediano",
-      "image": "",
+      "image": "./images/CHEESECAKE_FRESA.jpg",
       "sizes": [
         {
           "label": "Mediano",
@@ -13457,7 +13457,7 @@
           "productName": "CHEESECAKE FRESA",
           "basePrice": 850,
           "tamanoId": 4,
-          "image": ""
+          "image": "./images/CHEESECAKE_FRESA.jpg"
         }
       ],
       "modifiers": []
