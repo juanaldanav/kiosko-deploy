@@ -84,9 +84,8 @@ function ProductTile({ product, onClick, size = "default" }) {
 
     return (
       <div
-        onClick={inc}
-        className={`${config.container} relative bg-white rounded-2xl shadow-lg hover:shadow-2xl
-                  overflow-hidden transition-all duration-200 hover:scale-105 active:scale-95 flex flex-col cursor-pointer
+        className={`${config.container} relative bg-white rounded-2xl shadow-lg
+                  overflow-hidden transition-all duration-200 flex flex-col
                   ${count > 0 ? "border-2 border-[#00B7C6] ring-2 ring-[#00B7C6]/30" : "border border-gray-200"}`}
       >
         {count > 0 && (
@@ -113,18 +112,18 @@ function ProductTile({ product, onClick, size = "default" }) {
           </p>
 
           {/* Stepper -N+ por postre (compacto) */}
-          <div className="flex items-center justify-center gap-2 bg-slate-100 rounded-full px-1 py-0.5 w-fit mx-auto">
+          <div className="flex items-center justify-center gap-4 bg-slate-100 rounded-full px-2 py-1 w-fit mx-auto">
             <button
               onClick={dec}
               disabled={count === 0}
-              className="w-8 h-8 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-xl font-bold transition-all"
+              className="w-12 h-12 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-2xl font-bold transition-all"
             >
               −
             </button>
-            <span className="w-6 text-center text-lg font-bold text-slate-800">{count}</span>
+            <span className="w-8 text-center text-xl font-bold text-slate-800">{count}</span>
             <button
               onClick={inc}
-              className="w-8 h-8 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-xl font-bold transition-all"
+              className="w-12 h-12 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-2xl font-bold transition-all"
             >
               +
             </button>
