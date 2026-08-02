@@ -94,7 +94,10 @@ function ProductTile({ product, onClick, size = "default" }) {
           </div>
         )}
 
-        <div className={`${config.imageHeight} w-full overflow-hidden bg-gray-100`}>
+        <div
+          onClick={inc}
+          className={`${config.imageHeight} w-full overflow-hidden bg-gray-100 cursor-pointer active:scale-95 transition-transform`}
+        >
           <img
             src={product.foto || "./images/placeholder.png"}
             onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
@@ -104,12 +107,14 @@ function ProductTile({ product, onClick, size = "default" }) {
         </div>
 
         <div className={`${config.padding} flex flex-col justify-between flex-1`}>
-          <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
-            {product.nombre}
-          </h3>
-          <p className={`${config.priceSize} font-bold text-[#00B7C6] text-center mb-2`}>
-            ${product.precio || 0}
-          </p>
+          <div onClick={inc} className="cursor-pointer">
+            <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
+              {product.nombre}
+            </h3>
+            <p className={`${config.priceSize} font-bold text-[#00B7C6] text-center mb-2`}>
+              ${product.precio || 0}
+            </p>
+          </div>
 
           {/* Stepper -N+ por postre (compacto) */}
           <div className="flex items-center justify-center gap-3 bg-slate-100 rounded-full px-3 py-2 w-fit mx-auto">
