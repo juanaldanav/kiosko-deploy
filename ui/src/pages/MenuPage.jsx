@@ -112,18 +112,18 @@ function ProductTile({ product, onClick, size = "default" }) {
           </p>
 
           {/* Stepper -N+ por postre (compacto) */}
-          <div className="flex items-center justify-center gap-4 bg-slate-100 rounded-full px-2 py-1 w-fit mx-auto">
+          <div className="flex items-center justify-center gap-3 bg-slate-100 rounded-full px-3 py-2 w-fit mx-auto">
             <button
               onClick={dec}
               disabled={count === 0}
-              className="w-12 h-12 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-2xl font-bold transition-all"
+              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-2xl font-bold transition-all leading-none"
             >
               −
             </button>
             <span className="w-8 text-center text-xl font-bold text-slate-800">{count}</span>
             <button
               onClick={inc}
-              className="w-12 h-12 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-2xl font-bold transition-all"
+              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-2xl font-bold transition-all leading-none"
             >
               +
             </button>
