@@ -566,6 +566,7 @@ const getPromoVideoSources = () => {
     "./videos/HORAFELIZ.mp4",
     "./videos/NUTELLA.mp4",
     "./videos/SLUSH.mp4",
+    "./videos/CUMPLEANERO.mp4",
   ];
 
   // Todos los videos del día (usados completos en finde)

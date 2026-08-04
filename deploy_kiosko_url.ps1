@@ -47,6 +47,11 @@ $files = @(
   'ui/public/videos/NUTELLA.mp4',
   'ui/public/videos/TEMPORADA_JUNIO.mp4',
   'ui/public/videos/matchapostre.mp4',
+  'ui/public/videos/MIERCOLES.mp4',
+  'ui/public/videos/JUEVES.mp4',
+  'ui/public/videos/COPITAS.mp4',
+  'ui/public/videos/HORAFELIZ.mp4',
+  'ui/public/videos/CUMPLEANERO.mp4',
   'ui/public/videos/SLUSH.mp4',
   'ui/public/videos/MARTES.mp4',
   'ui/public/videos/KIOSKO_REFRESHER.mp4'
