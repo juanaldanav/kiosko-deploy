@@ -10,6 +10,7 @@ $ErrorActionPreference = 'Stop'
 
 $rels = @(
   'ui/src/pages/MenuPage.jsx',
+  'ui/src/components/PromoOverlay.jsx',
   'ui/public/videos/KIOSKO_REFRESHER.mp4',
   'ui/public/videos/MARTES.mp4',
   'ui/public/videos/MIERCOLES.mp4',

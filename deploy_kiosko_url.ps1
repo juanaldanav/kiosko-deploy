@@ -36,6 +36,7 @@ $files = @(
   'ui/src/components/FloatingCart.jsx',
   'ui/src/components/CartSummary.jsx',
   'ui/src/components/ComboFlowOverlay.jsx',
+  'ui/src/components/PromoOverlay.jsx',
   'ui/src/context/CartContext.jsx',
   'ui/src/index.css',
   'ui/public/images/Nutella-logo.png',
