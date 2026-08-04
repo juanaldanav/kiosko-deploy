@@ -1,8 +1,6 @@
 <#
-  update_vigencias.ps1 — actualiza videos de promos por nueva vigencia (31 nov) + banner.
-  Baja:
-    - ui/src/pages/MenuPage.jsx            (agrega CUMPLEANERO a fijos)
-    - 6 videos actualizados + 1 nuevo (CUMPLEANERO)
+  update_vigencias.ps1 — actualiza videos de promos por nueva vigencia (31 nov) + banner + crossfade.
+  Baja a TEMP y reemplaza con reintentos (los .mp4 pueden estar en uso por Chrome/vite).
   Backup de lo reemplazado. Solo frontend -> F5 al Chrome (no reinicia puente).
 #>
 $ErrorActionPreference = 'Stop'
@@ -34,12 +32,32 @@ if (-not $root) { throw "No encontre la app." }
 Write-Host "App root: $root" -ForegroundColor Cyan
 
 $ts = Get-Date -Format 'yyyyMMdd_HHmmss'
+$bloqueados = @()
 foreach ($rel in $rels) {
   $dest = Join-Path $root ($rel -replace '/','\')
   $url  = 'https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/main/' + $rel + '?t=' + $ts
+  $tmp  = Join-Path $env:TEMP ('dl_' + [IO.Path]::GetRandomFileName())
+
+  # 1) Descargar SIEMPRE a temp (el temp nunca esta bloqueado)
+  Invoke-WebRequest -Uri $url -Headers @{ 'Cache-Control' = 'no-cache' } -UseBasicParsing -OutFile $tmp
+
   if (-not (Test-Path (Split-Path -Parent $dest))) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null }
-  if (Test-Path $dest) { Copy-Item $dest ($dest + '.bak_' + $ts) -Force }
-  Invoke-WebRequest -Uri $url -Headers @{ 'Cache-Control' = 'no-cache' } -UseBasicParsing -OutFile $dest
-  Write-Host ("OK -> " + $dest) -ForegroundColor Green
+  if (Test-Path $dest) { Copy-Item $dest ($dest + '.bak_' + $ts) -Force -EA SilentlyContinue }
+
+  # 2) Reemplazar con reintentos (espera a que Chrome/vite suelte el .mp4 al rotar)
+  $ok = $false
+  for ($i = 0; $i -lt 25; $i++) {
+    try { Copy-Item $tmp $dest -Force; $ok = $true; break }
+    catch { Start-Sleep -Milliseconds 800 }
+  }
+  Remove-Item $tmp -Force -EA SilentlyContinue
+
+  if ($ok) { Write-Host ("OK -> " + $dest) -ForegroundColor Green }
+  else { Write-Host ("BLOQUEADO (reintenta luego): " + $dest) -ForegroundColor Yellow; $bloqueados += $rel }
 }
-Write-Host "LISTO. Solo frontend: da F5 al Chrome." -ForegroundColor Green
+
+if ($bloqueados.Count -eq 0) {
+  Write-Host "LISTO. Da F5 al Chrome." -ForegroundColor Green
+} else {
+  Write-Host ("QUEDARON BLOQUEADOS " + $bloqueados.Count + " archivo(s). Da F5 al Chrome y vuelve a correr el comando.") -ForegroundColor Yellow
+}
