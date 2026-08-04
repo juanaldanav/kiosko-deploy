@@ -64,7 +64,7 @@ export default function PromoOverlay({ onStart, videoSources = [] }) {
       {/* Toque en cualquier parte para comenzar el pedido */}
       <button
         onClick={onStart}
-        className="absolute inset-0 cursor-pointer"
+        className="absolute inset-0 z-20 cursor-pointer"
         aria-label="Comenzar pedido"
         title="Comenzar pedido"
       />
