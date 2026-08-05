@@ -177,6 +177,12 @@ const obtenerPrecioSegunTamano = (platilloData, item, platilloId) => {
   return Number(platilloData.Precio1 || 0);
 };
 
+// Extras que en el POS son PLATILLO propio (adicional), NO modificador de la bebida.
+// Se insertan como linea principal (Modificador=0) JUSTO debajo de su bebida (asignacion posicional).
+const ADICIONAL_IDS = new Set([10, 2034]);        // 10=EXTRA SHOT, 2034=EXTRA COLD BREW
+const ADICIONAL_TAMANOID = { 10: 15, 2034: 18 };  // TamanoId como se venden manual (adicionales)
+const SHOT_GRANO_IDS = new Set([393, 1987]);      // grano del shot: sub-modificador del adicional
+
 router.post('/order', async (req, res) => {
   const pool = await getPool();
   const transaction = new sql.Transaction(pool);
@@ -259,33 +265,52 @@ router.post('/order', async (req, res) => {
       console.log(`      Precio seleccionado: $${precioBasePuro}`);
       
       const modsConPreciosReales = [];
+      const adicionales = []; // extras que van como platillo propio (10, 2034)
       let precioMods = 0;
-      
+
       if (Array.isArray(item.mods)) {
         for (const mod of item.mods) {
           const modId = Number(mod.id);
           const modData = platillosMap.get(modId);
-          
+
           if (!modData) {
             throw new Error(`Modificador ${modId} no encontrado en BD`);
           }
-          
+
+          // Adicional (EXTRA SHOT / COLD BREW): NO suma al precio de la bebida;
+          // se cobra en su propia linea principal.
+          if (ADICIONAL_IDS.has(modId)) {
+            adicionales.push({
+              id: modId,
+              name: mod.name,
+              price: Number(modData.Precio1) || 0,
+              conIva: modData.conIva,
+              grano: null,
+            });
+            continue;
+          }
+          // Grano del shot: sub-modificador del ultimo adicional (no de la bebida).
+          if (SHOT_GRANO_IDS.has(modId) && adicionales.length && !adicionales[adicionales.length - 1].grano) {
+            adicionales[adicionales.length - 1].grano = { id: modId, name: mod.name, conIva: modData.conIva };
+            continue;
+          }
+
           const modPrecioReal = modData.Precio1;
           const modConIva = modData.conIva;
-          
+
           modsConPreciosReales.push({
             ...mod,
             priceReal: modPrecioReal,
             conIva: modConIva
           });
-          
+
           precioMods += modPrecioReal;
         }
       }
-      
+
       const precioCompleto = precioBasePuro + precioMods;
       const precioTotalItem = precioCompleto * cantidad;
-      
+
       itemsConPreciosReales.push({
         ...item,
         precioBasePuro: precioBasePuro,
@@ -293,7 +318,8 @@ router.post('/order', async (req, res) => {
         precioCompleto: precioCompleto,
         precioTotalItem: precioTotalItem,
         tamanoId: tamanoId,
-        mods: modsConPreciosReales
+        mods: modsConPreciosReales,
+        adicionales: adicionales
       });
       
       totalLista += precioTotalItem;
@@ -489,6 +515,107 @@ router.post('/order', async (req, res) => {
           
           console.log(`     + ${mod.name} (M=1, R=${idConsecutivo}) - $0.00`);
           idDuranteCaptura--;
+        }
+      }
+
+      // ADICIONALES (EXTRA SHOT / COLD BREW): linea PRINCIPAL propia, justo debajo de la bebida
+      // (asignacion posicional) para que inventario descuente como el manual "adicionales".
+      if (Array.isArray(item.adicionales) && item.adicionales.length > 0) {
+        for (const ad of item.adicionales) {
+          const adConIva = (ad.conIva === undefined || ad.conIva === null) ? 1 : (ad.conIva ? 1 : 0);
+          const adPrecio = Number(ad.price) || 0;
+          const adPunit = adPrecio / 1.16;
+          const adSub = adPrecio * cantidad;
+          const adTamanoId = ADICIONAL_TAMANOID[ad.id] || 18;
+          const adDesc = ad.grano ? `${ad.name}, ${ad.grano.name}` : ad.name;
+
+          const adRes = await new sql.Request(transaction)
+            .input('Orden', sql.Int, ORDEN)
+            .input('Id_Platillo', sql.Int, Number(ad.id))
+            .input('Cantidad', sql.Decimal(18,4), cantidad)
+            .input('Punitario', sql.Decimal(18,4), adPunit)
+            .input('SubTotal', sql.Decimal(18,4), adSub)
+            .input('Id_CdeC', sql.Int, 1)
+            .input('Id_Comanda', sql.Int, 0)
+            .input('Silla', sql.Int, 1)
+            .input('Descripcion', sql.NVarChar(300), adDesc)
+            .input('Hora', sql.DateTime, nowSql)
+            .input('ConIva', sql.Bit, adConIva)
+            .input('Poriginal', sql.Decimal(18,4), adSub)
+            .input('Impresa', sql.Bit, 0)
+            .input('Modificador', sql.Bit, 0)
+            .input('Registro', sql.Int, 0)
+            .input('DxU', sql.Bit, 0)
+            .input('Descuento', sql.Decimal(18,4), 0)
+            .input('Cortesia', sql.Bit, 0)
+            .input('Tamano', sql.Int, 1)
+            .input('Borrar', sql.Bit, 0)
+            .input('Id_Terminal', sql.Int, idTerminal)
+            .input('NumeroTarjeta', sql.NVarChar(50), '')
+            .input('IncluirTarjeta', sql.Bit, 0)
+            .input('Tiempo', sql.Int, 0)
+            .input('TamanoOrden', sql.Int, 0)
+            .input('Id_SucursalDestino', sql.Int, 0)
+            .input('SubTotalSinIva', sql.Decimal(18,4), adPunit * cantidad)
+            .input('FechaOperacion', sql.DateTime, fechaOp)
+            .input('IdDuranteCaptura', sql.Int, -1)
+            .input('TienePromo', sql.Bit, 0)
+            .input('PorcentajePromo', sql.Decimal(18,4), 0)
+            .input('IEPS', sql.Decimal(18,4), 0)
+            .input('IVACobrado', sql.Decimal(18,4), 0)
+            .input('CodigoBarras', sql.NVarChar(50), '')
+            .input('Id_Usuario_Mesero', sql.Int, idUsuario)
+            .input('TamanoId', sql.Int, adTamanoId)
+            .input('ComisionVendedor', sql.Decimal(18,4), 0)
+            .input('IEPSPct', sql.Decimal(18,4), 0)
+            .execute('spInsComanda');
+
+          const adCons = adRes.recordset?.[0]?.Id_Consecutivo;
+          console.log(`   ✓ ADICIONAL ${adDesc} (M=0, $${adPrecio.toFixed(2)}, TamanoId ${adTamanoId})`);
+
+          if (ad.grano) {
+            await new sql.Request(transaction)
+              .input('Orden', sql.Int, ORDEN)
+              .input('Id_Platillo', sql.Int, Number(ad.grano.id))
+              .input('Cantidad', sql.Decimal(18,4), cantidad)
+              .input('Punitario', sql.Decimal(18,4), 0)
+              .input('SubTotal', sql.Decimal(18,4), 0)
+              .input('Id_CdeC', sql.Int, 1)
+              .input('Id_Comanda', sql.Int, 0)
+              .input('Silla', sql.Int, 1)
+              .input('Descripcion', sql.NVarChar(300), ad.grano.name)
+              .input('Hora', sql.DateTime, nowSql)
+              .input('ConIva', sql.Bit, 1)
+              .input('Poriginal', sql.Decimal(18,4), 0)
+              .input('Impresa', sql.Bit, 0)
+              .input('Modificador', sql.Bit, 1)
+              .input('Registro', sql.Int, adCons || 0)
+              .input('DxU', sql.Bit, 0)
+              .input('Descuento', sql.Decimal(18,4), 0)
+              .input('Cortesia', sql.Bit, 0)
+              .input('Tamano', sql.Int, 1)
+              .input('Borrar', sql.Bit, 0)
+              .input('Id_Terminal', sql.Int, idTerminal)
+              .input('NumeroTarjeta', sql.NVarChar(50), '')
+              .input('IncluirTarjeta', sql.Bit, 0)
+              .input('Tiempo', sql.Int, 0)
+              .input('TamanoOrden', sql.Int, 0)
+              .input('Id_SucursalDestino', sql.Int, 0)
+              .input('SubTotalSinIva', sql.Decimal(18,4), 0)
+              .input('FechaOperacion', sql.DateTime, fechaOp)
+              .input('IdDuranteCaptura', sql.Int, -3)
+              .input('TienePromo', sql.Bit, 0)
+              .input('PorcentajePromo', sql.Decimal(18,4), 0)
+              .input('IEPS', sql.Decimal(18,4), 0)
+              .input('IVACobrado', sql.Decimal(18,4), 0)
+              .input('CodigoBarras', sql.NVarChar(50), '')
+              .input('Id_Usuario_Mesero', sql.Int, idUsuario)
+              .input('TamanoId', sql.Int, adTamanoId)
+              .input('ComisionVendedor', sql.Decimal(18,4), 0)
+              .input('IEPSPct', sql.Decimal(18,4), 0)
+              .execute('spInsComanda');
+            console.log(`     + ${ad.grano.name} (M=1, R=${adCons})`);
+          }
         }
       }
     }
