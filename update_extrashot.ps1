@@ -10,7 +10,8 @@ $rels = @(
   'ui/src/data/catalog_app.json',
   'ui/src/utils/prepare-cart-for-backend.js',
   'ui/src/data/modifiersImages.js',
-  'ui/src/components/ModifierStep.jsx'
+  'ui/src/components/ModifierStep.jsx',
+  'ui/src/data/products.js'
 )
 $cands = @('C:\kiosko','C:\Kiosko','C:\interfaz','C:\Interfaz',
   (Join-Path $env:USERPROFILE 'kiosko'),

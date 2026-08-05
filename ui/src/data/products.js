@@ -132,7 +132,18 @@ function filterHiddenInsumos(mods) {
       ...m,
       options: (m.options || []).filter((o) => !isInsumoHidden(o?.name)),
     }))
-    .filter((m) => (m.options || []).length > 0);
+    .filter((m) => (m.options || []).length > 0)
+    .filter((m) => {
+      // Barra de EXTRAS: si tras ocultar solo queda "SIN EXTRAS", quitar el paso (inutil).
+      const t = String(m.type || m.tipo || "").toLowerCase();
+      if (t === "extras" || t === "extrashot") {
+        const hasReal = (m.options || []).some(
+          (o) => !/^\s*SIN\s+EXTRAS\s*$/i.test(o?.name || o?.nombre || "")
+        );
+        return hasReal;
+      }
+      return true;
+    });
 }
 
 // ========================================
