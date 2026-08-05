@@ -314,6 +314,32 @@ function SizeTile({ opt, onClick, layout }) {
   );
 }
 
+// Rectangulo alargado para EXTRAS: nombre y luego icono pequeno a la derecha.
+function ExtraRow({ opt, onClick, product, group }) {
+  const o = normOpt(opt);
+  const displayName = formatModifierLabelForView(o.nombre);
+  const iconSrc = getModifierIcon(group, product, o.nombre);
+  const hasRealIcon = iconSrc && !String(iconSrc).includes("placeholder");
+  return (
+    <button
+      onClick={() => { if (!o.disabled) onClick?.(o); }}
+      disabled={o.disabled}
+      className={`w-[620px] max-w-[86vw] h-[92px] rounded-2xl bg-white shadow-lg border-2 border-slate-200
+        flex items-center justify-center gap-4 px-8 transition-all
+        ${o.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl hover:border-[#00B7C6] hover:scale-[1.02] active:scale-95"}`}
+    >
+      <span className="text-2xl font-bold text-slate-700 leading-none">{displayName.split("\n")[0]}</span>
+      {hasRealIcon && (
+        <img src={iconSrc} alt="" className="w-12 h-12 object-contain flex-shrink-0"
+          onError={(e) => { e.currentTarget.style.display = "none"; }} />
+      )}
+      {o.priceDelta > 0 && (
+        <span className="text-xl font-bold text-[#00B7C6] ml-1 flex-shrink-0">+${o.priceDelta}</span>
+      )}
+    </button>
+  );
+}
+
 export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
   if (!grupo) return null;
 
@@ -341,6 +367,29 @@ export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
       return ids[_sizeLabel] != null;
     }
   );
+
+  // EXTRAS: layout de rectangulos alargados (nombre + icono pequeno a la derecha)
+  const isExtras = ["extras", "extrashot"].includes(tipo.toLowerCase());
+  if (isExtras) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center px-8 pb-32">
+        <h2 className="text-3xl font-bold text-slate-700 mb-8 text-center">
+          <span className="bg-[#BFF0F7] px-8 py-4 rounded-full">{titulo}</span>
+        </h2>
+        <div className="flex flex-col gap-4 items-center">
+          {visibleOptions.map((opt, idx) => (
+            <ExtraRow
+              key={`extra_${String(normOpt(opt).id || normOpt(opt).nombre || idx)}_${idx}`}
+              opt={opt}
+              product={product}
+              group={grupo}
+              onClick={(o) => onPick?.(o)}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   // 🔥 Obtener el layout óptimo basado en la cantidad de opciones Y el tipo de grupo
   const layout = getOptimalLayout(visibleOptions.length, tipo || titulo);

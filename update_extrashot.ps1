@@ -9,7 +9,8 @@ $ErrorActionPreference = 'Stop'
 $rels = @(
   'ui/src/data/catalog_app.json',
   'ui/src/utils/prepare-cart-for-backend.js',
-  'ui/src/data/modifiersImages.js'
+  'ui/src/data/modifiersImages.js',
+  'ui/src/components/ModifierStep.jsx'
 )
 $cands = @('C:\kiosko','C:\Kiosko','C:\interfaz','C:\Interfaz',
   (Join-Path $env:USERPROFILE 'kiosko'),
