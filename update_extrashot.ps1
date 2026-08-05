@@ -11,7 +11,8 @@ $rels = @(
   'ui/src/utils/prepare-cart-for-backend.js',
   'ui/src/data/modifiersImages.js',
   'ui/src/components/ModifierStep.jsx',
-  'ui/src/data/products.js'
+  'ui/src/data/products.js',
+  'kiosko-puente/routes/order.js'
 )
 $cands = @('C:\kiosko','C:\Kiosko','C:\interfaz','C:\Interfaz',
   (Join-Path $env:USERPROFILE 'kiosko'),
