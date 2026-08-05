@@ -262,13 +262,19 @@ function prepareItem(product, selectedSize, quantity = 1, selectedModifiers = {}
   const productName = variant.ProductName || variant.productName;
   const basePrice = Number(variant.BasePrice || variant.basePrice || 0);
 
+  // "SIN EXTRAS" es solo vista del cliente: NO se manda al puente (evita label
+  // redundante en la pantalla del barista).
+  const modsParaBackend = mods.filter(
+    (m) => !/^\s*SIN\s+EXTRAS\s*$/i.test(m?.name || "")
+  );
+
   return {
     platilloId,
     cantidad: quantity,
     sizeLabel,
     productName,
     precioUnitario: basePrice,
-    mods,
+    mods: modsParaBackend,
     // Totales auxiliares (no se envÃ­an)
     _totals: {
       unit: basePrice,
