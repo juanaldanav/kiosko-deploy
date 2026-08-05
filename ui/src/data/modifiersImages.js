@@ -305,7 +305,10 @@ function matchIcon(optionName, groupType, product) {
   }
 
   // ============ EXTRAS / EXTRA SHOT ============
-  if (typeU.includes("EXTRA") || optU.includes("EXTRA SHOT")) {
+  if (typeU.includes("EXTRA") || optU.includes("EXTRA SHOT") || optU.includes("COLD BREW")) {
+    if (optU.includes("COLD BREW")) {
+      return null; // extra cold brew: sin icono (no hay icono dedicado)
+    }
     if (optU.includes("DESCAFE") || optU.includes("DECAF")) {
       return ICON_PATHS.GRANO.DESCAFEINADO;
     }
