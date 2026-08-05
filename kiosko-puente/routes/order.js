@@ -217,9 +217,13 @@ router.post('/order', async (req, res) => {
     
     const todosLosIds = new Set();
     items.forEach(item => {
-      todosLosIds.add(Number(item.platilloId));
+      const pid = Number(item.platilloId);
+      if (Number.isFinite(pid)) todosLosIds.add(pid);
       if (Array.isArray(item.mods)) {
-        item.mods.forEach(mod => todosLosIds.add(Number(mod.id)));
+        item.mods.forEach(mod => {
+          const mid = Number(mod.id);
+          if (Number.isFinite(mid)) todosLosIds.add(mid);
+        });
       }
     });
 
@@ -271,6 +275,9 @@ router.post('/order', async (req, res) => {
       if (Array.isArray(item.mods)) {
         for (const mod of item.mods) {
           const modId = Number(mod.id);
+          // Omitir mods sin id numerico valido (ej. "SIN EXTRAS" no lleva id) —
+          // no se manda al POS (evita NaN en el query y linea redundante en barista).
+          if (!Number.isFinite(modId)) { continue; }
           const modData = platillosMap.get(modId);
 
           if (!modData) {
