@@ -27,6 +27,7 @@ $files = @(
   'ui/src/data/products.js',
   'ui/src/data/modifiersImages.js',
   'ui/src/utils/prepare-cart-for-backend.js',
+  'ui/src/lib/api.js',
   'ui/src/pages/MenuPage.jsx',
   'ui/src/pages/CustomizePage.jsx',
   'ui/src/pages/AdminVisibilidad.jsx',

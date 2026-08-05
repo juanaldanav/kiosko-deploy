@@ -12,6 +12,8 @@ $rels = @(
   'ui/src/data/modifiersImages.js',
   'ui/src/components/ModifierStep.jsx',
   'ui/src/data/products.js',
+  'ui/src/lib/api.js',
+  'ui/src/pages/CustomizePage.jsx',
   'kiosko-puente/routes/order.js'
 )
 $cands = @('C:\kiosko','C:\Kiosko','C:\interfaz','C:\Interfaz',

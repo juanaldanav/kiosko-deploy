@@ -156,49 +156,53 @@ export default function CustomizePage({ producto, onClose, onGoHome, onNavigateT
 
 const handleAddAndSend = async () => {
     if (isSending || isProcessing) return;
-    
+
     setIsSending(true);
-    try {
-      // 1. Construimos el item base
-      const cartItem = buildCartItem();
-      
-      // 2. Lógica de separación de Minipostres (CRUCIAL)
-      // Si es minipostre y son varios, creamos un array con items individuales
-      let itemsToSend = [cartItem];
 
-      if (isMinipostre && quantity > 1) {
-        itemsToSend = []; // Vaciamos para llenar con los individuales
-        
-        // El precio total que calculó buildCartItem incluye la multiplicación por cantidad.
-        // Lo dividimos para obtener el precio unitario real.
-        const precioUnitario = cartItem.totalItem / quantity; 
-        
-        for (let i = 0; i < quantity; i++) {
-          itemsToSend.push({
-            ...cartItem,
-            quantity: 1, // Forzamos cantidad 1
-            cantidad: 1,
-            totalItem: precioUnitario, // Precio de uno solo
-            _uniqueId: `${cartItem.productoId}_${Date.now()}_${i}_direct`,
-            _isSeparated: true
-          });
-        }
+    // 1. Construimos el item base (fuera del try para poder rescatarlo si falla el envio)
+    const cartItem = buildCartItem();
+
+    // 2. Logica de separacion de Minipostres (CRUCIAL)
+    let itemsToSend = [cartItem];
+    if (isMinipostre && quantity > 1) {
+      itemsToSend = [];
+      const precioUnitario = cartItem.totalItem / quantity;
+      for (let i = 0; i < quantity; i++) {
+        itemsToSend.push({
+          ...cartItem,
+          quantity: 1,
+          cantidad: 1,
+          totalItem: precioUnitario,
+          _uniqueId: `${cartItem.productoId}_${Date.now()}_${i}_direct`,
+          _isSeparated: true
+        });
       }
+    }
 
-      // 3. Enviamos el array (ya sea el item único o los desglosados)
+    try {
+      // 3. Enviamos el array (carrito previo + estos items lo fusiona handlePay)
       if (onPay) {
         await onPay(itemsToSend);
       }
-
       onClose();
-      
     } catch (error) {
       console.error("Error enviando pedido:", error);
-      alert("No se pudo enviar la orden");
+      // RESILIENCIA: si el envio falla, NO perder el producto en curso.
+      // Lo dejamos en el carrito para que el cliente reintente sin rearmarlo.
+      try {
+        if (onBuildItem) {
+          onBuildItem(cartItem);
+        } else {
+          addItem(cartItem);
+        }
+      } catch (e2) {
+        console.error("No se pudo preservar el item tras fallo de envio:", e2);
+      }
+      alert("No se pudo enviar. Tu producto quedó en el carrito; intenta enviar de nuevo.");
+      onClose();
     } finally {
       setIsSending(false);
     }
-    
   };
 
   const handleSelectSuggestedCategory = (category) => {
