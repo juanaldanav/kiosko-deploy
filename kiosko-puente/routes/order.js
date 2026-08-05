@@ -183,8 +183,8 @@ router.post('/order', async (req, res) => {
 
   try {
     const {
-      idTerminal =1,
-      idUsuario = 9,
+      idTerminal = Number(process.env.ID_TERMINAL) || 1,
+      idUsuario = Number(process.env.ID_USUARIO) || 9,
       mesa = '-1',
       personas = 1,
       tipoOrden = 1,
