@@ -17,7 +17,8 @@ $rels = @(
   'ui/src/components/ModifierStep.jsx',
   'ui/src/data/products.js',
   'ui/src/pages/CustomizePage.jsx',
-  'kiosko-puente/routes/order.js'
+  'kiosko-puente/routes/order.js',
+  'kiosko-puente/index.js'
 )
 
 # ---- Detectar raiz de la app ----

@@ -32,6 +32,7 @@ $files = @(
   'ui/src/pages/AdminVisibilidad.jsx',
   'kiosko-puente/routes/visibility.js',
   'kiosko-puente/routes/order.js',
+  'kiosko-puente/index.js',
   'ui/src/components/SeasonalDrinkOverlay.jsx',
   'ui/src/components/ModifierStep.jsx',
   'ui/src/components/FloatingCart.jsx',
