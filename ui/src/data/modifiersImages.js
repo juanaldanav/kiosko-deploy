@@ -304,6 +304,19 @@ function matchIcon(optionName, groupType, product) {
     }
   }
 
+  // ============ EXTRAS / EXTRA SHOT ============
+  if (typeU.includes("EXTRA") || optU.includes("EXTRA SHOT")) {
+    if (optU.includes("DESCAFE") || optU.includes("DECAF")) {
+      return ICON_PATHS.GRANO.DESCAFEINADO;
+    }
+    if (optU.includes("SHOT")) {
+      return ICON_PATHS.GRANO.REGULAR; // cafeinado
+    }
+    if (optU.includes("SIN")) {
+      return null; // SIN EXTRAS: boton solo texto
+    }
+  }
+
   // ============ VASO / TERMO ============
   if (typeU.includes("VASO")) {
     // Termo o Refil

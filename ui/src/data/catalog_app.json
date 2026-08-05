@@ -429,6 +429,43 @@
               "label": "AZUCAR MASCABADO"
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS CALIENTES",
@@ -644,6 +681,43 @@
               "labelPerSize": {
                 "Mediano": "LECHE PROTEINA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -878,6 +952,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS CALIENTES",
@@ -1108,6 +1219,43 @@
                 "Grande": "LECHE PROTEINA_",
                 "Mediano": "LECHE PROTEINA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -1403,6 +1551,43 @@
                 "Mediano": 0
               },
               "label": "AZUCAR MASCABADO"
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -1821,6 +2006,43 @@
               "label": "AZUCAR MASCABADO"
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS CALIENTES",
@@ -2051,6 +2273,43 @@
                 "Grande": "LECHE PROTEINA_",
                 "Mediano": "LECHE PROTEINA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -2348,6 +2607,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -2509,6 +2805,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -2805,6 +3138,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -2916,6 +3286,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -3024,6 +3431,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -3091,6 +3535,43 @@
                 "Grande": 0,
                 "XL": 0
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -3422,6 +3903,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -3751,6 +4269,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -3806,6 +4361,43 @@
                 "Grande": 0
               },
               "label": "GRANO REGULAR."
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -4369,6 +4961,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -4699,6 +5328,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -5197,6 +5863,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -5490,6 +6193,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -5787,6 +6527,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -5914,6 +6691,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -6214,6 +7028,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -6447,6 +7298,43 @@
               "labelPerSize": {
                 "Mediano": "LECHE PROTEINA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -6718,6 +7606,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS CALIENTES",
@@ -6951,6 +7876,43 @@
               "labelPerSize": {
                 "Mediano": "LECHE PROTEINA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -7188,6 +8150,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS CALIENTES",
@@ -7380,6 +8379,43 @@
                 "Grande": 0,
                 "Mediano": 0
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -7664,6 +8700,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -7954,6 +9027,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -8315,6 +9425,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -8442,6 +9589,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -8734,6 +9918,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -8803,6 +10024,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -8870,6 +10128,43 @@
                 "Grande": 0,
                 "XL": 0
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -9162,6 +10457,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -9452,6 +10784,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -9682,6 +11051,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -9937,6 +11343,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -10195,6 +11638,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -10449,6 +11929,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -10736,6 +12253,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -11306,6 +12860,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -11596,6 +13187,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -11749,6 +13377,43 @@
                 "Mediano": 15,
                 "Grande": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -11906,6 +13571,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -12059,6 +13761,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -12274,6 +14013,43 @@
                 "Grande": 12,
                 "XL": 12
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -14457,6 +16233,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -14584,6 +16397,43 @@
                 "Grande": 15,
                 "XL": 15
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -14842,6 +16692,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -15036,6 +16923,43 @@
                 "Grande": "LECHE PROTEINA,",
                 "XL": "LECHE PROTEINA_"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -15318,6 +17242,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -15391,6 +17352,43 @@
               }
             }
           ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
         }
       ],
       "parentGroup": "BEBIDAS FRÍAS",
@@ -15462,6 +17460,43 @@
                 "Grande": 0,
                 "XL": 0
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -15577,6 +17612,43 @@
                 "Grande": "GRANO REGULAR.",
                 "XL": "GRANO REGULAR."
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
@@ -15811,6 +17883,43 @@
                 "Grande": "SOYA-",
                 "XL": "SOYA,"
               }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
             }
           ]
         }
