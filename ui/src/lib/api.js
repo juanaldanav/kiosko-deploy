@@ -253,8 +253,8 @@ export async function enviarOrdenAPuente(orden) {
 
     // Payload final - Configuración del kiosko
     const payload = {
-      idTerminal: Number(orden.idTerminal ?? 1),
-      idUsuario: Number(orden.idUsuario ?? 9),
+      idTerminal: Number(orden.idTerminal ?? import.meta.env.VITE_ID_TERMINAL ?? 1),
+      idUsuario: Number(orden.idUsuario ?? import.meta.env.VITE_ID_USUARIO ?? 9),
       mesa: String(orden.mesa ?? "-1"),
       personas: Number(orden.personas ?? 1),
       tipoOrden: Number(orden.tipoOrden ?? 1),
