@@ -30,7 +30,15 @@ const ensureSizesFile = () => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  if (!fs.existsSync(HIDDEN_SIZES_FILE)) {
+  // Recrear si falta O si esta corrupto/vacio (evita que el POST truene con JSON.parse).
+  let valido = false;
+  if (fs.existsSync(HIDDEN_SIZES_FILE)) {
+    try {
+      const d = JSON.parse(fs.readFileSync(HIDDEN_SIZES_FILE, 'utf-8'));
+      valido = Array.isArray(d.hiddenSizes);
+    } catch { valido = false; }
+  }
+  if (!valido) {
     fs.writeFileSync(HIDDEN_SIZES_FILE, JSON.stringify({ hiddenSizes: [] }, null, 2));
   }
 };
