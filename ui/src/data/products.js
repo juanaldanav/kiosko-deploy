@@ -264,10 +264,12 @@ function computeVariantsWithDelta(p, defaultLabel, productId) {
   const defaultPrice = basePriceOf(p, defaultLabel);
   const category = p?.category || "";
   
-  // Solo aplicar disabled a REPOSTERIA (pasteles 1725-1731)
+  // Aplicar disabled (ocultar/mostrar tamano desde AdminVisibilidad) a CUALQUIER
+  // pastel de REPOSTERIA — no solo 1725-1731 (antes dejaba fuera Confetti 1787,
+  // Red Velvet 1800, Cheesecake Fresa 1814, Volcano 1817, corazon, etc.).
   const isReposteria = category.toUpperCase() === "REPOSTERIA";
   const numProductId = Number(productId);
-  const isPastel = isReposteria && numProductId >= 1725 && numProductId <= 1731;
+  const isPastel = isReposteria;
 
   return sizes.map((size) => ({
     label: size.label,
