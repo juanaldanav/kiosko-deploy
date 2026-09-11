@@ -41,10 +41,10 @@ const obtenerTamanoId = (item) => {
   const platilloId = Number(item.platilloId);
   
   // ========================================================================
-  // PASTELES DE REPOSTERÍA (1725-1731): USAR sizeLabel, NO el tamanoId del catálogo
+  // PASTELES DE REPOSTERÍA (1725-1731, 1787, 1800, 1814, 1817, 2464): USAR sizeLabel, NO el tamanoId del catálogo
   // El catálogo tiene índices de precio (1, 3, 4), no TamañoId de la tabla (11-14)
   // ========================================================================
-  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814) {
+  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464) {
     const sizeLabel = item.sizeLabel || 'Chico';
     return obtenerTamanoIdPasteles(sizeLabel); // Devuelve 11, 12, 13, o 14
   }
@@ -152,7 +152,7 @@ const obtenerTamanoId = (item) => {
 // 🔥 FUNCIÓN MODIFICADA: Obtener precio según índice (para pasteles usa sizeLabel)
 const obtenerPrecioSegunTamano = (platilloData, item, platilloId) => {
   // Para PASTELES: usar el sizeLabel para obtener el índice de precio correcto
-  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814) {
+  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464) {
     const sizeLabel = item.sizeLabel || 'Chico';
     const indicePrecio = obtenerIndicePrecioPastel(sizeLabel);
 
@@ -401,7 +401,7 @@ router.post('/order', async (req, res) => {
       // 🔥 CALCULAR TAMANO (índice de precio para inventario en la nube)
       // Pasteles: usa índice de precio (1, 3, 4, etc.)
       // Otros productos: siempre 1
-      const tamano = ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814)
+      const tamano = ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464)
         ? obtenerIndicePrecioPastel(sizeLabel)
         : 1;
       

@@ -15342,6 +15342,44 @@
       "modifiers": []
     },
     {
+      "productId": 2464,
+      "productName": "TRADICIONAL VAINILLA",
+      "category": "REPOSTERIA",
+      "subcategory": "reposteria",
+      "defaultSize": "Chico",
+      "image": "./images/TRADICIONAL_VAINILLA.jpg",
+      "sizes": [
+        {
+          "label": "Individual",
+          "ozLabel": "",
+          "productId": 2464,
+          "productName": "TRADICIONAL VAINILLA",
+          "basePrice": 230,
+          "tamanoId": 11,
+          "image": "./images/TRADICIONAL_VAINILLA.jpg"
+        },
+        {
+          "label": "Chico",
+          "ozLabel": "",
+          "productId": 2464,
+          "productName": "TRADICIONAL VAINILLA",
+          "basePrice": 390,
+          "tamanoId": 1,
+          "image": "./images/TRADICIONAL_VAINILLA.jpg"
+        },
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 2464,
+          "productName": "TRADICIONAL VAINILLA",
+          "basePrice": 490,
+          "tamanoId": 4,
+          "image": "./images/TRADICIONAL_VAINILLA.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1727,
       "productName": "DESNUDO DE CHOCOLATE",
       "category": "REPOSTERIA",
@@ -15982,6 +16020,26 @@
           "basePrice": 125,
           "tamanoId": 1,
           "image": "https://www.wansoft.net/Wansoft.Web/Uploads/eCommerceImages/Thumbnail/2024/11/27/b3706ab2-33d5-4497-99a9-a0e14461ee43.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2465,
+      "productName": "R. TRADICIONAL VAINILLA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "https://prod-wansoft-app-cdn.payclip.io/5273/b52f335e-a845-42e2-9c31-6f8900e8cb24.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2465,
+          "productName": "R. TRADICIONAL VAINILLA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": "https://prod-wansoft-app-cdn.payclip.io/5273/b52f335e-a845-42e2-9c31-6f8900e8cb24.jpg"
         }
       ],
       "modifiers": []

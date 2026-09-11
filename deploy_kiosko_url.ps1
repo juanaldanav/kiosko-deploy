@@ -43,6 +43,7 @@ $files = @(
   'ui/src/index.css',
   'ui/public/images/Nutella-logo.png',
   'ui/public/images/refresher_combo.png',
+  'ui/public/images/TRADICIONAL_VAINILLA.jpg',
   'ui/public/images/ZANAHORIA_MEDIANO.png',
   'ui/public/images/RED_VELVET_MEDIANO.png',
   'ui/public/images/VOLCANO_MEDIANO.jpg',
