@@ -168,7 +168,7 @@ const SEASONAL_DRINK_DEFINITIONS = seasonalConfig.enabled && seasonalConfig.drin
 // Productos populares regulares (sin seasonal hardcodeado)
 const POPULAR = [
   "SLUSH LIMON",
-  "M. MATCHA FRUTOS ROJOS",
+  "R. TRADICIONAL VAINILLA",
   "ICED COFFEE",
   "FRAPPUCCINO",
   "VANILLA ICED",

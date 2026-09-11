@@ -3,6 +3,7 @@
     - ui/src/data/catalog_app.json            (TRADICIONAL VAINILLA 2464 pastel + R. TRADICIONAL VAINILLA 2465 rebanada)
     - kiosko-puente/routes/order.js           (pastel 2464 en el hardcode de tallas/precios)
     - ui/src/pages/MenuPage.jsx               (sin TEMPORADA_JUNIO.mp4 en el banner)
+    - ui/src/data/products.js                 (POPULAR: R. TRADICIONAL VAINILLA en lugar de M. MATCHA FRUTOS ROJOS)
     - ui/public/images/TRADICIONAL_VAINILLA.jpg (imagen local del pastel)
   Backup de lo reemplazado. nodemon reinicia el puente solo.
 #>
@@ -13,6 +14,7 @@ $rels = @(
   'ui/src/data/catalog_app.json',
   'kiosko-puente/routes/order.js',
   'ui/src/pages/MenuPage.jsx',
+  'ui/src/data/products.js',
   'ui/public/images/TRADICIONAL_VAINILLA.jpg'
 )
 
