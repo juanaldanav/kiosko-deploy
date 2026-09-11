@@ -5,6 +5,7 @@
     - ui/src/pages/MenuPage.jsx               (sin TEMPORADA_JUNIO.mp4 en el banner)
     - ui/public/images/TRADICIONAL_VAINILLA.jpg (imagen local del pastel)
   Backup de lo reemplazado. nodemon reinicia el puente solo.
+#>
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
