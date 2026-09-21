@@ -1,0 +1,15 @@
+# Credenciales y config por kiosko: NUNCA al repo (es publico)
+.env
+.env.*
+!.env.example
+sync_config.json
+
+# Ruido local
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Respaldos generados por los scripts
+*_bak_*.json
+*_backup*.json

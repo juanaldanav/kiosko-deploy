@@ -561,10 +561,11 @@ const getPromoVideoSources = () => {
   
   // Videos fijos que van SIEMPRE primero
   const fixedVideos = [
-   "./videos/matchapostre.mp4",
+    "./videos/AEROCANO.mp4",
+    "./videos/PUMPKIN.mp4",
+    "./videos/MATCHAPAN.mp4",
     "./videos/HORAFELIZ.mp4",
-    "./videos/NUTELLA.mp4",
-    "./videos/SLUSH.mp4",
+    "./videos/PASTEL_VAINILLA.mp4",
     "./videos/CUMPLEANERO.mp4",
   ];
 
