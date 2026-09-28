@@ -19495,6 +19495,786 @@
       "parentKey": "frias",
       "beverageKey": "sin_cafe",
       "categoryOrderIndex": 0
+    },
+    {
+      "productId": 1825,
+      "productName": "R. ALMENDRA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1825,
+          "productName": "R. ALMENDRA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1828,
+      "productName": "R. CAJETA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1828,
+          "productName": "R. CAJETA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1829,
+      "productName": "R. CARAMELO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1829,
+          "productName": "R. CARAMELO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2256,
+      "productName": "R. CH FRUTOS ROJOS",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2256,
+          "productName": "R. CH FRUTOS ROJOS",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1830,
+      "productName": "R. CHEESECAKE BROWNIE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1830,
+          "productName": "R. CHEESECAKE BROWNIE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1831,
+      "productName": "R. CHEESECAKE CRUMBLE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1831,
+          "productName": "R. CHEESECAKE CRUMBLE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2042,
+      "productName": "R. CHEESECAKE DURAZNO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2042,
+          "productName": "R. CHEESECAKE DURAZNO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1833,
+      "productName": "R. CHEESECAKE LIMON",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1833,
+          "productName": "R. CHEESECAKE LIMON",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1835,
+      "productName": "R. CHEESECAKE MANZANA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1835,
+          "productName": "R. CHEESECAKE MANZANA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1836,
+      "productName": "R. CHEESECAKE NUTELLA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1836,
+          "productName": "R. CHEESECAKE NUTELLA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1838,
+      "productName": "R. CHOCOLATE AMARGO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1838,
+          "productName": "R. CHOCOLATE AMARGO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1839,
+      "productName": "R. CONFETTI",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1839,
+          "productName": "R. CONFETTI",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1840,
+      "productName": "R. DESNUDO FRESA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1840,
+          "productName": "R. DESNUDO FRESA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1846,
+      "productName": "R. FRESA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1846,
+          "productName": "R. FRESA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1842,
+      "productName": "R. GERMAN CAKE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1842,
+          "productName": "R. GERMAN CAKE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1843,
+      "productName": "R. GLORIAS",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1843,
+          "productName": "R. GLORIAS",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1845,
+      "productName": "R. OREO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1845,
+          "productName": "R. OREO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1855,
+      "productName": "R. PASTEL PIÑA COLADA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1855,
+          "productName": "R. PASTEL PIÑA COLADA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1847,
+      "productName": "R. PAY COCO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1847,
+          "productName": "R. PAY COCO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1991,
+      "productName": "R. PAY DE CHOCOLATE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1991,
+          "productName": "R. PAY DE CHOCOLATE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2001,
+      "productName": "R. PAY DULCE DE LECHE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2001,
+          "productName": "R. PAY DULCE DE LECHE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1848,
+      "productName": "R. PAY DURAZNO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1848,
+          "productName": "R. PAY DURAZNO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1849,
+      "productName": "R. PAY GUAYABA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1849,
+          "productName": "R. PAY GUAYABA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1851,
+      "productName": "R. PAY MANGO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1851,
+          "productName": "R. PAY MANGO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1852,
+      "productName": "R. PAY NUEZ",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1852,
+          "productName": "R. PAY NUEZ",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1854,
+      "productName": "R. PEANUT BROWNIE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1854,
+          "productName": "R. PEANUT BROWNIE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1856,
+      "productName": "R. PIÑATERO CHOCOLATE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1856,
+          "productName": "R. PIÑATERO CHOCOLATE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1857,
+      "productName": "R. PIÑATERO VAINILLLA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1857,
+          "productName": "R. PIÑATERO VAINILLLA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1859,
+      "productName": "R. ROLLO CARAMELO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1859,
+          "productName": "R. ROLLO CARAMELO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1861,
+      "productName": "R. ROSA PASTEL",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1861,
+          "productName": "R. ROSA PASTEL",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1880,
+      "productName": "R. ROSCA COFFEE CAKE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1880,
+          "productName": "R. ROSCA COFFEE CAKE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1879,
+      "productName": "R. ROSCA LECHE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1879,
+          "productName": "R. ROSCA LECHE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1862,
+      "productName": "R. SUSPIRO PLATANO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1862,
+          "productName": "R. SUSPIRO PLATANO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1863,
+      "productName": "R. TOFFEE CHOCOLATE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1863,
+          "productName": "R. TOFFEE CHOCOLATE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1864,
+      "productName": "R. TORTA ALEMANA",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1864,
+          "productName": "R. TORTA ALEMANA",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1865,
+      "productName": "R. TRADICIONAL BLANCO",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1865,
+          "productName": "R. TRADICIONAL BLANCO",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1866,
+      "productName": "R. TRES LECHES CHEESECAKE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1866,
+          "productName": "R. TRES LECHES CHEESECAKE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1867,
+      "productName": "R. TRIPLE CHOCOLATE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1867,
+          "productName": "R. TRIPLE CHOCOLATE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1868,
+      "productName": "R. WHITE TOFFEE",
+      "category": "REBANADAS",
+      "subcategory": "rebanadas",
+      "defaultSize": " ",
+      "image": "",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1868,
+          "productName": "R. WHITE TOFFEE",
+          "basePrice": 125,
+          "tamanoId": 1,
+          "image": ""
+        }
+      ],
+      "modifiers": []
     }
   ]
 }
