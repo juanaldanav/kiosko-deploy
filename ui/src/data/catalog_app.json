@@ -2612,40 +2612,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -2818,53 +2831,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -3168,53 +3194,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -3970,40 +4009,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -4342,40 +4394,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -5012,40 +5077,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -5421,40 +5499,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -5960,53 +6051,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -6311,53 +6415,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -6662,53 +6779,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -6847,53 +6977,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -7201,53 +7344,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -8924,40 +9080,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -9257,40 +9426,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -9659,53 +9841,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -9844,53 +10039,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "XL": 2415,
                 "Unico": 2415
               },
               "pricesPerSize": {
-                "XL": 15,
-                "Unico": 15
+                "XL": 20,
+                "Unico": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -10190,40 +10398,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -10747,40 +10968,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -11080,40 +11314,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -11355,53 +11602,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -11666,53 +11926,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -11978,53 +12251,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -12290,53 +12576,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -12633,40 +12932,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -13577,40 +13889,53 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -16883,53 +17208,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -17195,53 +17533,66 @@
             {
               "id": 2263,
               "name": "COLD FOAM LECHE",
-              "basePrice": 10,
+              "basePrice": 15,
               "idsPerSize": {
                 "Grande": 2263,
                 "XL": 2263
               },
               "pricesPerSize": {
-                "Grande": 10,
-                "XL": 10
+                "Grande": 15,
+                "XL": 15
               }
             },
             {
               "id": 2257,
               "name": "COLD FOAM VAINILLA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2257,
                 "XL": 2257
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2260,
               "name": "COLD FOAM FRESA",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2260,
                 "XL": 2260
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
               }
             },
             {
               "id": 2415,
               "name": "COLD FOAM COCO",
-              "basePrice": 15,
+              "basePrice": 20,
               "idsPerSize": {
                 "Grande": 2415,
                 "XL": 2415
               },
               "pricesPerSize": {
-                "Grande": 15,
-                "XL": 15
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2477,
+              "name": "COLD FOAM LOTUS",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2477,
+                "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
               }
             }
           ]
@@ -20002,7 +20353,7 @@
       "category": "REBANADAS",
       "subcategory": "rebanadas",
       "defaultSize": " ",
-      "image": "",
+      "image": "/images/rebanadas/peanut-brownie.jpg",
       "sizes": [
         {
           "label": " ",
@@ -20011,7 +20362,7 @@
           "productName": "R. PEANUT BROWNIE",
           "basePrice": 125,
           "tamanoId": 1,
-          "image": ""
+          "image": "/images/rebanadas/peanut-brownie.jpg"
         }
       ],
       "modifiers": []
@@ -20082,7 +20433,7 @@
       "category": "REBANADAS",
       "subcategory": "rebanadas",
       "defaultSize": " ",
-      "image": "",
+      "image": "/images/rebanadas/rosa-pastel.jpg",
       "sizes": [
         {
           "label": " ",
@@ -20091,7 +20442,7 @@
           "productName": "R. ROSA PASTEL",
           "basePrice": 125,
           "tamanoId": 1,
-          "image": ""
+          "image": "/images/rebanadas/rosa-pastel.jpg"
         }
       ],
       "modifiers": []
@@ -20272,6 +20623,392 @@
           "basePrice": 125,
           "tamanoId": 1,
           "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2367,
+      "productName": "FRAPUCCINO PEANUT",
+      "category": "BEBIDAS FRÍAS CON CAFÉ",
+      "subcategory": "bebidas_frias_con_cafe",
+      "defaultSize": "Grande",
+      "image": "/images/bebidas/frappe-peanut.jpg",
+      "sizes": [
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2367,
+          "productName": "FRAPUCCINO PEANUT GDE",
+          "basePrice": 90,
+          "image": "/images/bebidas/frappe-peanut.jpg"
+        },
+        {
+          "label": "XL",
+          "ozLabel": "20 oz",
+          "tamanoId": 20,
+          "productId": 2369,
+          "productName": "FRAPUCCINO PEANUT XL",
+          "basePrice": 95,
+          "image": "/images/bebidas/frappe-peanut.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2266,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2266,
+                "XL": 2269
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "VASO GRANDE",
+                "XL": "VASO XL"
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2049,
+                "XL": 2049
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 2239,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2239,
+                "XL": 1987
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "DESCAFEINADO",
+                "XL": "DESCAFEINADO."
+              }
+            },
+            {
+              "id": 2277,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2277,
+                "XL": 393
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "GRANO REGULAR",
+                "XL": "GRANO REGULAR."
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 2288,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2288,
+                "XL": 2287
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "_ENTERA",
+                "XL": "ENTERA*"
+              }
+            },
+            {
+              "id": 2281,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2281,
+                "XL": 2280
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "LECHE DESLACTOSADA LIGHT",
+                "XL": "DESLACTOSADA LIGHT"
+              }
+            },
+            {
+              "id": 2296,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2296,
+                "XL": 2295
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "_ALMENDRA",
+                "XL": "ALMENDRA*"
+              }
+            },
+            {
+              "id": 2302,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2302,
+                "XL": 2301
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "_AVENA",
+                "XL": "AVENA*"
+              }
+            },
+            {
+              "id": 2309,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2309,
+                "XL": 2308
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "_SOYA",
+                "XL": "SOYA*"
+              }
+            },
+            {
+              "id": 2316,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2316,
+                "XL": 2315
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "_COCO",
+                "XL": "COCO*"
+              }
+            }
+          ]
+        },
+        {
+          "type": "cremaBatida",
+          "title": "Crema Batida",
+          "level": 4,
+          "required": false,
+          "options": [
+            {
+              "id": 1630,
+              "name": "CON CREMA BATIDA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 1630,
+                "XL": 1630
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "CON CREMA BATIDA.",
+                "XL": "CON CREMA BATIDA."
+              }
+            },
+            {
+              "id": 299,
+              "name": "SIN CREMA BATIDA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 299,
+                "XL": 299
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            },
+            {
+              "id": 2034,
+              "name": "EXTRA COLD BREW",
+              "basePrice": 10,
+              "priceDelta": 10
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS FRÍAS",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "frias",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 0
+    },
+    {
+      "productId": 159,
+      "productName": "PAN DE MUERTO CLASICO",
+      "category": "PANADERIA",
+      "subcategory": "panaderia",
+      "defaultSize": " ",
+      "image": "/images/panaderia/pan-de-muerto.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 159,
+          "productName": "PAN DE MUERTO CLASICO",
+          "basePrice": 55,
+          "tamanoId": 1,
+          "image": "/images/panaderia/pan-de-muerto.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1610,
+      "productName": "PAN DE MUERTO NUTELLA",
+      "category": "PANADERIA",
+      "subcategory": "panaderia",
+      "defaultSize": " ",
+      "image": "/images/panaderia/pan-de-muerto.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1610,
+          "productName": "PAN DE MUERTO NUTELLA",
+          "basePrice": 75,
+          "tamanoId": 1,
+          "image": "/images/panaderia/pan-de-muerto.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2343,
+      "productName": "PAN DE MUERTO JAMONCILLO",
+      "category": "PANADERIA",
+      "subcategory": "panaderia",
+      "defaultSize": " ",
+      "image": "/images/panaderia/pan-de-muerto.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2343,
+          "productName": "PAN DE MUERTO JAMONCILLO",
+          "basePrice": 75,
+          "tamanoId": 1,
+          "image": "/images/panaderia/pan-de-muerto.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2480,
+      "productName": "PAN DE MUERTO LOTUS",
+      "category": "PANADERIA",
+      "subcategory": "panaderia",
+      "defaultSize": " ",
+      "image": "/images/panaderia/pan-de-muerto.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2480,
+          "productName": "PAN DE MUERTO LOTUS",
+          "basePrice": 75,
+          "tamanoId": 1,
+          "image": "/images/panaderia/pan-de-muerto.jpg"
         }
       ],
       "modifiers": []
