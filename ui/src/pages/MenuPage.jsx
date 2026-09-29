@@ -226,7 +226,7 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
     </button>
 
     {/* Etiqueta de temporada: sobresale de la esquina. badge.image = logo PNG (ej. Nutella) */}
-    {isSeasonal && (
+    {(isSeasonal || badge) && (
       <div className="absolute -top-4 -right-4 z-20 pointer-events-none">
         {badge && badge.image ? (
           <img

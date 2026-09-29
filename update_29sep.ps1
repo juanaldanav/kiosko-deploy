@@ -2,16 +2,22 @@
   update_29sep.ps1 - despliegue completo del 29-sep-2026.
 
   QUE HACE
-    1. Oculta las 39 rebanadas nuevas (aditivo: NO pisa lo que la sucursal ya tiene).
+    1. Oculta los 3 productos nuevos (aditivo: NO pisa lo que la sucursal ya tiene).
     2. Baja el catalogo y las 4 fotos nuevas.
     3. F5 opcional.
 
   ORDEN CRITICO: se oculta ANTES de bajar el catalogo. Al reves habria segundos
-  con las 39 rebanadas visibles en pantalla.
+  con los productos nuevos visibles en pantalla.
 
   CONTENIDO
-    - 39 rebanadas, TODAS OCULTAS -> cada sucursal las prende en Admin Visibilidad
-      segun su existencia. R. PEANUT BROWNIE y R. ROSA PASTEL ya traen foto.
+    - PAN DE MUERTO: una tarjeta con 4 sabores (clasico $55, nutella/jamoncillo/
+      lotus $75), etiqueta TEMPORADA. OCULTO: se prende el 1-oct. Se puede apagar
+      completo o sabor por sabor desde Admin Visibilidad.
+    - 2 rebanadas (R. PEANUT BROWNIE, R. ROSA PASTEL), OCULTAS. Ambas traen foto.
+    - EXTRA COLD BREW ya solo aparece en bebidas de cold brew (antes en las 62;
+      generaba anulaciones - peticion de Conquista).
+    - Admin Visibilidad rediseñado (identidad de produccion/v2) y con auto-refresh:
+      al prender o apagar algo el kiosko se actualiza solo a los 2s.
     - PAN DE MUERTO: clasico $55, nutella / jamoncillo / lotus $75 (una sola foto).
     - FRAPUCCINO PEANUT GDE $90 / XL $95.
     - COLD FOAM: vainilla, fresa y coco a $20; leche a $15; entra COLD FOAM LOTUS $20
@@ -30,9 +36,13 @@ $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $BaseUrl = 'https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/main/'
-$ids     = @(1825, 1828, 1829, 1830, 1831, 1833, 1835, 1836, 1838, 1839, 1840, 1842, 1843, 1845, 1846, 1847, 1848, 1849, 1851, 1852, 1854, 1855, 1856, 1857, 1859, 1861, 1862, 1863, 1864, 1865, 1866, 1867, 1868, 1879, 1880, 1991, 2001, 2042, 2256)
+$ids     = @(1854, 1861, 2480)   # rebanadas + PAN DE MUERTO
 $files   = @(
   'ui/src/data/catalog_app.json',
+  'ui/src/data/products.js',
+  'ui/src/pages/MenuPage.jsx',
+  'ui/src/pages/CustomizePage.jsx',
+  'ui/src/pages/AdminVisibilidad.jsx',
   'ui/public/images/bebidas/frappe-peanut.jpg',
   'ui/public/images/panaderia/pan-de-muerto.jpg',
   'ui/public/images/rebanadas/peanut-brownie.jpg',
@@ -117,4 +127,4 @@ Write-Host ""
 Write-Host "REVISAR EN PANTALLA:" -ForegroundColor Yellow
 Write-Host "  - Pan de muerto (4 sabores) y Frappuccino Peanut visibles"
 Write-Host "  - Cold foam: vainilla/fresa/coco \$20, leche \$15, y aparece COLD FOAM LOTUS"
-Write-Host "  - Las rebanadas NO deben verse; estan en Admin Visibilidad apagadas"
+Write-Host "  - Pan de muerto y las 2 rebanadas NO deben verse; estan en Admin apagados"

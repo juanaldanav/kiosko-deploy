@@ -1,5 +1,5 @@
 // pages/AdminVisibilidad.jsx
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef} from 'react';
 import catalogData from '../data/catalog_app.json';
 import { getModifierIcon } from '../data/modifiersImages';
 
@@ -23,9 +23,12 @@ export default function AdminVisibilidad() {
   const [hidden, setHidden] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [autoAvisado, setAutoAvisado] = useState(false);
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
-  const [showOnlyHidden, setShowOnlyHidden] = useState(false);
+  // 'todos' | 'visibles' | 'ocultos' — antes era un checkbox "Solo ocultos",
+  // que no dejaba ver la lista de los visibles por si sola.
+  const [verFiltro, setVerFiltro] = useState('todos');
   const [refreshing, setRefreshing] = useState(false);
   const [hiddenSizes, setHiddenSizes] = useState([]);
   const [loadingSizes, setLoadingSizes] = useState(true);
@@ -38,9 +41,11 @@ export default function AdminVisibilidad() {
 
   const products = catalogData.catalog || [];
 
-  // Filtrar solo pasteles (REPOSTERIA con sizes)
+  // Solo REPOSTERIA: esta pestana es de TAMANOS de pastel y asi la tiene ubicada
+  // operacion. El pan de muerto gestiona SABORES, no tamanos, y se controla desde
+  // su propia tarjeta en Productos (misma lista hidden_sizes, quedan sincronizados).
   const pasteles = useMemo(() => {
-    return products.filter(p => p.category === 'REPOSTERIA' && p.sizes && p.sizes.length > 0);
+    return products.filter(p => p.category === 'REPOSTERIA' && Array.isArray(p.sizes) && p.sizes.length > 0);
   }, [products]);
 
   // Filtrar productos con colorOptions
@@ -129,6 +134,23 @@ export default function AdminVisibilidad() {
       .finally(() => setLoadingInsumos(false));
   }, []);
 
+  // Auto-refresh: al apagar o prender algo, el kiosko tiene que enterarse solo.
+  // Con espera de 2s para que apagar 10 productos seguidos mande UNA senal y no
+  // diez. El boton manual sigue ahi por si se quiere forzar.
+  const refreshTimer = useRef(null);
+  const programarRefresh = () => {
+    if (refreshTimer.current) clearTimeout(refreshTimer.current);
+    refreshTimer.current = setTimeout(() => {
+      fetch(`${API_URL}/api/visibility/refresh`, { method: 'POST' })
+        .then(() => {
+          setAutoAvisado(true);
+          setTimeout(() => setAutoAvisado(false), 2000);
+        })
+        .catch(err => console.error('Error en refresh automatico:', err));
+    }, 2000);
+  };
+  useEffect(() => () => { if (refreshTimer.current) clearTimeout(refreshTimer.current); }, []);
+
   const toggleProduct = async (productId) => {
     const isHidden = hidden.includes(productId);
     setSaving(true);
@@ -139,7 +161,7 @@ export default function AdminVisibilidad() {
         body: JSON.stringify({ productId, visible: isHidden })
       });
       const data = await res.json();
-      if (data.ok) setHidden(data.hidden);
+      if (data.ok) { setHidden(data.hidden); programarRefresh(); }
     } catch (err) {
       console.error('Error:', err);
       alert('Error actualizando visibilidad');
@@ -158,7 +180,7 @@ export default function AdminVisibilidad() {
         body: JSON.stringify({ productId, colorId, visible: isHidden })
       });
       const data = await res.json();
-      if (data.ok) setHiddenColors(data.hiddenColors);
+      if (data.ok) { setHiddenColors(data.hiddenColors); programarRefresh(); }
     } catch (err) {
       console.error('Error:', err);
       alert('Error actualizando color');
@@ -179,7 +201,7 @@ export default function AdminVisibilidad() {
         body: JSON.stringify({ name, visible: isHidden })
       });
       const data = await res.json();
-      if (data.ok) setHiddenInsumos(data.hiddenInsumos);
+      if (data.ok) { setHiddenInsumos(data.hiddenInsumos); programarRefresh(); }
     } catch (err) {
       console.error('Error:', err);
       alert('Error actualizando insumo');
@@ -198,24 +220,34 @@ export default function AdminVisibilidad() {
         body: JSON.stringify({ productId, sizeLabel, visible: isHidden })
       });
       const data = await res.json();
-      if (data.ok) setHiddenSizes(data.hiddenSizes);
+      if (data.ok) { setHiddenSizes(data.hiddenSizes); programarRefresh(); }
     } catch (err) {
       console.error('Error:', err);
-      alert('Error actualizando tamano');
+      alert('Error actualizando tamaño');
     }
     setSaving(false);
   };
 
   const filteredProducts = useMemo(() => {
     return products.filter(p => {
-      const matchesSearch = !search || 
-        p.productName.toLowerCase().includes(search.toLowerCase()) ||
-        String(p.productId).includes(search);
+      const q = search.toLowerCase();
+      // Busca tambien por variante y por el id de cada una: escribir "nutella"
+      // o "2343" tiene que encontrar la tarjeta de PAN DE MUERTO.
+      const matchesSearch = !search ||
+        p.productName.toLowerCase().includes(q) ||
+        String(p.productId).includes(search) ||
+        (p.sizes || []).some(sz =>
+          String(sz.label || '').toLowerCase().includes(q) ||
+          String(sz.productId || '').includes(search));
       const matchesCategory = !categoryFilter || p.category === categoryFilter;
-      const matchesHiddenFilter = !showOnlyHidden || hidden.includes(p.productId);
+      const estaOculto = hidden.includes(p.productId);
+      const matchesHiddenFilter =
+        verFiltro === 'todos' || (verFiltro === 'ocultos' ? estaOculto : !estaOculto);
       return matchesSearch && matchesCategory && matchesHiddenFilter;
-    });
-  }, [products, search, categoryFilter, showOnlyHidden, hidden]);
+    // Ordenado por categoria: la alternancia de tono de abajo solo sirve si los
+    // productos de una misma categoria van juntos.
+    }).sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+  }, [products, search, categoryFilter, verFiltro, hidden]);
 
   const hiddenInsumosCanon = useMemo(
     () => new Set(hiddenInsumos.map(n => canonInsumo(n))),
@@ -255,10 +287,10 @@ export default function AdminVisibilidad() {
         body: JSON.stringify({ hidden: newHidden })
       });
       const data = await res.json();
-      if (data.ok) setHidden(data.hidden);
+      if (data.ok) { setHidden(data.hidden); programarRefresh(); }
     } catch (err) {
       console.error('Error:', err);
-      alert('Error actualizando categoria');
+      alert('Error actualizando categoría');
     }
     setSaving(false);
   };
@@ -271,7 +303,7 @@ export default function AdminVisibilidad() {
       if (data.ok) setTimeout(() => setRefreshing(false), 1500);
     } catch (err) {
       console.error('Error enviando refresh:', err);
-      alert('Error al enviar senal de refresh');
+      alert('Error al enviar señal de refresh');
       setRefreshing(false);
     }
   };
@@ -285,7 +317,7 @@ export default function AdminVisibilidad() {
       <header style={styles.header}>
         <h1 style={styles.title}>Admin - Visibilidad</h1>
         <p style={styles.subtitle}>
-          {hidden.length} productos ocultos | {hiddenSizes.length} tamanos ocultos | {hiddenColors.length} colores ocultos | {hiddenInsumos.length} insumos ocultos
+          {hidden.length} productos ocultos | {hiddenSizes.length} tamaños ocultos | {hiddenInsumos.length} insumos ocultos
         </p>
         <div style={styles.tabs}>
           <button
@@ -298,14 +330,19 @@ export default function AdminVisibilidad() {
             onClick={() => setActiveTab('tamanos')}
             style={{...styles.tab, ...(activeTab === 'tamanos' ? styles.tabActive : {})}}
           >
-            Tamanos Pasteles
+            Tamaños
           </button>
+          {/* Colores (Confetti): oculto a peticion de operacion 29-sep-2026.
+              El endpoint /api/visibility/colors y el estado siguen vivos; para
+              reactivarlo, descomentar este boton y el bloque de abajo. */}
+          {/*
           <button
             onClick={() => setActiveTab('colores')}
             style={{...styles.tab, ...(activeTab === 'colores' ? styles.tabActive : {})}}
           >
             Colores
           </button>
+          */}
           <button
             onClick={() => setActiveTab('insumos')}
             style={{...styles.tab, ...(activeTab === 'insumos' ? styles.tabActive : {})}}
@@ -314,6 +351,7 @@ export default function AdminVisibilidad() {
           </button>
         </div>
       </header>
+      <div style={styles.regla} />
 
       {activeTab === 'productos' && (
         <>
@@ -326,45 +364,60 @@ export default function AdminVisibilidad() {
                 onChange={e => setSearch(e.target.value)}
                 style={styles.searchInput}
               />
-              <select 
-                value={categoryFilter} 
-                onChange={e => setCategoryFilter(e.target.value)}
-                style={styles.select}
-              >
-                <option value="">Todas las categorias</option>
-                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-              </select>
-              <label style={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={showOnlyHidden}
-                  onChange={e => setShowOnlyHidden(e.target.checked)}
-                />
-                Solo ocultos
-              </label>
               <button
                 onClick={handleRefreshKiosko}
                 disabled={refreshing}
                 style={{...styles.refreshBtn, ...(refreshing ? styles.refreshBtnActive : {})}}
               >
-                {refreshing ? 'Enviado' : 'Actualizar Kiosko'}
+                {refreshing ? <><Spinner /> Enviando...</> : 'Actualizar Kiosko'}
               </button>
             </div>
-            {categoryFilter && (
-              <div style={styles.categoryActions}>
-                <span>Categoria: <strong>{categoryFilter}</strong></span>
-                <button onClick={() => toggleCategory(categoryFilter, false)} style={styles.btnHideAll} disabled={saving}>Ocultar toda</button>
-                <button onClick={() => toggleCategory(categoryFilter, true)} style={styles.btnShowAll} disabled={saving}>Mostrar toda</button>
-              </div>
-            )}
+            <div style={styles.chips}>
+              {['', ...categories].map((cat, i) => (
+                <button
+                  key={cat || 'todas'}
+                  onClick={() => setCategoryFilter(cat)}
+                  style={{
+                    ...styles.chip,
+                    ...(i === categories.length ? styles.chipUltimo : {}),
+                    ...(categoryFilter === cat ? styles.chipActivo : {}),
+                  }}
+                >
+                  {cat || 'Todas'}
+                </button>
+              ))}
+            </div>
+            <div style={styles.categoryActions}>
+              <button
+                onClick={() => setVerFiltro(verFiltro === 'ocultos' ? 'todos' : 'ocultos')}
+                style={{...styles.btnHideAll, ...(verFiltro === 'ocultos' ? styles.btnHideAllOn : {})}}
+              >
+                Ver ocultos
+              </button>
+              <button
+                onClick={() => setVerFiltro(verFiltro === 'visibles' ? 'todos' : 'visibles')}
+                style={{...styles.btnShowAll, ...(verFiltro === 'visibles' ? styles.btnShowAllOn : {})}}
+              >
+                Ver visibles
+              </button>
+            </div>
             <div style={styles.resultsCount}>Mostrando {filteredProducts.length} productos</div>
           </div>
           <div style={styles.productListContainer}>
             <div style={styles.productList}>
-              {filteredProducts.map(product => {
+              {(() => { let cat = null, par = false; return filteredProducts.map(product => {
                 const isHidden = hidden.includes(product.productId);
+                // Cada vez que cambia la categoria se alterna el tono, para que dos
+                // categorias seguidas no se lean como una sola lista corrida.
+                if (product.category !== cat) { cat = product.category; par = !par; }
+                const banda = par ? styles.bandaA : styles.bandaB;
+                // Variantes (tamanos de pastel / sabores de pan) para controlarlas
+                // desde la misma tarjeta, sin ir a otra pestana.
+                const tieneVariantes = Array.isArray(product.sizes) && product.sizes.length > 1 &&
+                  ['REPOSTERIA','PANADERIA'].includes((product.category || '').toUpperCase());
                 return (
-                  <div key={product.productId} style={{...styles.productCard, ...(isHidden ? styles.productHidden : {})}}>
+                  <div key={product.productId} style={{...styles.productCardWrap, ...banda, ...(isHidden ? styles.productHidden : {})}}>
+                  <div style={styles.productCard}>
                     <div style={styles.productInfo}>
                       {product.image && <img src={product.image} alt={product.productName} style={styles.productImage} onError={e => e.target.style.display = 'none'}/>}
                       <div style={styles.productDetails}>
@@ -381,8 +434,31 @@ export default function AdminVisibilidad() {
                       {isHidden ? 'Mostrar' : 'Ocultar'}
                     </button>
                   </div>
+
+                  {tieneVariantes && (
+                    <div style={styles.variantes}>
+                      <span style={styles.variantesEt}>
+                        {(product.category || '').toUpperCase() === 'PANADERIA' ? 'Sabores' : 'Tamaños'}
+                      </span>
+                      {product.sizes.map(sz => {
+                        const szOculto = hiddenSizes.includes(`${product.productId}:${sz.label}`);
+                        return (
+                          <button
+                            key={sz.label}
+                            onClick={() => toggleSize(product.productId, sz.label)}
+                            disabled={saving}
+                            title={szOculto ? 'Apagado — clic para prender' : 'Activo — clic para apagar'}
+                            style={{...styles.variante, ...(szOculto ? styles.varianteOff : {})}}
+                          >
+                            {sz.label} · ${sz.basePrice}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                  </div>
                 );
-              })}
+              }); })()}
             </div>
             {filteredProducts.length === 0 && <div style={styles.noResults}>No se encontraron productos</div>}
           </div>
@@ -405,10 +481,10 @@ export default function AdminVisibilidad() {
                 disabled={refreshing}
                 style={{...styles.refreshBtn, ...(refreshing ? styles.refreshBtnActive : {})}}
               >
-                {refreshing ? 'Enviado' : 'Actualizar Kiosko'}
+                {refreshing ? <><Spinner /> Enviando...</> : 'Actualizar Kiosko'}
               </button>
             </div>
-            <div style={styles.resultsCount}>{filteredPasteles.length} pasteles con tamanos</div>
+            <div style={styles.resultsCount}>{filteredPasteles.length} pasteles con tamaños</div>
           </div>
           <div style={styles.productListContainer}>
             <div style={styles.productList}>
@@ -450,68 +526,70 @@ export default function AdminVisibilidad() {
         </>
       )}
 
+      {/* Bloque de Colores (Confetti) oculto 29-sep-2026 — ver nota en la pestaña.
       {activeTab === 'colores' && (
-        <>
-          <div style={styles.filtersContainer}>
-            <div style={styles.filters}>
-              <button
-                onClick={handleRefreshKiosko}
-                disabled={refreshing}
-                style={{...styles.refreshBtn, ...(refreshing ? styles.refreshBtnActive : {})}}
-              >
-                {refreshing ? 'Enviado' : 'Actualizar Kiosko'}
-              </button>
-            </div>
-            <div style={styles.resultsCount}>{productosConColores.length} producto(s) con colores</div>
-          </div>
-          <div style={styles.productListContainer}>
-            <div style={styles.productList}>
-              {productosConColores.map(producto => (
-                <div key={producto.productId} style={styles.pastelCard}>
-                  <div style={styles.pastelHeader}>
-                    {producto.image && (
-                      <img src={producto.image} alt={producto.productName} style={styles.pastelImage} onError={e => e.target.style.display = 'none'} />
-                    )}
-                    <div style={styles.pastelInfo}>
-                      <span style={styles.productId}>#{producto.productId}</span>
-                      <span style={styles.pastelName}>{producto.productName}</span>
-                    </div>
+              <>
+                <div style={styles.filtersContainer}>
+                  <div style={styles.filters}>
+                    <button
+                      onClick={handleRefreshKiosko}
+                      disabled={refreshing}
+                      style={{...styles.refreshBtn, ...(refreshing ? styles.refreshBtnActive : {})}}
+                    >
+                      {refreshing ? 'Enviado' : 'Actualizar Kiosko'}
+                    </button>
                   </div>
-                  <div style={styles.sizesGrid}>
-                    {producto.colorOptions.map(color => {
-                      const colorKey = `${producto.productId}:${color.id}`;
-                      const isHidden = hiddenColors.includes(colorKey);
-                      return (
-                        <div key={color.id} style={{...styles.colorCard, ...(isHidden ? styles.colorHidden : {})}}>
-                          {color.image && (
-                            <img src={color.image} alt={color.label} style={styles.colorThumb} onError={e => e.target.style.display = 'none'} />
-                          )}
-                          <div style={styles.sizeInfo}>
-                            <span style={styles.sizeLabel}>{color.label}</span>
-                            <span style={{fontSize: '11px', color: isHidden ? '#dc3545' : '#28a745'}}>
-                              {isHidden ? 'OCULTO' : 'VISIBLE'}
-                            </span>
-                          </div>
-                          <button
-                            onClick={() => toggleColor(producto.productId, color.id)}
-                            disabled={saving}
-                            style={{...styles.sizeToggleBtn, ...(isHidden ? styles.sizeToggleBtnHidden : styles.sizeToggleBtnVisible)}}
-                          >
-                            {isHidden ? 'ON' : 'OFF'}
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <div style={styles.resultsCount}>{productosConColores.length} producto(s) con colores</div>
                 </div>
-              ))}
-            </div>
-            {productosConColores.length === 0 && (
-              <div style={styles.noResults}>No hay productos con colores configurados</div>
+                <div style={styles.productListContainer}>
+                  <div style={styles.productList}>
+                    {productosConColores.map(producto => (
+                      <div key={producto.productId} style={styles.pastelCard}>
+                        <div style={styles.pastelHeader}>
+                          {producto.image && (
+                            <img src={producto.image} alt={producto.productName} style={styles.pastelImage} onError={e => e.target.style.display = 'none'} />
+                          )}
+                          <div style={styles.pastelInfo}>
+                            <span style={styles.productId}>#{producto.productId}</span>
+                            <span style={styles.pastelName}>{producto.productName}</span>
+                          </div>
+                        </div>
+                        <div style={styles.sizesGrid}>
+                          {producto.colorOptions.map(color => {
+                            const colorKey = `${producto.productId}:${color.id}`;
+                            const isHidden = hiddenColors.includes(colorKey);
+                            return (
+                              <div key={color.id} style={{...styles.colorCard, ...(isHidden ? styles.colorHidden : {})}}>
+                                {color.image && (
+                                  <img src={color.image} alt={color.label} style={styles.colorThumb} onError={e => e.target.style.display = 'none'} />
+                                )}
+                                <div style={styles.sizeInfo}>
+                                  <span style={styles.sizeLabel}>{color.label}</span>
+                                  <span style={{fontSize: '11px', color: isHidden ? '#dc3545' : '#28a745'}}>
+                                    {isHidden ? 'OCULTO' : 'VISIBLE'}
+                                  </span>
+                                </div>
+                                <button
+                                  onClick={() => toggleColor(producto.productId, color.id)}
+                                  disabled={saving}
+                                  style={{...styles.sizeToggleBtn, ...(isHidden ? styles.sizeToggleBtnHidden : styles.sizeToggleBtnVisible)}}
+                                >
+                                  {isHidden ? 'ON' : 'OFF'}
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {productosConColores.length === 0 && (
+                    <div style={styles.noResults}>No hay productos con colores configurados</div>
+                  )}
+                </div>
+              </>
             )}
-          </div>
-        </>
-      )}
+      */}
 
       {activeTab === 'insumos' && (
         <>
@@ -524,20 +602,26 @@ export default function AdminVisibilidad() {
                 onChange={e => setSearchInsumo(e.target.value)}
                 style={styles.searchInput}
               />
-              <label style={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={showOnlyHidden}
-                  onChange={e => setShowOnlyHidden(e.target.checked)}
-                />
-                Solo ocultos
-              </label>
               <button
                 onClick={handleRefreshKiosko}
                 disabled={refreshing}
                 style={{...styles.refreshBtn, ...(refreshing ? styles.refreshBtnActive : {})}}
               >
-                {refreshing ? 'Enviado' : 'Actualizar Kiosko'}
+                {refreshing ? <><Spinner /> Enviando...</> : 'Actualizar Kiosko'}
+              </button>
+            </div>
+            <div style={styles.categoryActions}>
+              <button
+                onClick={() => setVerFiltro(verFiltro === 'ocultos' ? 'todos' : 'ocultos')}
+                style={{...styles.btnHideAll, ...(verFiltro === 'ocultos' ? styles.btnHideAllOn : {})}}
+              >
+                Ver ocultos
+              </button>
+              <button
+                onClick={() => setVerFiltro(verFiltro === 'visibles' ? 'todos' : 'visibles')}
+                style={{...styles.btnShowAll, ...(verFiltro === 'visibles' ? styles.btnShowAllOn : {})}}
+              >
+                Ver visibles
               </button>
             </div>
             <div style={styles.resultsCount}>
@@ -547,17 +631,18 @@ export default function AdminVisibilidad() {
           <div style={styles.productListContainer}>
             <div style={styles.productList}>
               {filteredInsumos
-                .filter(i => !showOnlyHidden || hiddenInsumosCanon.has(i.key))
+                .filter(i => verFiltro === 'todos' ||
+                  (verFiltro === 'ocultos' ? hiddenInsumosCanon.has(i.key) : !hiddenInsumosCanon.has(i.key)))
                 .map(insumo => {
                   const isHidden = hiddenInsumosCanon.has(insumo.key);
                   return (
                     <div key={insumo.key} style={{...styles.productCard, ...(isHidden ? styles.productHidden : {})}}>
-                      <div style={styles.productInfo}>
+                      <div style={styles.insumoInfo}>
                         {insumo.icon && (
-                          <img src={insumo.icon} alt={insumo.name} style={styles.productImage} onError={e => e.target.style.display = 'none'}/>
+                          <img src={insumo.icon} alt={insumo.name} style={styles.insumoImage} onError={e => e.target.style.display = 'none'}/>
                         )}
                         <div style={styles.productDetails}>
-                          <span style={styles.productName}>{insumo.name}</span>
+                          <span style={styles.insumoName}>{insumo.name}</span>
                           <span style={styles.productCategory}>
                             en {insumo.count} producto(s) | {insumo.types}
                             {insumo.variants.length > 1 ? ` | unifica: ${insumo.variants.join(' + ')}` : ''}
@@ -581,60 +666,143 @@ export default function AdminVisibilidad() {
       )}
 
       {saving && <div style={styles.savingOverlay}>Guardando...</div>}
+      {!saving && autoAvisado && <div style={styles.avisoAuto}>Kiosko actualizado</div>}
     </div>
   );
 }
 
+// Identidad JAVA, la misma de data.lamarque.mx/produccion/v2:
+// papel blanco, navy y teal, linea fina, sin relleno. Nada de cajas con sombra
+// ni fondos de color: la jerarquia la dan la regla y la tipografia.
+const C = {
+  navy: '#1E2A4A', teal: '#159DAE', mid: '#25324E', suave: '#465270',
+  rule: '#DADDE2', rule2: '#EDEFF3', alerta: '#B23A2E', ambar: '#B07A16',
+  fondo: '#FFFFFF', nada: '#8A93A6',
+};
+const LETRA = "'Carlito', Calibri, Candara, system-ui, sans-serif";
+const MONO  = "Consolas, 'Courier New', monospace";
+// Etiqueta de seccion: 12.5px, versalita, tracking abierto.
+const ET = { fontSize: '12.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.13em' };
+
+// Spinner del boton "Actualizar Kiosko": la senal de refresh no siempre la toma
+// el kiosko al instante, asi que el boton tiene que decir que esta trabajando.
+function Spinner() {
+  return (
+    <>
+      <style>{`@keyframes girar { to { transform: rotate(360deg) } }`}</style>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={styles.spinner} aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" opacity=".3" />
+        <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    </>
+  );
+}
+
 const styles = {
-  container: { height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#1a1a2e', color: '#fff', fontFamily: 'system-ui, -apple-system, sans-serif', overflow: 'hidden' },
-  header: { textAlign: 'center', padding: '15px 20px', borderBottom: '1px solid #333', flexShrink: 0 },
-  title: { fontSize: '24px', margin: '0 0 5px 0' },
-  subtitle: { color: '#888', margin: '0 0 15px 0', fontSize: '14px' },
-  tabs: { display: 'flex', gap: '10px', justifyContent: 'center' },
-  tab: { padding: '10px 25px', backgroundColor: '#252540', color: '#888', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px' },
-  tabActive: { backgroundColor: '#17a2b8', color: '#fff' },
-  loading: { textAlign: 'center', padding: '50px', fontSize: '20px' },
-  filtersContainer: { padding: '15px 20px', borderBottom: '1px solid #333', backgroundColor: '#1a1a2e', flexShrink: 0 },
-  filters: { display: 'flex', gap: '15px', marginBottom: '10px', flexWrap: 'wrap', alignItems: 'center' },
-  searchInput: { flex: '1', minWidth: '250px', padding: '12px 16px', borderRadius: '8px', border: '1px solid #333', backgroundColor: '#252540', color: '#fff', fontSize: '16px' },
-  select: { padding: '12px 16px', borderRadius: '8px', border: '1px solid #333', backgroundColor: '#252540', color: '#fff', fontSize: '16px', minWidth: '200px' },
-  checkboxLabel: { display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', padding: '12px 16px', backgroundColor: '#252540', borderRadius: '8px' },
-  refreshBtn: { padding: '12px 20px', backgroundColor: '#17a2b8', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px' },
-  refreshBtnActive: { backgroundColor: '#28a745' },
-  categoryActions: { display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '10px', padding: '10px 15px', backgroundColor: '#252540', borderRadius: '8px' },
-  btnHideAll: { padding: '8px 16px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' },
-  btnShowAll: { padding: '8px 16px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' },
-  resultsCount: { fontSize: '14px', color: '#888' },
-  productListContainer: { flex: 1, overflow: 'auto', padding: '20px' },
+  container: { height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#F4F6F9', color: C.navy, fontFamily: LETRA, fontSize: '16.5px', lineHeight: 1.5, overflow: 'hidden', WebkitFontSmoothing: 'antialiased' },
+
+  // Cabecera: titulo + regla teal, como la barra de produccion/v2.
+  header: { padding: '16px clamp(16px,3vw,32px) 0', background: C.fondo, flexShrink: 0 },
+  title: { fontSize: '30px', fontWeight: 700, margin: 0, letterSpacing: '.004em', color: C.navy },
+  subtitle: { fontSize: '15px', color: C.mid, margin: '4px 0 16px' },
+  tabs: { display: 'flex', gap: '20px', flexWrap: 'wrap' },
+  tab: { font: 'inherit', background: 'none', border: 0, cursor: 'pointer', color: C.mid, fontSize: '15px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '0 0 8px', borderBottom: '2px solid transparent' },
+  tabActive: { color: C.navy, borderBottomColor: C.teal },
+  // La regla va como elemento propio DEBAJO de las pestanas, igual que .regla en
+  // produccion/v2. Si el tab activo la dibujara con margen negativo, la linea se
+  // partiria al cambiar de pestana.
+  regla: { borderBottom: `2px solid ${C.teal}`, flexShrink: 0 },
+
+  // Categorias como pestanas seleccionables (patron .dias de produccion/v2):
+  // botones pegados, borde compartido, el activo en teal solido.
+  chips: { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' },
+  // Sin borde: la definicion la da el fondo y una sombra corta, como un papel
+  // encima de otro. El activo se levanta un poco mas.
+  chip: { font: 'inherit', fontSize: '14px', fontWeight: 700, color: C.mid, background: '#F4F6F9', border: 'none', padding: '7px 14px', cursor: 'pointer', whiteSpace: 'nowrap', borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.08)', transition: 'all .15s' },
+  chipUltimo: {},
+  chipActivo: { color: '#fff', background: C.teal, boxShadow: '0 2px 5px rgba(21,157,174,.35)' },
+
+  loading: { textAlign: 'center', padding: '56px', fontSize: '15px', color: C.mid },
+
+  filtersContainer: { padding: '16px clamp(16px,3vw,32px)', background: C.fondo, borderBottom: `1px solid ${C.rule}`, flexShrink: 0 },
+  filters: { display: 'flex', gap: '10px', marginBottom: '10px', flexWrap: 'wrap', alignItems: 'center' },
+  searchInput: { flex: '1', minWidth: '250px', font: 'inherit', fontSize: '14.5px', padding: '7px 10px', border: `1px solid ${C.rule}`, background: C.fondo, color: C.navy, borderRadius: 0 },
+  select: { font: 'inherit', fontSize: '14px', padding: '7px 10px', border: `1px solid ${C.rule}`, background: C.fondo, color: C.navy, minWidth: '200px', borderRadius: 0 },
+  checkboxLabel: { display: 'flex', alignItems: 'center', gap: '7px', cursor: 'pointer', padding: '7px 10px', border: `1px solid ${C.rule}`, fontSize: '14px', color: C.mid },
+  spinner: { animation: 'girar .8s linear infinite', flexShrink: 0 },
+  // Ver todos / visibles / ocultos: botones pegados, el activo en teal.
+  verGrupo: { display: 'flex', borderRadius: '6px', overflow: 'hidden', boxShadow: '0 1px 2px rgba(30,42,74,.08)' },
+  verBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, color: C.mid, background: '#F4F6F9', border: 'none', padding: '8px 14px', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .15s' },
+  verBtnActivo: { color: '#fff', background: C.navy },
+  verBtnVisibles: { color: '#fff', background: C.teal },
+  verBtnOcultos: { color: '#fff', background: C.alerta },
+  refreshBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.teal}`, background: C.teal, color: '#fff', padding: '6px 14px', cursor: 'pointer', borderRadius: '6px', display: 'inline-flex', alignItems: 'center', gap: '7px', minWidth: '148px', justifyContent: 'center', boxShadow: '0 1px 2px rgba(30,42,74,.08)' },
+  refreshBtnActive: { background: 'none', color: C.teal },
+
+  categoryActions: { display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px', paddingBottom: '10px', borderBottom: `1px solid ${C.rule2}` },
+  btnHideAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
+  btnHideAllOn: { background: C.alerta, color: '#fff' },
+  btnShowAllOn: { background: C.teal, color: '#fff' },
+  btnShowAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.teal}`, background: 'none', color: C.teal, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
+  resultsCount: { ...ET, color: C.mid, marginLeft: 'auto' },
+
+  productListContainer: { flex: 1, overflow: 'auto', padding: '18px clamp(16px,3vw,32px) 48px' },
   productList: { display: 'flex', flexDirection: 'column', gap: '10px' },
-  productCard: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: '#252540', borderRadius: '10px' },
-  productHidden: { opacity: 0.5, backgroundColor: '#1e1e30' },
-  productInfo: { display: 'flex', alignItems: 'center', gap: '15px' },
-  productImage: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '8px' },
-  productDetails: { display: 'flex', flexDirection: 'column', gap: '4px' },
-  productId: { fontSize: '12px', color: '#666' },
-  productName: { fontSize: '16px', fontWeight: 'bold' },
-  productCategory: { fontSize: '12px', color: '#888' },
-  toggleBtn: { padding: '10px 20px', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 },
-  toggleBtnVisible: { backgroundColor: '#dc3545', color: '#fff' },
-  toggleBtnHidden: { backgroundColor: '#28a745', color: '#fff' },
-  noResults: { textAlign: 'center', padding: '50px', color: '#666' },
-  savingOverlay: { position: 'fixed', top: '20px', right: '20px', padding: '15px 25px', backgroundColor: '#007bff', color: '#fff', borderRadius: '8px', fontWeight: 'bold', zIndex: 1000 },
-  pastelCard: { backgroundColor: '#252540', borderRadius: '12px', padding: '15px', marginBottom: '15px' },
-  pastelHeader: { display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px', paddingBottom: '15px', borderBottom: '1px solid #333' },
-  pastelImage: { width: '60px', height: '60px', objectFit: 'cover', borderRadius: '10px' },
-  pastelInfo: { display: 'flex', flexDirection: 'column', gap: '4px' },
-  pastelName: { fontSize: '18px', fontWeight: 'bold' },
-  sizesGrid: { display: 'flex', flexWrap: 'wrap', gap: '10px' },
-  sizeCard: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#1a1a2e', padding: '12px 15px', borderRadius: '8px', minWidth: '150px' },
-  sizeHidden: { opacity: 0.4, backgroundColor: '#151525' },
-  sizeInfo: { display: 'flex', flexDirection: 'column', gap: '2px' },
-  sizeLabel: { fontSize: '14px', fontWeight: 'bold' },
-  sizePrice: { fontSize: '12px', color: '#17a2b8' },
-  sizeToggleBtn: { width: '40px', height: '30px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' },
-  sizeToggleBtnVisible: { backgroundColor: '#dc3545', color: '#fff' },
-  sizeToggleBtnHidden: { backgroundColor: '#28a745', color: '#fff' },
-  colorCard: { display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#1a1a2e', padding: '10px 15px', borderRadius: '8px', minWidth: '160px' },
-  colorHidden: { opacity: 0.4, backgroundColor: '#151525' },
-  colorThumb: { width: '48px', height: '48px', objectFit: 'cover', borderRadius: '6px', flexShrink: 0 },
+
+  // Una fila, no una tarjeta: regla fina abajo y nada mas.
+  // La tarjeta envuelve la fila principal y, si aplica, la fila de variantes.
+  productCardWrap: { border: `1px solid ${C.rule}`, borderRadius: '8px', boxShadow: '0 1px 3px rgba(30,42,74,.07), 0 1px 2px rgba(30,42,74,.04)', overflow: 'hidden' },
+  variantes: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '7px', padding: '10px 18px 12px', borderTop: `1px solid ${C.rule2}`, background: 'rgba(0,0,0,.015)' },
+  variantesEt: { ...ET, fontSize: '11.5px', color: C.suave, marginRight: '4px' },
+  variante: { font: 'inherit', fontSize: '13.5px', fontWeight: 700, color: '#fff', background: C.teal, border: 'none', padding: '6px 12px', borderRadius: '5px', cursor: 'pointer', whiteSpace: 'nowrap' },
+  varianteOff: { background: '#EDEFF3', color: C.nada, textDecoration: 'line-through' },
+  productCard: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', padding: '13px 18px' },
+  // Bandas por categoria: blanco y un gris apenas perceptible. La diferencia
+  // tiene que notarse sin gritar; si contrastan mucho, marean mas que ayudar.
+  bandaA: { background: C.fondo },
+  bandaB: { background: '#F7F9FC' },
+  productHidden: { color: C.nada, background: '#FAFBFC', boxShadow: 'none' },
+  productInfo: { display: 'flex', alignItems: 'center', gap: '13px', minWidth: 0 },
+  productImage: { width: '58px', height: '58px', objectFit: 'cover', border: `1px solid ${C.rule}`, borderRadius: '6px', flexShrink: 0 },
+  productDetails: { display: 'flex', flexDirection: 'column', gap: '1px', minWidth: 0 },
+  productId: { fontFamily: MONO, fontSize: '13px', color: C.nada },
+  productName: { fontSize: '16px', fontWeight: 700, color: 'inherit' },
+  productCategory: { fontSize: '14px', color: C.mid },
+
+  // Insumos/modificadores: el icono es un dibujo con trazo fino, a 42px no se
+  // distingue (habia que poner el navegador al 110%). Aqui va al doble, con
+  // fondo claro para que el PNG con transparencia no se pierda.
+  insumoImage: { width: '84px', height: '84px', objectFit: 'contain', padding: '5px', background: '#F7F9FB', border: `1px solid ${C.rule}`, borderRadius: '8px', flexShrink: 0 },
+  insumoName: { fontSize: '17px', fontWeight: 700, color: 'inherit' },
+  insumoInfo: { display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0 },
+
+  toggleBtn: { font: 'inherit', fontSize: '14px', fontWeight: 700, padding: '8px 20px', cursor: 'pointer', flexShrink: 0, borderRadius: '6px', letterSpacing: '.05em', textTransform: 'uppercase' },
+  toggleBtnVisible: { border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta },
+  toggleBtnHidden: { border: `1px solid ${C.teal}`, background: C.teal, color: '#fff' },
+
+  noResults: { textAlign: 'center', padding: '56px', color: C.nada, fontSize: '15px' },
+  avisoAuto: { position: 'fixed', bottom: '18px', right: '18px', padding: '8px 16px', background: C.navy, color: '#fff', fontWeight: 700, fontSize: '13px', letterSpacing: '.05em', textTransform: 'uppercase', borderRadius: '6px', zIndex: 1000, boxShadow: '0 2px 10px rgba(30,42,74,.3)' },
+  savingOverlay: { position: 'fixed', top: '16px', right: '16px', padding: '8px 16px', background: C.teal, color: '#fff', fontWeight: 700, fontSize: '13px', letterSpacing: '.05em', textTransform: 'uppercase', zIndex: 1000 },
+
+  // Pastel: encabezado de seccion con su regla, como <section><header> en v2.
+  pastelCard: { marginBottom: '18px', background: C.fondo, border: `1px solid ${C.rule}`, borderRadius: '10px', padding: '16px 18px 18px', boxShadow: '0 1px 3px rgba(30,42,74,.07), 0 1px 2px rgba(30,42,74,.04)' },
+  pastelHeader: { display: 'flex', alignItems: 'center', gap: '13px', paddingBottom: '11px', borderBottom: `1px solid ${C.rule}`, marginBottom: '14px' },
+  pastelImage: { width: '72px', height: '72px', objectFit: 'cover', border: `1px solid ${C.rule}`, borderRadius: '6px' },
+  pastelInfo: { display: 'flex', flexDirection: 'column', gap: '2px' },
+  pastelName: { ...ET, fontSize: '16px', color: C.navy },
+
+  // Tamanos: rejilla de una linea separada por el fondo, como .sem
+  sizesGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,238px))', gap: '12px', justifyContent: 'start' },
+  sizeCard: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: C.fondo, padding: '14px 16px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.teal}`, borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.05)' },
+  sizeHidden: { borderTopColor: C.alerta, color: C.nada, background: '#FAFBFC', boxShadow: 'none' },
+  sizeInfo: { display: 'flex', flexDirection: 'column', gap: '1px' },
+  sizeLabel: { fontSize: '17px', fontWeight: 700, color: 'inherit' },
+  sizePrice: { fontSize: '15px', color: C.mid, fontVariantNumeric: 'tabular-nums' },
+  sizeToggleBtn: { font: 'inherit', width: '46px', height: '34px', cursor: 'pointer', fontSize: '14px', fontWeight: 700, borderRadius: '5px', flexShrink: 0 },
+  sizeToggleBtnVisible: { border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta },
+  sizeToggleBtnHidden: { border: `1px solid ${C.teal}`, background: C.teal, color: '#fff' },
+
+  colorCard: { display: 'flex', alignItems: 'center', gap: '10px', background: C.fondo, padding: '10px 12px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.teal}`, borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.05)' },
+  colorHidden: { borderTopColor: C.alerta, color: C.nada },
+  colorThumb: { width: '42px', height: '42px', objectFit: 'cover', flexShrink: 0, border: `1px solid ${C.rule}` },
 };

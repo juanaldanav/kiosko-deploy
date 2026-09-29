@@ -167,7 +167,8 @@ const SEASONAL_DRINK_DEFINITIONS = seasonalConfig.enabled && seasonalConfig.drin
 
 // Productos populares regulares (sin seasonal hardcodeado)
 const POPULAR = [
-  "SLUSH LIMON",
+  "PAN DE MUERTO",
+  "FRAPUCCINO PEANUT",
   "R. TRADICIONAL VAINILLA",
   "ICED COFFEE",
   "FRAPPUCCINO",
@@ -269,7 +270,10 @@ function computeVariantsWithDelta(p, defaultLabel, productId) {
   // Red Velvet 1800, Cheesecake Fresa 1814, Volcano 1817, corazon, etc.).
   const isReposteria = category.toUpperCase() === "REPOSTERIA";
   const numProductId = Number(productId);
-  const isPastel = isReposteria;
+  // Se puede apagar por variante en REPOSTERIA (tamanos) y PANADERIA (sabores
+  // del pan de muerto). Las bebidas quedan fuera a proposito: su GDE/XL no es
+  // cuestion de existencia y meterlas llenaba la pestana de ruido.
+  const isPastel = isReposteria || category.toUpperCase() === "PANADERIA";
 
   return sizes.map((size) => ({
     label: size.label,
@@ -368,6 +372,13 @@ function mapProduct(p) {
     sizes: p?.sizes || [],
     category: groupTitle,
     colorOptions,
+    // Texto del paso de variantes. Por defecto "Elige el tamano"; el pan de muerto
+    // lo usa para decir "Elige el sabor" (sus variantes son sabores, no tamanos).
+    sizeStepTitle: p?.sizeStepTitle || null,
+    // Etiqueta de temporada en la tarjeta. Es independiente de isSeasonal: eso
+    // ultimo manda al overlay de BEBIDAS de temporada, y hay productos (pan de
+    // muerto) que llevan etiqueta pero necesitan su propio paso de sabores.
+    badge: p?.badge || null,
   };
 }
 
@@ -431,11 +442,15 @@ export async function loadCatalog() {
     console.log(`🎄 Bebidas de temporada: ${SEASONAL_DRINK_DEFINITIONS.length} (enabled: ${seasonalConfig.enabled})`);
   }
 
-  // Filtrar productos ocultos desde el inicio
-  // Si es REPOSTERIA y todos sus tamaños están ocultos, ocultar el producto completo
+  // Filtrar productos ocultos desde el inicio.
+  // Si TODAS sus variantes estan apagadas, el producto entero desaparece: una
+  // tarjeta que se abre y no ofrece nada es peor que no tenerla. Aplica a los
+  // tamaños de pastel (REPOSTERIA) y a los sabores del pan (PANADERIA).
+  const CON_VARIANTES = ['REPOSTERIA', 'PANADERIA'];
   const visibleProducts = products.filter(p => {
     if (isProductHidden(p.productId)) return false;
-    if (p.category === 'REPOSTERIA' && Array.isArray(p.sizes) && p.sizes.length > 0) {
+    if (CON_VARIANTES.includes((p.category || '').toUpperCase()) &&
+        Array.isArray(p.sizes) && p.sizes.length > 1) {
       const allHidden = p.sizes.every(s => isSizeHidden(p.productId, s.label));
       if (allHidden) return false;
     }

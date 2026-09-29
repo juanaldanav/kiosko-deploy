@@ -289,7 +289,7 @@ const handleAddAndSend = async () => {
           {current?.kind === "size" && (
             <div className="w-full flex flex-col items-center justify-center">
               <h2 className="text-4xl font-semibold text-slate-700 mb-12 text-center">
-                <span className="bg-[#BFF0F7] px-10 py-5 rounded-full">Elige el tamaño</span>
+                <span className="bg-[#BFF0F7] px-10 py-5 rounded-full">{producto?.sizeStepTitle || "Elige el tamaño"}</span>
               </h2>
               
               <div className="grid gap-8" 
