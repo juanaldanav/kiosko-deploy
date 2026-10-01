@@ -26,12 +26,16 @@
 param(
   [string]$AppRoot = "",
   [string]$Puente  = "http://localhost:3001",
+  # Commit del que se bajan los archivos. Se pasa el SHA, no 'main': raw.githubusercontent
+  # cachea y con 'main' un kiosko se puede traer la version anterior sin avisar.
+  [string]$Ref     = "main",
   [switch]$Refresh
 )
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$BaseUrl = 'https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/main/'
+$BaseUrl = "https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/$Ref/"
+Write-Host "Bajando del ref: $Ref" -ForegroundColor Cyan
 $ids     = @(1802, 1754)          # ROSA PASTEL y M. ROSA PASTEL: bajan apagados
 $rels    = @(
   'ui/src/data/catalog_app.json',
