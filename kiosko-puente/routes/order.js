@@ -6,8 +6,16 @@ const router = Router();
 
 const STATUS_ACTIVO = 4;
 
+// Un pastel se reconoce por su GRUPO en Netsilver, no por una lista de ids a mano.
+// La lista anterior (1725-1731, 1787, 1800, 1814, 1817, 2464) estaba copiada en tres
+// lugares y habia que acordarse de alargarla con cada pastel nuevo; ROSA PASTEL (1802)
+// ya se habia quedado fuera. El Id_Grupo ya viene en el query de precios de abajo.
+//   34 = REPOSTERIA DE LINEA   35 = REPOSTERIA ESPECIAL
+const GRUPOS_PASTEL = new Set([34, 35]);
+export const esPastel = (grupoId) => GRUPOS_PASTEL.has(Number(grupoId));
+
 //  NUEVA FUNCIÓN: Mapear sizeLabel de pasteles a TamañoId de la tabla
-const obtenerTamanoIdPasteles = (sizeLabel) => {
+export const obtenerTamanoIdPasteles = (sizeLabel) => {
   // Tabla de tamaños de la BD:
   // 11 = INDIVIDUAL
   // 12 = CHICO
@@ -24,7 +32,7 @@ const obtenerTamanoIdPasteles = (sizeLabel) => {
 };
 
 // 🔥 NUEVA FUNCIÓN: Mapear sizeLabel de pasteles a índice de precio
-const obtenerIndicePrecioPastel = (sizeLabel) => {
+export const obtenerIndicePrecioPastel = (sizeLabel) => {
   // Mapeo sizeLabel → Precio1-5
   const PRECIO_MAP = {
     'Chico': 1,      // Precio1
@@ -37,14 +45,14 @@ const obtenerIndicePrecioPastel = (sizeLabel) => {
 };
 
 // 🔥 FUNCIÓN CORREGIDA: Obtener TamañoId según tabla de tamaños
-const obtenerTamanoId = (item) => {
+export const obtenerTamanoId = (item, grupoId) => {
   const platilloId = Number(item.platilloId);
-  
+
   // ========================================================================
-  // PASTELES DE REPOSTERÍA (1725-1731, 1787, 1800, 1814, 1817, 2464): USAR sizeLabel, NO el tamanoId del catálogo
-  // El catálogo tiene índices de precio (1, 3, 4), no TamañoId de la tabla (11-14)
+  // PASTELES DE REPOSTERIA: USAR sizeLabel, NO el tamanoId del catalogo.
+  // El catalogo trae indices de precio (1, 3, 4), no TamanoId de la tabla (11-14).
   // ========================================================================
-  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464) {
+  if (esPastel(grupoId)) {
     const sizeLabel = item.sizeLabel || 'Chico';
     return obtenerTamanoIdPasteles(sizeLabel); // Devuelve 11, 12, 13, o 14
   }
@@ -150,9 +158,9 @@ const obtenerTamanoId = (item) => {
 };
 
 // 🔥 FUNCIÓN MODIFICADA: Obtener precio según índice (para pasteles usa sizeLabel)
-const obtenerPrecioSegunTamano = (platilloData, item, platilloId) => {
+export const obtenerPrecioSegunTamano = (platilloData, item, platilloId) => {
   // Para PASTELES: usar el sizeLabel para obtener el índice de precio correcto
-  if ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464) {
+  if (esPastel(platilloData.grupoId)) {
     const sizeLabel = item.sizeLabel || 'Chico';
     const indicePrecio = obtenerIndicePrecioPastel(sizeLabel);
 
@@ -258,7 +266,7 @@ router.post('/order', async (req, res) => {
       }
       
       // 🔥 OBTENER TAMANOID CORRECTO (11-19 según tabla)
-      const tamanoId = obtenerTamanoId(item);
+      const tamanoId = obtenerTamanoId(item, platilloData.grupoId);
       
       // 🔥 OBTENER PRECIO CORRECTO (usando índice de precio para pasteles)
       const precioBasePuro = obtenerPrecioSegunTamano(platilloData, item, platilloId);
@@ -325,6 +333,9 @@ router.post('/order', async (req, res) => {
         precioCompleto: precioCompleto,
         precioTotalItem: precioTotalItem,
         tamanoId: tamanoId,
+        // Se resuelve aqui, que es donde esta el dato de la BD, y viaja con el item
+        // hasta el insert: alla ya no hay platillosMap a la mano.
+        esPastel: esPastel(platilloData.grupoId),
         mods: modsConPreciosReales,
         adicionales: adicionales
       });
@@ -401,7 +412,7 @@ router.post('/order', async (req, res) => {
       // 🔥 CALCULAR TAMANO (índice de precio para inventario en la nube)
       // Pasteles: usa índice de precio (1, 3, 4, etc.)
       // Otros productos: siempre 1
-      const tamano = ((platilloId >= 1725 && platilloId <= 1731) || platilloId === 1787 || platilloId === 1800 || platilloId === 1817 || platilloId === 1814 || platilloId === 2464)
+      const tamano = item.esPastel
         ? obtenerIndicePrecioPastel(sizeLabel)
         : 1;
       

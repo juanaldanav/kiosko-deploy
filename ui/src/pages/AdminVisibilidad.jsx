@@ -38,6 +38,20 @@ export default function AdminVisibilidad() {
   const [hiddenInsumos, setHiddenInsumos] = useState([]);
   const [loadingInsumos, setLoadingInsumos] = useState(true);
   const [searchInsumo, setSearchInsumo] = useState('');
+  // Tema: eleccion de la sucursal, guardada en el navegador del kiosko. No va al
+  // servidor a proposito — cada pantalla esta en una sala distinta y decide sola.
+  const [tema, setTema] = useState(() => {
+    try { return localStorage.getItem('adminTema') === 'oscuro' ? 'oscuro' : 'claro'; }
+    catch { return 'claro'; }
+  });
+
+  useEffect(() => {
+    const raiz = document.documentElement;
+    raiz.setAttribute('data-tema', tema);
+    try { localStorage.setItem('adminTema', tema); } catch {}
+    // Al salir del admin se quita: el menu del kiosko no usa estas variables.
+    return () => raiz.removeAttribute('data-tema');
+  }, [tema]);
 
   const products = catalogData.catalog || [];
 
@@ -309,11 +323,12 @@ export default function AdminVisibilidad() {
   };
 
   if (loading || loadingSizes || loadingColors || loadingInsumos) {
-    return <div style={styles.container}><div style={styles.loading}>Cargando...</div></div>;
+    return <div style={styles.container}><style>{TEMA_CSS}</style><div style={styles.loading}>Cargando...</div></div>;
   }
 
   return (
     <div style={styles.container}>
+      <style>{TEMA_CSS}</style>
       <header style={styles.header}>
         <h1 style={styles.title}>Admin - Visibilidad</h1>
         <p style={styles.subtitle}>
@@ -350,6 +365,18 @@ export default function AdminVisibilidad() {
             Insumos
           </button>
         </div>
+        <button
+            onClick={() => setTema(t => (t === 'oscuro' ? 'claro' : 'oscuro'))}
+            style={{...styles.temaSwitch, ...(tema === 'oscuro' ? styles.temaSwitchOn : {})}}
+            role="switch"
+            aria-checked={tema === 'oscuro'}
+            aria-label="Modo oscuro"
+            title={tema === 'oscuro' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+          >
+            <span style={{...styles.temaBola, ...(tema === 'oscuro' ? styles.temaBolaOn : {})}}>
+              {tema === 'oscuro' ? <IconoLuna /> : <IconoSol />}
+            </span>
+        </button>
       </header>
       <div style={styles.regla} />
 
@@ -565,7 +592,7 @@ export default function AdminVisibilidad() {
                                 )}
                                 <div style={styles.sizeInfo}>
                                   <span style={styles.sizeLabel}>{color.label}</span>
-                                  <span style={{fontSize: '11px', color: isHidden ? '#dc3545' : '#28a745'}}>
+                                  <span style={{fontSize: '11px', color: isHidden ? C.alertaTinta : C.tealTinta}}>
                                     {isHidden ? 'OCULTO' : 'VISIBLE'}
                                   </span>
                                 </div>
@@ -674,11 +701,61 @@ export default function AdminVisibilidad() {
 // Identidad JAVA, la misma de data.lamarque.mx/produccion/v2:
 // papel blanco, navy y teal, linea fina, sin relleno. Nada de cajas con sombra
 // ni fondos de color: la jerarquia la dan la regla y la tipografia.
+// Los valores viven en TEMA_CSS (abajo). Aqui solo quedan los nombres de rol:
+// asi el tema se cambia con un atributo en <html> y nada tiene que re-renderizar.
 const C = {
-  navy: '#1E2A4A', teal: '#159DAE', mid: '#25324E', suave: '#465270',
-  rule: '#DADDE2', rule2: '#EDEFF3', alerta: '#B23A2E', ambar: '#B07A16',
-  fondo: '#FFFFFF', nada: '#8A93A6',
+  navy: 'var(--tinta)', teal: 'var(--teal)', mid: 'var(--mid)', suave: 'var(--suave)',
+  rule: 'var(--rule)', rule2: 'var(--rule2)', alerta: 'var(--alerta)', ambar: 'var(--ambar)',
+  fondo: 'var(--papel)', nada: 'var(--nada)',
+  // En claro estos tres valen igual que su hermano de arriba; en oscuro NO pueden.
+  // Un relleno solido y un texto no se pintan del mismo color sobre fondo oscuro:
+  // si se unifican, el boton activo queda con letra blanca sobre fondo claro.
+  solido: 'var(--solido)', tealTinta: 'var(--teal-tinta)', alertaTinta: 'var(--alerta-tinta)',
 };
+
+// Un solo lugar para los dos temas. El claro es exactamente la identidad JAVA que
+// ya estaba; el oscuro conserva navy de fondo y teal de acento, sin inventar marca.
+const TEMA_CSS = `
+:root{
+  color-scheme:light;
+  --tinta:#1E2A4A; --solido:#1E2A4A;
+  --teal:#159DAE;  --teal-tinta:#159DAE;
+  --mid:#25324E;   --suave:#465270;
+  --rule:#DADDE2;  --rule2:#EDEFF3;
+  --alerta:#B23A2E; --alerta-tinta:#B23A2E; --ambar:#B07A16;
+  --papel:#FFFFFF; --nada:#8A93A6;
+  --app:#F4F6F9; --chip:#F4F6F9; --banda-b:#F7F9FC; --oculto:#FAFBFC; --insumo:#F7F9FB;
+  --variantes:rgba(0,0,0,.015);
+  --s1:0 1px 2px rgba(30,42,74,.08);
+  --s2:0 1px 3px rgba(30,42,74,.07),0 1px 2px rgba(30,42,74,.04);
+  --s3:0 1px 2px rgba(30,42,74,.05);
+  --s-teal:0 2px 5px rgba(21,157,174,.35);
+  --s-aviso:0 2px 10px rgba(30,42,74,.3);
+}
+[data-tema="oscuro"]{
+  color-scheme:dark;
+  --tinta:#E7ECF5; --solido:#2E3C60;
+  /* Sin teales inventados: el relleno usa --teal-dark de la guia (el hover) y el
+     texto usa el teal de marca tal cual, que sobre este navy da 5.1:1. */
+  --teal:#0F7C8B;  --teal-tinta:#159DAE;
+  --mid:#AEB9CF;   --suave:#8B98B3;
+  --rule:#2D3A5B;  --rule2:#24304E;
+  /* Rojo puro (R>G=B), no salmon: la guia prohibe naranjas. */
+  --alerta:#A8372B; --alerta-tinta:#E86B6B; --ambar:#D9A441;
+  --papel:#151E35; --nada:#6C7791;
+  --app:#0D1425; --chip:#1E2842; --banda-b:#18213A; --oculto:#111A2E;
+  /* El plato de los iconos NO se oscurece: son PNG de trazo oscuro con fondo
+     transparente y sobre navy desaparecen. Misma regla que el logo en la guia. */
+  --insumo:#EEF2F6;
+  --variantes:rgba(255,255,255,.03);
+  --s1:0 1px 2px rgba(0,0,0,.45);
+  --s2:0 1px 3px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.35);
+  --s3:0 1px 2px rgba(0,0,0,.4);
+  --s-teal:0 2px 5px rgba(15,124,139,.45);
+  --s-aviso:0 2px 10px rgba(0,0,0,.6);
+}
+body{background:var(--app)}
+`;
 const LETRA = "'Carlito', Calibri, Candara, system-ui, sans-serif";
 const MONO  = "Consolas, 'Courier New', monospace";
 // Etiqueta de seccion: 12.5px, versalita, tracking abierto.
@@ -698,29 +775,51 @@ function Spinner() {
   );
 }
 
+// Sol y luna del switch de tema: trazo, no relleno, como el resto del panel.
+// Heredan el color de la bola, asi no hay que repintarlos al cambiar de tema.
+const IconoSol = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2" />
+    <path d="M12 2.2v2.1M12 19.7v2.1M4.1 4.1l1.5 1.5M18.4 18.4l1.5 1.5M2.2 12h2.1M19.7 12h2.1M4.1 19.9l1.5-1.5M18.4 5.6l1.5-1.5" />
+  </svg>
+);
+const IconoLuna = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8Z" />
+  </svg>
+);
+
 const styles = {
-  container: { height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#F4F6F9', color: C.navy, fontFamily: LETRA, fontSize: '16.5px', lineHeight: 1.5, overflow: 'hidden', WebkitFontSmoothing: 'antialiased' },
+  container: { height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--app)', color: C.navy, fontFamily: LETRA, fontSize: '16.5px', lineHeight: 1.5, overflow: 'hidden', WebkitFontSmoothing: 'antialiased' },
 
   // Cabecera: titulo + regla teal, como la barra de produccion/v2.
-  header: { padding: '16px clamp(16px,3vw,32px) 0', background: C.fondo, flexShrink: 0 },
+  header: { position: 'relative', padding: '16px clamp(16px,3vw,32px) 0', background: C.fondo, flexShrink: 0 },
   title: { fontSize: '30px', fontWeight: 700, margin: 0, letterSpacing: '.004em', color: C.navy },
   subtitle: { fontSize: '15px', color: C.mid, margin: '4px 0 16px' },
   tabs: { display: 'flex', gap: '20px', flexWrap: 'wrap' },
   tab: { font: 'inherit', background: 'none', border: 0, cursor: 'pointer', color: C.mid, fontSize: '15px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', padding: '0 0 8px', borderBottom: '2px solid transparent' },
-  tabActive: { color: C.navy, borderBottomColor: C.teal },
+  tabActive: { color: C.navy, borderBottomColor: C.tealTinta },
+  // Va pegado a la derecha para que no se lea como una pestana mas.
+  // Medidas: 54 - 2 de borde - 6 de padding = 46 de carril; bola de 22 -> recorre 24.
+  temaSwitch: { boxSizing: 'border-box', position: 'absolute', top: '16px', right: 'clamp(16px,3vw,32px)', width: '54px', height: '30px', padding: '3px', border: `1px solid ${C.rule}`, borderRadius: '999px', background: 'var(--chip)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', transition: 'background .18s, border-color .18s' },
+  temaSwitchOn: { background: C.teal, borderColor: C.teal },
+  temaBola: { boxSizing: 'border-box', width: '22px', height: '22px', borderRadius: '50%', background: '#fff', color: C.suave, display: 'grid', placeItems: 'center', boxShadow: 'var(--s1)', transform: 'translateX(0)', transition: 'transform .18s ease, color .18s' },
+  temaBolaOn: { transform: 'translateX(24px)', color: C.teal },
   // La regla va como elemento propio DEBAJO de las pestanas, igual que .regla en
   // produccion/v2. Si el tab activo la dibujara con margen negativo, la linea se
   // partiria al cambiar de pestana.
-  regla: { borderBottom: `2px solid ${C.teal}`, flexShrink: 0 },
+  regla: { borderBottom: `2px solid ${C.tealTinta}`, flexShrink: 0 },
 
   // Categorias como pestanas seleccionables (patron .dias de produccion/v2):
   // botones pegados, borde compartido, el activo en teal solido.
   chips: { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' },
   // Sin borde: la definicion la da el fondo y una sombra corta, como un papel
   // encima de otro. El activo se levanta un poco mas.
-  chip: { font: 'inherit', fontSize: '14px', fontWeight: 700, color: C.mid, background: '#F4F6F9', border: 'none', padding: '7px 14px', cursor: 'pointer', whiteSpace: 'nowrap', borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.08)', transition: 'all .15s' },
+  chip: { font: 'inherit', fontSize: '14px', fontWeight: 700, color: C.mid, background: 'var(--chip)', border: 'none', padding: '7px 14px', cursor: 'pointer', whiteSpace: 'nowrap', borderRadius: '6px', boxShadow: 'var(--s1)', transition: 'all .15s' },
   chipUltimo: {},
-  chipActivo: { color: '#fff', background: C.teal, boxShadow: '0 2px 5px rgba(21,157,174,.35)' },
+  chipActivo: { color: '#fff', background: C.teal, boxShadow: 'var(--s-teal)' },
 
   loading: { textAlign: 'center', padding: '56px', fontSize: '15px', color: C.mid },
 
@@ -731,19 +830,19 @@ const styles = {
   checkboxLabel: { display: 'flex', alignItems: 'center', gap: '7px', cursor: 'pointer', padding: '7px 10px', border: `1px solid ${C.rule}`, fontSize: '14px', color: C.mid },
   spinner: { animation: 'girar .8s linear infinite', flexShrink: 0 },
   // Ver todos / visibles / ocultos: botones pegados, el activo en teal.
-  verGrupo: { display: 'flex', borderRadius: '6px', overflow: 'hidden', boxShadow: '0 1px 2px rgba(30,42,74,.08)' },
-  verBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, color: C.mid, background: '#F4F6F9', border: 'none', padding: '8px 14px', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .15s' },
-  verBtnActivo: { color: '#fff', background: C.navy },
+  verGrupo: { display: 'flex', borderRadius: '6px', overflow: 'hidden', boxShadow: 'var(--s1)' },
+  verBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, color: C.mid, background: 'var(--chip)', border: 'none', padding: '8px 14px', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .15s' },
+  verBtnActivo: { color: '#fff', background: C.solido },
   verBtnVisibles: { color: '#fff', background: C.teal },
   verBtnOcultos: { color: '#fff', background: C.alerta },
-  refreshBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.teal}`, background: C.teal, color: '#fff', padding: '6px 14px', cursor: 'pointer', borderRadius: '6px', display: 'inline-flex', alignItems: 'center', gap: '7px', minWidth: '148px', justifyContent: 'center', boxShadow: '0 1px 2px rgba(30,42,74,.08)' },
-  refreshBtnActive: { background: 'none', color: C.teal },
+  refreshBtn: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.teal}`, background: C.teal, color: '#fff', padding: '6px 14px', cursor: 'pointer', borderRadius: '6px', display: 'inline-flex', alignItems: 'center', gap: '7px', minWidth: '148px', justifyContent: 'center', boxShadow: 'var(--s1)' },
+  refreshBtnActive: { background: 'none', color: C.tealTinta },
 
   categoryActions: { display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px', paddingBottom: '10px', borderBottom: `1px solid ${C.rule2}` },
-  btnHideAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
+  btnHideAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.alertaTinta}`, background: 'none', color: C.alertaTinta, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
   btnHideAllOn: { background: C.alerta, color: '#fff' },
   btnShowAllOn: { background: C.teal, color: '#fff' },
-  btnShowAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.teal}`, background: 'none', color: C.teal, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
+  btnShowAll: { font: 'inherit', fontSize: '13px', fontWeight: 700, border: `1px solid ${C.tealTinta}`, background: 'none', color: C.tealTinta, padding: '4px 12px', cursor: 'pointer', borderRadius: 0 },
   resultsCount: { ...ET, color: C.mid, marginLeft: 'auto' },
 
   productListContainer: { flex: 1, overflow: 'auto', padding: '18px clamp(16px,3vw,32px) 48px' },
@@ -751,17 +850,17 @@ const styles = {
 
   // Una fila, no una tarjeta: regla fina abajo y nada mas.
   // La tarjeta envuelve la fila principal y, si aplica, la fila de variantes.
-  productCardWrap: { border: `1px solid ${C.rule}`, borderRadius: '8px', boxShadow: '0 1px 3px rgba(30,42,74,.07), 0 1px 2px rgba(30,42,74,.04)', overflow: 'hidden' },
-  variantes: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '7px', padding: '10px 18px 12px', borderTop: `1px solid ${C.rule2}`, background: 'rgba(0,0,0,.015)' },
+  productCardWrap: { border: `1px solid ${C.rule}`, borderRadius: '8px', boxShadow: 'var(--s2)', overflow: 'hidden' },
+  variantes: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '7px', padding: '10px 18px 12px', borderTop: `1px solid ${C.rule2}`, background: 'var(--variantes)' },
   variantesEt: { ...ET, fontSize: '11.5px', color: C.suave, marginRight: '4px' },
   variante: { font: 'inherit', fontSize: '13.5px', fontWeight: 700, color: '#fff', background: C.teal, border: 'none', padding: '6px 12px', borderRadius: '5px', cursor: 'pointer', whiteSpace: 'nowrap' },
-  varianteOff: { background: '#EDEFF3', color: C.nada, textDecoration: 'line-through' },
+  varianteOff: { background: C.rule2, color: C.nada, textDecoration: 'line-through' },
   productCard: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '14px', padding: '13px 18px' },
   // Bandas por categoria: blanco y un gris apenas perceptible. La diferencia
   // tiene que notarse sin gritar; si contrastan mucho, marean mas que ayudar.
   bandaA: { background: C.fondo },
-  bandaB: { background: '#F7F9FC' },
-  productHidden: { color: C.nada, background: '#FAFBFC', boxShadow: 'none' },
+  bandaB: { background: 'var(--banda-b)' },
+  productHidden: { color: C.nada, background: 'var(--oculto)', boxShadow: 'none' },
   productInfo: { display: 'flex', alignItems: 'center', gap: '13px', minWidth: 0 },
   productImage: { width: '58px', height: '58px', objectFit: 'cover', border: `1px solid ${C.rule}`, borderRadius: '6px', flexShrink: 0 },
   productDetails: { display: 'flex', flexDirection: 'column', gap: '1px', minWidth: 0 },
@@ -772,20 +871,20 @@ const styles = {
   // Insumos/modificadores: el icono es un dibujo con trazo fino, a 42px no se
   // distingue (habia que poner el navegador al 110%). Aqui va al doble, con
   // fondo claro para que el PNG con transparencia no se pierda.
-  insumoImage: { width: '84px', height: '84px', objectFit: 'contain', padding: '5px', background: '#F7F9FB', border: `1px solid ${C.rule}`, borderRadius: '8px', flexShrink: 0 },
+  insumoImage: { width: '84px', height: '84px', objectFit: 'contain', padding: '5px', background: 'var(--insumo)', border: `1px solid ${C.rule}`, borderRadius: '8px', flexShrink: 0 },
   insumoName: { fontSize: '17px', fontWeight: 700, color: 'inherit' },
   insumoInfo: { display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0 },
 
   toggleBtn: { font: 'inherit', fontSize: '14px', fontWeight: 700, padding: '8px 20px', cursor: 'pointer', flexShrink: 0, borderRadius: '6px', letterSpacing: '.05em', textTransform: 'uppercase' },
-  toggleBtnVisible: { border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta },
+  toggleBtnVisible: { border: `1px solid ${C.alertaTinta}`, background: 'none', color: C.alertaTinta },
   toggleBtnHidden: { border: `1px solid ${C.teal}`, background: C.teal, color: '#fff' },
 
   noResults: { textAlign: 'center', padding: '56px', color: C.nada, fontSize: '15px' },
-  avisoAuto: { position: 'fixed', bottom: '18px', right: '18px', padding: '8px 16px', background: C.navy, color: '#fff', fontWeight: 700, fontSize: '13px', letterSpacing: '.05em', textTransform: 'uppercase', borderRadius: '6px', zIndex: 1000, boxShadow: '0 2px 10px rgba(30,42,74,.3)' },
+  avisoAuto: { position: 'fixed', bottom: '18px', right: '18px', padding: '8px 16px', background: C.solido, color: '#fff', fontWeight: 700, fontSize: '13px', letterSpacing: '.05em', textTransform: 'uppercase', borderRadius: '6px', zIndex: 1000, boxShadow: 'var(--s-aviso)' },
   savingOverlay: { position: 'fixed', top: '16px', right: '16px', padding: '8px 16px', background: C.teal, color: '#fff', fontWeight: 700, fontSize: '13px', letterSpacing: '.05em', textTransform: 'uppercase', zIndex: 1000 },
 
   // Pastel: encabezado de seccion con su regla, como <section><header> en v2.
-  pastelCard: { marginBottom: '18px', background: C.fondo, border: `1px solid ${C.rule}`, borderRadius: '10px', padding: '16px 18px 18px', boxShadow: '0 1px 3px rgba(30,42,74,.07), 0 1px 2px rgba(30,42,74,.04)' },
+  pastelCard: { marginBottom: '18px', background: C.fondo, border: `1px solid ${C.rule}`, borderRadius: '10px', padding: '16px 18px 18px', boxShadow: 'var(--s2)' },
   pastelHeader: { display: 'flex', alignItems: 'center', gap: '13px', paddingBottom: '11px', borderBottom: `1px solid ${C.rule}`, marginBottom: '14px' },
   pastelImage: { width: '72px', height: '72px', objectFit: 'cover', border: `1px solid ${C.rule}`, borderRadius: '6px' },
   pastelInfo: { display: 'flex', flexDirection: 'column', gap: '2px' },
@@ -793,16 +892,16 @@ const styles = {
 
   // Tamanos: rejilla de una linea separada por el fondo, como .sem
   sizesGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,238px))', gap: '12px', justifyContent: 'start' },
-  sizeCard: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: C.fondo, padding: '14px 16px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.teal}`, borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.05)' },
-  sizeHidden: { borderTopColor: C.alerta, color: C.nada, background: '#FAFBFC', boxShadow: 'none' },
+  sizeCard: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', background: C.fondo, padding: '14px 16px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.tealTinta}`, borderRadius: '6px', boxShadow: 'var(--s3)' },
+  sizeHidden: { borderTopColor: C.alertaTinta, color: C.nada, background: 'var(--oculto)', boxShadow: 'none' },
   sizeInfo: { display: 'flex', flexDirection: 'column', gap: '1px' },
   sizeLabel: { fontSize: '17px', fontWeight: 700, color: 'inherit' },
   sizePrice: { fontSize: '15px', color: C.mid, fontVariantNumeric: 'tabular-nums' },
   sizeToggleBtn: { font: 'inherit', width: '46px', height: '34px', cursor: 'pointer', fontSize: '14px', fontWeight: 700, borderRadius: '5px', flexShrink: 0 },
-  sizeToggleBtnVisible: { border: `1px solid ${C.alerta}`, background: 'none', color: C.alerta },
+  sizeToggleBtnVisible: { border: `1px solid ${C.alertaTinta}`, background: 'none', color: C.alertaTinta },
   sizeToggleBtnHidden: { border: `1px solid ${C.teal}`, background: C.teal, color: '#fff' },
 
-  colorCard: { display: 'flex', alignItems: 'center', gap: '10px', background: C.fondo, padding: '10px 12px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.teal}`, borderRadius: '6px', boxShadow: '0 1px 2px rgba(30,42,74,.05)' },
-  colorHidden: { borderTopColor: C.alerta, color: C.nada },
+  colorCard: { display: 'flex', alignItems: 'center', gap: '10px', background: C.fondo, padding: '10px 12px', border: `1px solid ${C.rule}`, borderTop: `3px solid ${C.tealTinta}`, borderRadius: '6px', boxShadow: 'var(--s3)' },
+  colorHidden: { borderTopColor: C.alertaTinta, color: C.nada },
   colorThumb: { width: '42px', height: '42px', objectFit: 'cover', flexShrink: 0, border: `1px solid ${C.rule}` },
 };

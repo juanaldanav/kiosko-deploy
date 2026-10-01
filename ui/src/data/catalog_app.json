@@ -15413,6 +15413,26 @@
       "modifiers": []
     },
     {
+      "productId": 1754,
+      "productName": "M. ROSA PASTEL",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "./images/m.rosapastel.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 1754,
+          "productName": "M. ROSA PASTEL",
+          "basePrice": 45,
+          "tamanoId": 17,
+          "image": "./images/m.rosapastel.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1725,
       "productName": "SUSPIRO DE FRESA",
       "category": "REPOSTERIA",
@@ -15727,6 +15747,44 @@
           "basePrice": 370,
           "tamanoId": 1,
           "image": ""
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 1802,
+      "productName": "ROSA PASTEL",
+      "category": "REPOSTERIA",
+      "subcategory": "reposteria",
+      "defaultSize": "Chico",
+      "image": "./images/ROSA_PASTEL.jpg",
+      "sizes": [
+        {
+          "label": "Individual",
+          "ozLabel": "",
+          "productId": 1802,
+          "productName": "ROSA PASTEL",
+          "basePrice": 290,
+          "tamanoId": 3,
+          "image": "./images/ROSA_PASTEL.jpg"
+        },
+        {
+          "label": "Chico",
+          "ozLabel": "",
+          "productId": 1802,
+          "productName": "ROSA PASTEL",
+          "basePrice": 550,
+          "tamanoId": 1,
+          "image": "./images/ROSA_PASTEL.jpg"
+        },
+        {
+          "label": "Mediano",
+          "ozLabel": "",
+          "productId": 1802,
+          "productName": "ROSA PASTEL",
+          "basePrice": 690,
+          "tamanoId": 4,
+          "image": "./images/ROSA_PASTEL.jpg"
         }
       ],
       "modifiers": []
