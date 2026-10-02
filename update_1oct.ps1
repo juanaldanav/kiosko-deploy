@@ -172,10 +172,21 @@ if ($bloqueados.Count -eq 0) {
 Start-Sleep -Seconds 4
 $orderPath = Join-Path $AppRoot 'kiosko-puente\routes\order.js'
 $escrito   = (Get-Item $orderPath).LastWriteTime
-try {
-  Invoke-RestMethod -Uri "$Puente/health" -TimeoutSec 10 -UseBasicParsing | Out-Null
-} catch {
-  throw "El puente no respondio despues de copiar order.js. Revisa la ventana de npm run dev."
+# Nodemon tarda en levantar de nuevo (mas si el puente se acaba de abrir y npm
+# esta frio). Una sola pregunta cae en ese hueco y asusta con un throw aunque el
+# deploy ya quedo completo: se reintenta hasta 30s antes de darlo por muerto.
+$vivo = $false
+for ($i = 1; $i -le 10; $i++) {
+  try {
+    Invoke-RestMethod -Uri "$Puente/health" -TimeoutSec 3 -UseBasicParsing | Out-Null
+    $vivo = $true; break
+  } catch {
+    Write-Host "  esperando a que nodemon reinicie el puente ($i/10) ..." -ForegroundColor DarkGray
+    Start-Sleep -Seconds 3
+  }
+}
+if (-not $vivo) {
+  throw "El puente no respondio en 30s despues de copiar order.js. Revisa la ventana de npm run dev."
 }
 $puerto = ([uri]$Puente).Port
 $conn   = Get-NetTCPConnection -LocalPort $puerto -State Listen -EA SilentlyContinue | Select-Object -First 1
