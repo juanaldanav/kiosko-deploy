@@ -29,14 +29,15 @@
   Backup de todo lo reemplazado. nodemon reinicia el puente solo.
   NO toca .env, videos, products.js ni nada mas.
 
-  Uso:  .\update_30sep.ps1            (o -Refresh para mandar F5 al Chrome)
+  Uso:  irm "<url de este script>" | iex     (luego F5 manual al Chrome)
+        El $Ref ya viene pineado al SHA del deploy, por eso corre sin parametros.
 #>
 param(
   [string]$AppRoot = "",
   [string]$Puente  = "http://localhost:3001",
   # Commit del que se bajan los archivos. Se pasa el SHA, no 'main': raw.githubusercontent
   # cachea y con 'main' un kiosko se puede traer la version anterior sin avisar.
-  [string]$Ref     = "main",
+  [string]$Ref     = "22b9a4e6f63a8528ef82dd961141ba623d3b39b8",
   [switch]$Refresh
 )
 $ErrorActionPreference = 'Stop'
