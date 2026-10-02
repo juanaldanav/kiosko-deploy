@@ -1,9 +1,13 @@
 <#
-  update_30sep.ps1 — ROSA PASTEL (pastel + minipostre) y modo oscuro del admin.
+  update_1oct.ps1 — ROSA PASTEL (pastel + minipostre), modo oscuro del admin
+                    y 3 videos de promo con nueva vigencia.
 
     - ui/src/data/catalog_app.json    ROSA PASTEL 1802 (Ind 290 / Chico 550 / Med 690)
                                       y M. ROSA PASTEL 1754 ($45). La rebanada (1861)
-                                      ya iba desde el 29-sep.
+                                      ya iba desde el 29-sep. Ademas M. PEANUT BROWNIE
+                                      2481 y M. TRADICIONAL VAINILLA 2482 ($45 c/u,
+                                      grupo 37: TamanoId 17 por el prefijo 'M.',
+                                      no tocan la logica de pasteles).
     - kiosko-puente/routes/order.js   OJO: este archivo trae idTerminal/idUsuario, que
                                       son DISTINTOS en cada sucursal. El script los lee
                                       del order.js que ya esta en el kiosko y se los
@@ -15,7 +19,11 @@
                                       MISMO caso que update_reposteria.ps1 con 1800/1817.
     - ui/src/pages/AdminVisibilidad.jsx  modo claro/oscuro con switch. Lo elige cada
                                       sucursal y se guarda en el navegador de ese kiosko.
-    - 2 fotos nuevas.
+    - 4 fotos nuevas.
+    - 3 videos: PUMPKIN, CUMPLEANERO y JUEVES (nueva vigencia/diseno). Mismos
+                nombres que ya usa getPromoVideoSources(), asi que MenuPage.jsx
+                NO se toca. Se reemplazan con reintentos: Chrome los tiene
+                abiertos y Windows no deja sobrescribir un .mp4 en uso.
 
   Los DOS productos bajan OCULTOS: los prende la sucursal cuando tenga existencia.
   Backup de todo lo reemplazado. nodemon reinicia el puente solo.
@@ -36,14 +44,21 @@ $ErrorActionPreference = 'Stop'
 
 $BaseUrl = "https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/$Ref/"
 Write-Host "Bajando del ref: $Ref" -ForegroundColor Cyan
-$ids     = @(1802, 1754)          # ROSA PASTEL y M. ROSA PASTEL: bajan apagados
+$ids     = @(1802, 1754, 2481, 2482)   # ROSA PASTEL, M. ROSA PASTEL, M. PEANUT BROWNIE
+                                       # y M. TRADICIONAL VAINILLA: bajan apagados
 $rels    = @(
   'ui/src/data/catalog_app.json',
   'kiosko-puente/routes/order.js',
   'ui/src/pages/AdminVisibilidad.jsx',
   'ui/public/images/ROSA_PASTEL.jpg',
-  'ui/public/images/m.rosapastel.jpg'
+  'ui/public/images/m.rosapastel.jpg',
+  'ui/public/images/m.peanutbrownie.jpg',
+  'ui/public/images/m.tradicionalvainilla.jpg',
+  'ui/public/videos/PUMPKIN.mp4',
+  'ui/public/videos/CUMPLEANERO.mp4',
+  'ui/public/videos/JUEVES.mp4'
 )
+$bloqueados = @()
 
 # ---- 0. El puente TIENE que estar vivo, o los productos saldrian VISIBLES ----
 try {
@@ -123,11 +138,29 @@ foreach ($rel in $rels) {
   } else {
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
   }
-  Copy-Item $tmp $dest -Force
+  # Reemplazo con reintentos: Chrome/vite tienen los .mp4 abiertos y Windows no
+  # deja sobrescribir un archivo en uso. Se espera a que el carrusel rote.
+  # (Patron tomado de update_vigencias.ps1, que ya lo resolvio antes.)
+  $ok = $false
+  for ($i = 0; $i -lt 25; $i++) {
+    try { Copy-Item $tmp $dest -Force; $ok = $true; break }
+    catch { Start-Sleep -Milliseconds 800 }
+  }
   Remove-Item $tmp -Force -EA SilentlyContinue
-  Write-Host "    -> $dest" -ForegroundColor Green
+  if ($ok) {
+    Write-Host "    -> $dest" -ForegroundColor Green
+  } else {
+    Write-Host "    BLOQUEADO: $dest" -ForegroundColor Yellow
+    $bloqueados += $rel
+  }
 }
-Write-Host "$($rels.Count) archivos desplegados. Backup: $bak" -ForegroundColor Cyan
+if ($bloqueados.Count -eq 0) {
+  Write-Host "$($rels.Count) archivos desplegados. Backup: $bak" -ForegroundColor Cyan
+} else {
+  Write-Host ""
+  Write-Host ("QUEDARON BLOQUEADOS " + $bloqueados.Count + " archivo(s): " + ($bloqueados -join ', ')) -ForegroundColor Yellow
+  Write-Host "Da F5 al Chrome y vuelve a correr el mismo comando; es aditivo." -ForegroundColor Yellow
+}
 
 # ---- 4. El puente debe RECARGAR order.js, no solo seguir vivo ----
 # Nodemon ('npm run dev') lo reinicia solo. Pero si el puente se lanzo con
@@ -180,6 +213,7 @@ Write-Host ""
 Write-Host "REVISAR EN PANTALLA:" -ForegroundColor Yellow
 Write-Host "  - ROSA PASTEL y M. ROSA PASTEL NO deben verse en el menu; estan en Admin apagados"
 Write-Host "  - Admin Visibilidad: el switch de arriba a la derecha cambia claro/oscuro"
+Write-Host "  - Los videos de PUMPKIN, CUMPLEANERO y JUEVES DE ROLES ya con la vigencia nueva"
 Write-Host "  - Al prender ROSA PASTEL, sus 3 tallas cobran 290 / 550 / 690 (no 550 las tres)"
 Write-Host ""
 Write-Host "El script NO toca ui/src/lib/api.js, que tambien trae idTerminal/idUsuario de esta" -ForegroundColor Cyan

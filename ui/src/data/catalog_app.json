@@ -15433,6 +15433,46 @@
       "modifiers": []
     },
     {
+      "productId": 2481,
+      "productName": "M. PEANUT BROWNIE",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "./images/m.peanutbrownie.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2481,
+          "productName": "M. PEANUT BROWNIE",
+          "basePrice": 45,
+          "tamanoId": 17,
+          "image": "./images/m.peanutbrownie.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
+      "productId": 2482,
+      "productName": "M. TRADICIONAL VAINILLA",
+      "category": "MINIPOSTRES",
+      "subcategory": "minipostres",
+      "defaultSize": " ",
+      "image": "./images/m.tradicionalvainilla.jpg",
+      "sizes": [
+        {
+          "label": " ",
+          "ozLabel": "",
+          "productId": 2482,
+          "productName": "M. TRADICIONAL VAINILLA",
+          "basePrice": 45,
+          "tamanoId": 17,
+          "image": "./images/m.tradicionalvainilla.jpg"
+        }
+      ],
+      "modifiers": []
+    },
+    {
       "productId": 1725,
       "productName": "SUSPIRO DE FRESA",
       "category": "REPOSTERIA",
