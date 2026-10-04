@@ -331,13 +331,18 @@ export default function MenuPage() {
 
   // Polling para detectar señal de refresh desde admin
   useEffect(() => {
-    let lastTimestamp = 0;
+    // null = todavia no se leyo el puente. OJO: 0 es un valor VALIDO
+    // (refreshTimestamp arranca en 0 cada vez que el puente levanta, y
+    // nodemon lo reinicia en cada deploy). Usar 0 como centinela se comia
+    // la PRIMERA senal de refresh del dia: la sucursal apagaba un producto
+    // en el admin y el kiosko seguia mostrandolo hasta el siguiente apagado.
+    let lastTimestamp = null;
     
     const checkRefresh = setInterval(async () => {
       try {
         const res = await fetch('http://localhost:3001/api/visibility/refresh-status');
         const data = await res.json();
-        if (data.ok && data.timestamp > lastTimestamp && lastTimestamp !== 0) {
+        if (data.ok && lastTimestamp !== null && data.timestamp > lastTimestamp) {
           console.log('🔄 Señal de refresh recibida, recargando...');
           window.location.reload();
         }
