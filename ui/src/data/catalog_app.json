@@ -19873,55 +19873,1930 @@
       "categoryOrderIndex": 0
     },
     {
-      "productId": 2480,
-      "productName": "PAN DE MUERTO",
-      "category": "PANADERIA",
-      "subcategory": "panaderia",
-      "defaultSize": "CLASICO",
-      "sizeStepTitle": "Elige el sabor",
-      "image": "/images/panaderia/pan-de-muerto.jpg",
+      "productId": 2502,
+      "productName": "ICED SPANISH LATTE",
+      "category": "BEBIDAS FRÍAS CON CAFÉ",
+      "subcategory": "bebidas_frias_con_cafe",
+      "defaultSize": "Grande",
+      "image": "/images/bebidas/iced-spanish-latte.jpg",
       "sizes": [
         {
-          "label": "CLASICO",
-          "ozLabel": "",
-          "productId": 159,
-          "productName": "PAN DE MUERTO CLASICO",
-          "basePrice": 55,
-          "tamanoId": 1,
-          "image": "/images/panaderia/pan-de-muerto.jpg"
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2502,
+          "productName": "ICED SPANISH LATTE GDE",
+          "basePrice": 110,
+          "image": "/images/bebidas/iced-spanish-latte.jpg"
         },
         {
-          "label": "NUTELLA",
-          "ozLabel": "",
-          "productId": 1610,
-          "productName": "PAN DE MUERTO NUTELLA",
-          "basePrice": 75,
-          "tamanoId": 1,
-          "image": "/images/panaderia/pan-de-muerto.jpg"
-        },
-        {
-          "label": "JAMONCILLO",
-          "ozLabel": "",
-          "productId": 2343,
-          "productName": "PAN DE MUERTO JAMONCILLO",
-          "basePrice": 75,
-          "tamanoId": 1,
-          "image": "/images/panaderia/pan-de-muerto.jpg"
-        },
-        {
-          "label": "LOTUS",
-          "ozLabel": "",
-          "productId": 2480,
-          "productName": "PAN DE MUERTO LOTUS",
-          "basePrice": 75,
-          "tamanoId": 1,
-          "image": "/images/panaderia/pan-de-muerto.jpg"
+          "label": "XL",
+          "ozLabel": "20 oz",
+          "tamanoId": 20,
+          "productId": 2503,
+          "productName": "ICED SPANISH LATTE XL",
+          "basePrice": 115,
+          "image": "/images/bebidas/iced-spanish-latte.jpg"
         }
       ],
-      "modifiers": [],
-      "badge": {
-        "text": "TEMPORADA"
-      }
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2268,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2268,
+                "XL": 2271
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "VASO GRANDE.",
+                "XL": "VASO XL."
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2049,
+                "XL": 2049
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 1987,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 1987,
+                "XL": 2278
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "DESCAFEINADO.",
+                "XL": "DESCAFEINADO_"
+              }
+            },
+            {
+              "id": 393,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 393,
+                "XL": 2240
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "GRANO REGULAR.",
+                "XL": "GRANO REGULAR_"
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 2290,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2290,
+                "XL": 572
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*ENTERA",
+                "XL": "ENTERA,"
+              }
+            },
+            {
+              "id": 2284,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2284,
+                "XL": 2153
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*DESLACTOSADA LIGHT",
+                "XL": "DESLACTOSADA LIGHT,"
+              }
+            },
+            {
+              "id": 2298,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2298,
+                "XL": 295
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*ALMENDRA",
+                "XL": "ALMENDRA,"
+              }
+            },
+            {
+              "id": 2305,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2305,
+                "XL": 569
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*AVENA",
+                "XL": "AVENA,"
+              }
+            },
+            {
+              "id": 2312,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2312,
+                "XL": 571
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*SOYA",
+                "XL": "SOYA,"
+              }
+            },
+            {
+              "id": 2319,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2319,
+                "XL": 570
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*COCO",
+                "XL": "COCO,"
+              }
+            },
+            {
+              "id": 2399,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Grande": 2399,
+                "XL": 2400
+              },
+              "pricesPerSize": {
+                "Grande": 12,
+                "XL": 12
+              },
+              "labelPerSize": {
+                "Grande": "*LECHE PROTEINA",
+                "XL": "LECHE PROTEINA,"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS FRÍAS",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "frias",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 0
+    },
+    {
+      "productId": 2500,
+      "productName": "SPANISH LATTE",
+      "category": "BEBIDAS CALIENTES CON CAFÉ",
+      "subcategory": "bebidas_calientes_con_cafe",
+      "defaultSize": "Mediano",
+      "image": "/images/bebidas/spanish-latte.jpg",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "12 oz",
+          "tamanoId": 12,
+          "productId": 2500,
+          "productName": "SPANISH LATTE MED",
+          "basePrice": 85,
+          "image": "/images/bebidas/spanish-latte.jpg"
+        },
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2501,
+          "productName": "SPANISH LATTE GDE",
+          "basePrice": 90,
+          "image": "/images/bebidas/spanish-latte.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2051,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2051,
+                "Grande": 2052
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "VASO 12 OZ CALIENTE",
+                "Grande": "VASO 16 OZ CALIENTE"
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2049,
+                "Grande": 2049
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 1987,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 1987,
+                "Grande": 1987
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "DESCAFEINADO.",
+                "Grande": "DESCAFEINADO."
+              }
+            },
+            {
+              "id": 393,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 393,
+                "Grande": 393
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "GRANO REGULAR.",
+                "Grande": "GRANO REGULAR."
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 572,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 572,
+                "Grande": 2293
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "ENTERA,",
+                "Grande": "+ENTERA"
+              }
+            },
+            {
+              "id": 2153,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2153,
+                "Grande": 2285
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "DESLACTOSADA LIGHT,",
+                "Grande": "+DESLACTOSADA LIGHT"
+              }
+            },
+            {
+              "id": 295,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 295,
+                "Grande": 2299
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "ALMENDRA,",
+                "Grande": "+ALMENDRA"
+              }
+            },
+            {
+              "id": 569,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 569,
+                "Grande": 2306
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "AVENA,",
+                "Grande": "+AVENA"
+              }
+            },
+            {
+              "id": 571,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 571,
+                "Grande": 2313
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "SOYA,",
+                "Grande": "+SOYA"
+              }
+            },
+            {
+              "id": 570,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 570,
+                "Grande": 2320
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "COCO,",
+                "Grande": "+COCO"
+              }
+            },
+            {
+              "id": 2400,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Mediano": 2400,
+                "Grande": 2401
+              },
+              "pricesPerSize": {
+                "Mediano": 12,
+                "Grande": 12
+              },
+              "labelPerSize": {
+                "Mediano": "LECHE PROTEINA,",
+                "Grande": "+ LECHE PROTEINA"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS CALIENTES",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "calientes",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 2
+    },
+    {
+      "productId": 2498,
+      "productName": "ICED PISTACHE LATTE",
+      "category": "BEBIDAS FRÍAS CON CAFÉ",
+      "subcategory": "bebidas_frias_con_cafe",
+      "defaultSize": "Grande",
+      "image": "/images/bebidas/iced-pistache-latte.jpg",
+      "sizes": [
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2498,
+          "productName": "ICED PISTACHE LATTE GDE",
+          "basePrice": 120,
+          "image": "/images/bebidas/iced-pistache-latte.jpg"
+        },
+        {
+          "label": "XL",
+          "ozLabel": "20 oz",
+          "tamanoId": 20,
+          "productId": 2499,
+          "productName": "ICED PISTACHE LATTE XL",
+          "basePrice": 125,
+          "image": "/images/bebidas/iced-pistache-latte.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2268,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2268,
+                "XL": 2271
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "VASO GRANDE.",
+                "XL": "VASO XL."
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2049,
+                "XL": 2049
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 1987,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 1987,
+                "XL": 2278
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "DESCAFEINADO.",
+                "XL": "DESCAFEINADO_"
+              }
+            },
+            {
+              "id": 393,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 393,
+                "XL": 2240
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "GRANO REGULAR.",
+                "XL": "GRANO REGULAR_"
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 2290,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2290,
+                "XL": 572
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*ENTERA",
+                "XL": "ENTERA,"
+              }
+            },
+            {
+              "id": 2284,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2284,
+                "XL": 2153
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*DESLACTOSADA LIGHT",
+                "XL": "DESLACTOSADA LIGHT,"
+              }
+            },
+            {
+              "id": 2298,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2298,
+                "XL": 295
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*ALMENDRA",
+                "XL": "ALMENDRA,"
+              }
+            },
+            {
+              "id": 2305,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2305,
+                "XL": 569
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*AVENA",
+                "XL": "AVENA,"
+              }
+            },
+            {
+              "id": 2312,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2312,
+                "XL": 571
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*SOYA",
+                "XL": "SOYA,"
+              }
+            },
+            {
+              "id": 2319,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2319,
+                "XL": 570
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*COCO",
+                "XL": "COCO,"
+              }
+            },
+            {
+              "id": 2399,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Grande": 2399,
+                "XL": 2400
+              },
+              "pricesPerSize": {
+                "Grande": 12,
+                "XL": 12
+              },
+              "labelPerSize": {
+                "Grande": "*LECHE PROTEINA",
+                "XL": "LECHE PROTEINA,"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS FRÍAS",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "frias",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 0
+    },
+    {
+      "productId": 2496,
+      "productName": "PISTACHE LATTE",
+      "category": "BEBIDAS CALIENTES CON CAFÉ",
+      "subcategory": "bebidas_calientes_con_cafe",
+      "defaultSize": "Mediano",
+      "image": "/images/bebidas/pistache-latte.jpg",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "12 oz",
+          "tamanoId": 12,
+          "productId": 2496,
+          "productName": "PISTACHE LATTE MED",
+          "basePrice": 85,
+          "image": "/images/bebidas/pistache-latte.jpg"
+        },
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2497,
+          "productName": "PISTACHE LATTE GDE",
+          "basePrice": 90,
+          "image": "/images/bebidas/pistache-latte.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2051,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2051,
+                "Grande": 2052
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "VASO 12 OZ CALIENTE",
+                "Grande": "VASO 16 OZ CALIENTE"
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2049,
+                "Grande": 2049
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 2239,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2239,
+                "Grande": 2239
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            },
+            {
+              "id": 2277,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2277,
+                "Grande": 2277
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 572,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 572,
+                "Grande": 2293
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "ENTERA,",
+                "Grande": "+ENTERA"
+              }
+            },
+            {
+              "id": 2153,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2153,
+                "Grande": 2285
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "DESLACTOSADA LIGHT,",
+                "Grande": "+DESLACTOSADA LIGHT"
+              }
+            },
+            {
+              "id": 295,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 295,
+                "Grande": 2299
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "ALMENDRA,",
+                "Grande": "+ALMENDRA"
+              }
+            },
+            {
+              "id": 569,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 569,
+                "Grande": 2306
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "AVENA,",
+                "Grande": "+AVENA"
+              }
+            },
+            {
+              "id": 571,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 571,
+                "Grande": 2313
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "SOYA,",
+                "Grande": "+SOYA"
+              }
+            },
+            {
+              "id": 570,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 570,
+                "Grande": 2320
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "COCO,",
+                "Grande": "+COCO"
+              }
+            },
+            {
+              "id": 2400,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Mediano": 2400,
+                "Grande": 2401
+              },
+              "pricesPerSize": {
+                "Mediano": 12,
+                "Grande": 12
+              },
+              "labelPerSize": {
+                "Mediano": "LECHE PROTEINA,",
+                "Grande": "+ LECHE PROTEINA"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS CALIENTES",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "calientes",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 2
+    },
+    {
+      "productId": 2495,
+      "productName": "CARAMELO SALADO LATTE",
+      "category": "BEBIDAS CALIENTES CON CAFÉ",
+      "subcategory": "bebidas_calientes_con_cafe",
+      "defaultSize": "Mediano",
+      "image": "/images/bebidas/caramelo-salado-latte.jpg",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "12 oz",
+          "tamanoId": 12,
+          "productId": 2495,
+          "productName": "CARAMELO SALADO LATTE MED",
+          "basePrice": 85,
+          "image": "/images/bebidas/caramelo-salado-latte.jpg"
+        },
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2494,
+          "productName": "CARAMELO SALADO LATTE GDE",
+          "basePrice": 90,
+          "image": "/images/bebidas/caramelo-salado-latte.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2051,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2051,
+                "Grande": 2052
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "VASO 12 OZ CALIENTE",
+                "Grande": "VASO 16 OZ CALIENTE"
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2049,
+                "Grande": 2049
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 2239,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2239,
+                "Grande": 2239
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            },
+            {
+              "id": 2277,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2277,
+                "Grande": 2277
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 572,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 572,
+                "Grande": 2293
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "ENTERA,",
+                "Grande": "+ENTERA"
+              }
+            },
+            {
+              "id": 2153,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2153,
+                "Grande": 2285
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "DESLACTOSADA LIGHT,",
+                "Grande": "+DESLACTOSADA LIGHT"
+              }
+            },
+            {
+              "id": 295,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 295,
+                "Grande": 2299
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "ALMENDRA,",
+                "Grande": "+ALMENDRA"
+              }
+            },
+            {
+              "id": 2306,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2306
+              },
+              "pricesPerSize": {
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Grande": "+AVENA"
+              }
+            },
+            {
+              "id": 571,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 571,
+                "Grande": 2313
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "SOYA,",
+                "Grande": "+SOYA"
+              }
+            },
+            {
+              "id": 570,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 570,
+                "Grande": 2320
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "COCO,",
+                "Grande": "+COCO"
+              }
+            },
+            {
+              "id": 2400,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Mediano": 2400,
+                "Grande": 2401
+              },
+              "pricesPerSize": {
+                "Mediano": 12,
+                "Grande": 12
+              },
+              "labelPerSize": {
+                "Mediano": "LECHE PROTEINA,",
+                "Grande": "+ LECHE PROTEINA"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS CALIENTES",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "calientes",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 2
+    },
+    {
+      "productId": 2491,
+      "productName": "PUMPKIN SPICE LATTE",
+      "category": "BEBIDAS CALIENTES CON CAFÉ",
+      "subcategory": "bebidas_calientes_con_cafe",
+      "defaultSize": "Mediano",
+      "image": "/images/bebidas/pumpkin-spice-latte.jpg",
+      "sizes": [
+        {
+          "label": "Mediano",
+          "ozLabel": "12 oz",
+          "tamanoId": 12,
+          "productId": 2491,
+          "productName": "PUMPKIN SPICE LATTE MED",
+          "basePrice": 85,
+          "image": "/images/bebidas/pumpkin-spice-latte.jpg"
+        },
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2492,
+          "productName": "PUMPKIN SPICE LATTE GDE",
+          "basePrice": 90,
+          "image": "/images/bebidas/pumpkin-spice-latte.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2051,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2051,
+                "Grande": 2052
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "VASO 12 OZ CALIENTE",
+                "Grande": "VASO 16 OZ CALIENTE"
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2049,
+                "Grande": 2049
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 2239,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2239,
+                "Grande": 2239
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            },
+            {
+              "id": 2277,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2277,
+                "Grande": 2277
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 572,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 572,
+                "Grande": 2293
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "ENTERA,",
+                "Grande": "+ENTERA"
+              }
+            },
+            {
+              "id": 2153,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Mediano": 2153,
+                "Grande": 2285
+              },
+              "pricesPerSize": {
+                "Mediano": 0,
+                "Grande": 0
+              },
+              "labelPerSize": {
+                "Mediano": "DESLACTOSADA LIGHT,",
+                "Grande": "+DESLACTOSADA LIGHT"
+              }
+            },
+            {
+              "id": 295,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 295,
+                "Grande": 2299
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "ALMENDRA,",
+                "Grande": "+ALMENDRA"
+              }
+            },
+            {
+              "id": 569,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 569,
+                "Grande": 2306
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "AVENA,",
+                "Grande": "+AVENA"
+              }
+            },
+            {
+              "id": 571,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 571,
+                "Grande": 2313
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "SOYA,",
+                "Grande": "+SOYA"
+              }
+            },
+            {
+              "id": 570,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Mediano": 570,
+                "Grande": 2320
+              },
+              "pricesPerSize": {
+                "Mediano": 15,
+                "Grande": 15
+              },
+              "labelPerSize": {
+                "Mediano": "COCO,",
+                "Grande": "+COCO"
+              }
+            },
+            {
+              "id": 2400,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Mediano": 2400,
+                "Grande": 2401
+              },
+              "pricesPerSize": {
+                "Mediano": 12,
+                "Grande": 12
+              },
+              "labelPerSize": {
+                "Mediano": "LECHE PROTEINA,",
+                "Grande": "+ LECHE PROTEINA"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS CALIENTES",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "calientes",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 2
+    },
+    {
+      "productId": 2475,
+      "productName": "ICED CARAMELO SALADO",
+      "category": "BEBIDAS FRÍAS CON CAFÉ",
+      "subcategory": "bebidas_frias_con_cafe",
+      "defaultSize": "Grande",
+      "image": "/images/bebidas/iced-caramelo-salado.jpg",
+      "sizes": [
+        {
+          "label": "Grande",
+          "ozLabel": "16 oz",
+          "tamanoId": 16,
+          "productId": 2475,
+          "productName": "ICED CARAMELO SALADO GDE",
+          "basePrice": 120,
+          "image": "/images/bebidas/iced-caramelo-salado.jpg"
+        },
+        {
+          "label": "XL",
+          "ozLabel": "20 oz",
+          "tamanoId": 20,
+          "productId": 2476,
+          "productName": "ICED CARAMELO SALADO XL",
+          "basePrice": 125,
+          "image": "/images/bebidas/iced-caramelo-salado.jpg"
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "vaso",
+          "title": "Vaso",
+          "level": 1,
+          "required": true,
+          "options": [
+            {
+              "id": 2268,
+              "name": "VASO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2268,
+                "XL": 2271
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "VASO GRANDE.",
+                "XL": "VASO XL."
+              }
+            },
+            {
+              "id": 2049,
+              "name": "REFIL - TERMO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2049,
+                "XL": 2049
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              }
+            }
+          ]
+        },
+        {
+          "type": "grano",
+          "title": "Tipo de Grano",
+          "level": 2,
+          "required": true,
+          "options": [
+            {
+              "id": 1987,
+              "name": "DESCAFEINADO",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 1987,
+                "XL": 2278
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "DESCAFEINADO.",
+                "XL": "DESCAFEINADO_"
+              }
+            },
+            {
+              "id": 393,
+              "name": "GRANO REGULAR",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 393,
+                "XL": 2240
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "GRANO REGULAR.",
+                "XL": "GRANO REGULAR_"
+              }
+            }
+          ]
+        },
+        {
+          "type": "leche",
+          "title": "Tipo de Leche",
+          "level": 3,
+          "required": true,
+          "options": [
+            {
+              "id": 2290,
+              "name": "ENTERA",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2290,
+                "XL": 572
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*ENTERA",
+                "XL": "ENTERA,"
+              }
+            },
+            {
+              "id": 2284,
+              "name": "DESLACTOSADA LIGHT",
+              "basePrice": 0,
+              "idsPerSize": {
+                "Grande": 2284,
+                "XL": 2153
+              },
+              "pricesPerSize": {
+                "Grande": 0,
+                "XL": 0
+              },
+              "labelPerSize": {
+                "Grande": "*DESLACTOSADA LIGHT",
+                "XL": "DESLACTOSADA LIGHT,"
+              }
+            },
+            {
+              "id": 2298,
+              "name": "ALMENDRA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2298,
+                "XL": 295
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*ALMENDRA",
+                "XL": "ALMENDRA,"
+              }
+            },
+            {
+              "id": 2305,
+              "name": "AVENA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2305,
+                "XL": 569
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*AVENA",
+                "XL": "AVENA,"
+              }
+            },
+            {
+              "id": 2312,
+              "name": "SOYA",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2312,
+                "XL": 571
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*SOYA",
+                "XL": "SOYA,"
+              }
+            },
+            {
+              "id": 2319,
+              "name": "COCO",
+              "basePrice": 15,
+              "idsPerSize": {
+                "Grande": 2319,
+                "XL": 570
+              },
+              "pricesPerSize": {
+                "Grande": 15,
+                "XL": 15
+              },
+              "labelPerSize": {
+                "Grande": "*COCO",
+                "XL": "COCO,"
+              }
+            },
+            {
+              "id": 2399,
+              "name": "LECHE PROTEINA",
+              "basePrice": 12,
+              "idsPerSize": {
+                "Grande": 2399,
+                "XL": 2400
+              },
+              "pricesPerSize": {
+                "Grande": 12,
+                "XL": 12
+              },
+              "labelPerSize": {
+                "Grande": "*LECHE PROTEINA",
+                "XL": "LECHE PROTEINA,"
+              }
+            }
+          ]
+        },
+        {
+          "type": "extrashot",
+          "title": "Extras disponibles",
+          "level": 99,
+          "required": false,
+          "options": [
+            {
+              "name": "SIN EXTRAS",
+              "basePrice": 0,
+              "priceDelta": 0
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT CAFÉ",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 393,
+                  "name": "GRANO REGULAR."
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "name": "EXTRA SHOT DESCAFEINADO",
+              "basePrice": 12,
+              "priceDelta": 12,
+              "sendWith": [
+                {
+                  "id": 1987,
+                  "name": "DESCAFEINADO."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parentGroup": "BEBIDAS FRÍAS",
+      "beverageGroup": "CON CAFÉ",
+      "parentKey": "frias",
+      "beverageKey": "con_cafe",
+      "categoryOrderIndex": 0
     }
   ]
 }

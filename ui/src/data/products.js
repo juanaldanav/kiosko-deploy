@@ -167,7 +167,6 @@ const SEASONAL_DRINK_DEFINITIONS = seasonalConfig.enabled && seasonalConfig.drin
 
 // Productos populares regulares (sin seasonal hardcodeado)
 const POPULAR = [
-  "PAN DE MUERTO",
   "FRAPUCCINO PEANUT",
   "R. TRADICIONAL VAINILLA",
   "ICED COFFEE",

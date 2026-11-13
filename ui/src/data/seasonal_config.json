@@ -1,5 +1,5 @@
 {
-  "_nota": "Bebidas de temporada otono 2026 (lanzamiento 21-sep, vigencia 14-nov-2026). Las 5 de verano salieron de aqui el 17-sep y siguen en el menu en su categoria; respaldo en seasonal_config_bak_20260917.json. Imagenes locales en public/images/bebidas (no CDN).",
+  "_nota": "Bebidas navidenas 2026 (lanzamiento viernes 13-nov). Las 4 de otono (Iced Lotus, Iced Pumpkin, Aerocano, Iced Matchapan) salieron de aqui el 12-nov y siguen en el menu en su categoria; respaldo en seasonal_config_bak_20261112.json. Imagenes locales en public/images/bebidas (no CDN).",
   "enabled": true,
   "badge": {
     "emoji": "",
@@ -10,54 +10,50 @@
   "sectionTitle": "Especiales",
   "drinks": [
     {
-      "seasonalKey": "iced_coffee_lotus",
-      "name": "ICED COFFEE LOTUS",
-      "displayName": "ICED COFFEE LOTUS",
-      "image": "/images/bebidas/iced-coffee-lotus.jpg",
+      "seasonalKey": "caramelo_salado",
+      "name": "CARAMELO SALADO",
+      "displayName": "CARAMELO SALADO",
+      "image": "/images/bebidas/iced-caramelo-salado.jpg",
       "variants": {
+        "caliente": {
+          "productId": "2495",
+          "name": "CARAMELO SALADO LATTE MED"
+        },
         "rocas": {
-          "productId": "2469",
-          "name": "ICED COFFEE LOTUS GDE"
-        }
-      },
-      "badge": {
-        "text": "NUEVO",
-        "image": "/images/Lotus-nuevo.svg"
-      }
-    },
-    {
-      "seasonalKey": "iced_pumpkin",
-      "name": "ICED PUMPKIN",
-      "displayName": "ICED PUMPKIN",
-      "image": "/images/bebidas/iced-pumpkin.jpg",
-      "variants": {
-        "rocas": {
-          "productId": "2471",
-          "name": "ICED PUMPKIN GDE"
+          "productId": "2475",
+          "name": "ICED CARAMELO SALADO GDE"
         }
       }
     },
     {
-      "seasonalKey": "aerocano",
-      "name": "AEROCANO",
-      "displayName": "AEROCANO",
-      "image": "/images/bebidas/aerocano.jpg",
+      "seasonalKey": "pistache",
+      "name": "PISTACHE",
+      "displayName": "PISTACHE",
+      "image": "/images/bebidas/iced-pistache-latte.jpg",
       "variants": {
+        "caliente": {
+          "productId": "2496",
+          "name": "PISTACHE LATTE MED"
+        },
         "rocas": {
-          "productId": "2467",
-          "name": "AEROCANO GDE"
+          "productId": "2498",
+          "name": "ICED PISTACHE LATTE GDE"
         }
       }
     },
     {
-      "seasonalKey": "iced_matchapan",
-      "name": "ICED MATCHAPAN",
-      "displayName": "ICED MATCHAPÁN",
-      "image": "/images/bebidas/iced-matchapan.jpg",
+      "seasonalKey": "spanish_latte",
+      "name": "SPANISH LATTE",
+      "displayName": "SPANISH LATTE",
+      "image": "/images/bebidas/iced-spanish-latte.jpg",
       "variants": {
+        "caliente": {
+          "productId": "2500",
+          "name": "SPANISH LATTE MED"
+        },
         "rocas": {
-          "productId": "2473",
-          "name": "ICED MATCHAPAN GDE"
+          "productId": "2502",
+          "name": "ICED SPANISH LATTE GDE"
         }
       }
     }
