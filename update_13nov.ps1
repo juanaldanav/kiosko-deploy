@@ -27,7 +27,7 @@
 param(
   [string]$AppRoot = "",
   # Se pinea el SHA y no 'main': raw.githubusercontent cachea.
-  [string]$Ref     = "__SHA__"
+  [string]$Ref     = "b2de6b6790c1de0fb0d3116810cbd2aecd31f111"
 )
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
