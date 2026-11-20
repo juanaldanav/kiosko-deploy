@@ -5,6 +5,7 @@ import useSteps from "../lib/useSteps.js";
 import ModifierStep from "../components/ModifierStep";
 import SuggestedItemsOverlay from "../components/SuggestedItemsOverlay";
 import AtrasFlotante from "../components/AtrasFlotante";
+import FlechasScroll from "../components/FlechasScroll";
 
 // Great Vibes en MAYÚSCULAS no se lee: Title Case para .k-script (mismo helper que MenuPage)
 const tituloScript = (t = "") => String(t || "").toLowerCase().replace(/(^|[\s/(-])(\S)/g, (_, a, c) => a + c.toUpperCase());
@@ -464,6 +465,7 @@ const handleAddAndSend = async () => {
             )
           )}
         </div>
+        <FlechasScroll target={contentRef} />
       </main>
 
       {/* Zona muerta 1500–pie: solo fondo */}

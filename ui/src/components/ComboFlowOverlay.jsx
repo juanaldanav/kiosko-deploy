@@ -4,6 +4,7 @@ import CustomizePage from "../pages/CustomizePage";
 import { getProductById, getHiddenProducts } from "../data/products";
 import { useCart } from "../context/CartContext";
 import AtrasFlotante from "./AtrasFlotante";
+import FlechasScroll from "./FlechasScroll";
 
 // Único flujo: el cliente arma su combo eligiendo 1 alimento salado + 1 bebida.
 // Las opciones bloqueadas en AdminVisibilidad se filtran solas (getHiddenProducts).
@@ -44,6 +45,7 @@ const tituloScript = (t = "") => { const s = t.toLowerCase(); return s.charAt(0)
 
 // Selector de opciones: tarjetas del MISMO tamaño, 2 por fila, dentro de la banda 600–1500 (scroll propio).
 function OptionSelector({ options, onSelect, title, paso, onBack, onHome }) {
+  const bandaRef = useRef(null);
   return (
     <div className="relative h-full flex flex-col k-app overflow-hidden">
       <div className="k-nieve" aria-hidden="true" />
@@ -69,6 +71,7 @@ function OptionSelector({ options, onSelect, title, paso, onBack, onHome }) {
 
       {/* y 600–1500: banda de alcance con scroll propio */}
       <div
+        ref={bandaRef}
         className="relative flex-[0_1_900px] min-h-0 overflow-y-auto px-10"
         style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
       >
@@ -96,6 +99,7 @@ function OptionSelector({ options, onSelect, title, paso, onBack, onHome }) {
             ))}
           </div>
         </div>
+        <FlechasScroll target={bandaRef} />
       </div>
 
       <div className="flex-1" />

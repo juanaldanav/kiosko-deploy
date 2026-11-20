@@ -169,6 +169,15 @@ body { font-family: var(--k-f-sans); }
 /* Barra inferior: Atrás (contorno) ≠ Inicio (relleno) */
 .k-btn-atras { background: var(--k-atras-bg); border: var(--k-atras-borde); color: var(--k-atras-color); }
 .k-btn-inicio { background: var(--k-primario); color: var(--k-sobre-primario); border: 0; }
+/* Ver más / Subir: flotan sobre los productos, por eso borde claro y sombra marcada */
+.k-flecha {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--k-primario); color: var(--k-sobre-primario);
+  border: 4px solid var(--k-sobre-primario);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+  transition: transform .15s ease-out, filter .15s ease-out;
+}
+.k-flecha:active { transform: scale(.94); filter: brightness(1.1); }
 .k-barra { background: var(--k-barra); border-top: var(--k-card-borde); }
 
 .k-sel { box-shadow: var(--k-sel-sombra) !important; }

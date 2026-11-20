@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useCart } from "../context/CartContext";
 import CartSummary from "./CartSummary";
+import FlechasScroll from "./FlechasScroll";
 
 export default function FloatingCart({ onPay, ocultarPestana = false }) {
   const { items, clear, total, isProcessing } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const listaRef = useRef(null);
 
   const totalItems = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
@@ -91,10 +93,12 @@ export default function FloatingCart({ onPay, ocultarPestana = false }) {
           {/* Panel centrado (y≈660–1630): lista con scroll interno + total y botones fijos */}
           <section className="k-card mt-[60px] w-[960px] max-w-[calc(100%-32px)] h-[970px] shrink-0 flex flex-col overflow-hidden">
             <div
+              ref={listaRef}
               className="flex-1 min-h-0 overflow-y-auto px-6 pt-6 pb-3"
               style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
             >
               <CartSummary className="h-auto" hideActions={true} />
+              <FlechasScroll target={listaRef} />
             </div>
 
             <div className="shrink-0 border-t-[3px] border-k-borde px-6 pt-5 pb-6 space-y-4">
