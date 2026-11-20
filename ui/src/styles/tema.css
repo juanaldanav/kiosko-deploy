@@ -175,9 +175,13 @@ body { font-family: var(--k-f-sans); }
   background: var(--k-primario); color: var(--k-sobre-primario);
   border: 4px solid var(--k-sobre-primario);
   box-shadow: 0 10px 28px rgba(0,0,0,.35);
-  transition: transform .15s ease-out, filter .15s ease-out;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
+  transition: transform .12s ease-out, box-shadow .12s ease-out;
 }
-.k-flecha:active { transform: scale(.94); filter: brightness(1.1); }
+.k-flecha:active { transform: scale(.96); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+.k-flecha-sub { background: var(--k-superficie); color: var(--k-tinta); border-color: var(--k-primario); }
+.k-flecha-hoja { background: var(--k-sobre-primario); color: var(--k-primario); }
+@media (prefers-reduced-motion: reduce) { .k-flecha { transition: none; } .k-flecha:active { transform: none; } }
 .k-barra { background: var(--k-barra); border-top: var(--k-card-borde); }
 
 .k-sel { box-shadow: var(--k-sel-sombra) !important; }
