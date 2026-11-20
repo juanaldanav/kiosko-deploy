@@ -7,7 +7,7 @@
 #>
 param(
   [string]$AppRoot = "",
-  [string]$Ref     = "035833414f0802194604d6f94a8d9734300c7839"
+  [string]$Ref     = "c9f625bb1853e8158f75d458ac9ec600f8c60cc0"
 )
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -15,7 +15,7 @@ $BaseUrl = "https://raw.githubusercontent.com/juanaldanav/kiosko-deploy/$Ref/"
 Write-Host "Bajando del ref: $Ref" -ForegroundColor Cyan
 
 $files = [ordered]@{
-  'ui/src/components/FlechasScroll.jsx'     = 2000
+  'ui/src/components/FlechasScroll.jsx'     = 3000
   'ui/src/styles/tema.css'                  = 8000
   'ui/src/pages/MenuPage.jsx'               = 35000
   'ui/src/pages/CustomizePage.jsx'          = 18000
@@ -57,4 +57,4 @@ foreach ($rel in $files.Keys) {
 Remove-Item $tmp -Recurse -Force -EA SilentlyContinue
 Write-Host ""
 Write-Host "LISTO. Da F5 al Chrome del kiosko." -ForegroundColor Green
-Write-Host "Prueba: Explorar/Minipostres -> boton 'Ver mas' abajo al centro; al bajar aparece la flecha de Subir." -ForegroundColor Yellow
+Write-Host "Prueba: Explorar/Minipostres -> 'Ver mas 1/6' abajo al centro; al final dice 'Volver arriba'." -ForegroundColor Yellow
