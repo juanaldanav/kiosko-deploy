@@ -63,58 +63,28 @@ function PromoIcon({ tipo, className = "w-8 h-8" }) {
   );
 }
 
+// Tonos de promo por tipo, con tokens del tema (base = turquesa, navidad = vino/caramelo)
 function getPromoTheme(tipo) {
+  const comun = {
+    iconWrap: "bg-white/15",
+    title: "",
+    description: "opacity-90",
+    notice: "bg-white/20",
+    tag: "border border-white/25",
+  };
+  const tono = (bg, sobre, borde) => ({
+    ...comun,
+    container: `${bg} ${sobre} ${borde}`,
+    tag: `${comun.tag} ${bg} ${sobre}`,
+    price: "text-k-acento",
+    card: `${borde} bg-k-selsuave shadow-lg`,
+  });
   const themes = {
-    HORA_FELIZ: {
-      container: "bg-[#0F766E] border-[#0F766E]",
-      iconWrap: "bg-white/15 text-white",
-      title: "text-white",
-      description: "text-teal-100",
-      notice: "bg-white/20 text-white",
-      tag: "bg-[#0B5E58] text-white border border-white/25",
-      price: "text-[#0F766E]",
-      card: "border-[#0F766E] bg-[#DFF7F3] ring-2 ring-[#0F766E]/25 shadow-lg",
-    },
-    MINIPOSTRES_6X4: {
-      container: "bg-[#B45309] border-[#B45309]",
-      iconWrap: "bg-white/15 text-white",
-      title: "text-white",
-      description: "text-amber-100",
-      notice: "bg-white/20 text-white",
-      tag: "bg-[#92400E] text-white border border-white/25",
-      price: "text-[#B45309]",
-      card: "border-[#B45309] bg-[#FFF1E6] ring-2 ring-[#B45309]/25 shadow-lg",
-    },
-    REBANADAS_2X180: {
-      container: "bg-[#9A3412] border-[#9A3412]",
-      iconWrap: "bg-white/15 text-white",
-      title: "text-white",
-      description: "text-orange-100",
-      notice: "bg-white/20 text-white",
-      tag: "bg-[#7C2D12] text-white border border-white/25",
-      price: "text-[#9A3412]",
-      card: "border-[#9A3412] bg-[#FFE8DC] ring-2 ring-[#9A3412]/25 shadow-lg",
-    },
-    ROLES_2X130: {
-      container: "bg-[#1D4ED8] border-[#1D4ED8]",
-      iconWrap: "bg-white/15 text-white",
-      title: "text-white",
-      description: "text-blue-100",
-      notice: "bg-white/20 text-white",
-      tag: "bg-[#1E40AF] text-white border border-white/25",
-      price: "text-[#1D4ED8]",
-      card: "border-[#1D4ED8] bg-[#E7EEFF] ring-2 ring-[#1D4ED8]/25 shadow-lg",
-    },
-    DEFAULT: {
-      container: "bg-[#334155] border-[#334155]",
-      iconWrap: "bg-white/15 text-white",
-      title: "text-white",
-      description: "text-slate-100",
-      notice: "bg-white/20 text-white",
-      tag: "bg-[#1E293B] text-white border border-white/25",
-      price: "text-[#334155]",
-      card: "border-[#334155] bg-[#EEF2F7] ring-2 ring-[#334155]/20 shadow-lg",
-    },
+    HORA_FELIZ: tono("bg-k-info", "text-k-sobreinfo", "border-k-info"),
+    MINIPOSTRES_6X4: tono("bg-k-acento", "text-k-sobreprimario", "border-k-acento"),
+    REBANADAS_2X180: tono("bg-k-primario2", "text-k-sobreprimario", "border-k-primario2"),
+    ROLES_2X130: tono("bg-k-badge", "text-white", "border-k-badge"),
+    DEFAULT: tono("bg-k-primario", "text-k-sobreprimario", "border-k-primario"),
   };
 
   return themes[tipo] || themes.DEFAULT;
@@ -180,10 +150,12 @@ export default function CartSummary({ className = "", onPay = () => {}, hideActi
   if (hideActions) {
     const groups = buildGroups();
 
+    // Renglon: miniatura | nombre/talla/precio/modificadores | − n + | papelera (todos 120×120)
+    const btnBase = "w-[120px] h-[120px] grid place-items-center rounded-2xl active:scale-95 disabled:opacity-50 transition-all shrink-0";
     return (
-      <div className="space-y-3">
+      <div className="space-y-4">
         {items.length === 0 && (
-          <div className="text-2xl text-slate-500 py-12 text-center">
+          <div className="text-[32px] text-k-tinta2 py-12 text-center">
             Tu carrito está vacío
           </div>
         )}
@@ -193,85 +165,99 @@ export default function CartSummary({ className = "", onPay = () => {}, hideActi
           const tienePromo = g.dto.tienePromo;
           const count = g.indices.length;
           const lastIdx = g.indices[g.indices.length - 1];
+          const mods = Array.isArray(item.modificadores)
+            ? item.modificadores
+                .map((m) => formatModifierLabelForView(m?.opcion?.nombre || m?.opcion?.name || ""))
+                .filter(Boolean)
+                .join(" • ")
+            : "";
 
           return (
             <div
               key={g.key}
-              className={`rounded-2xl p-3 transition-all flex items-center gap-3 ${
+              className={`rounded-2xl p-3 transition-all flex items-center gap-3 border-[3px] ${
                 tienePromo
-                  ? `border-2 ${getPromoTheme(g.dto.tipoPromo).card}`
-                  : "border border-slate-200 bg-white shadow-sm"
+                  ? getPromoTheme(g.dto.tipoPromo).card
+                  : "border-k-borde bg-white shadow-sm"
               }`}
             >
-              {/* Imagen compacta */}
-              <img
-                src={item.foto || "/images/placeholder.png"}
-                onError={(e) => (e.currentTarget.src = "/images/placeholder.png")}
-                className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
-                alt=""
-              />
+              {/* Miniatura: foto completa sobre blanco */}
+              <div className="w-[120px] h-[120px] rounded-xl bg-white flex-shrink-0 grid place-items-center p-1">
+                <img
+                  src={item.foto || "/images/placeholder.png"}
+                  onError={(e) => (e.currentTarget.src = "/images/placeholder.png")}
+                  className="max-w-full max-h-full object-contain"
+                  alt=""
+                />
+              </div>
 
               {/* Contenido */}
               <div className="flex-1 min-w-0">
-                <div className="text-xl font-extrabold leading-tight truncate text-slate-900">
+                <div className="text-[26px] font-bold uppercase leading-tight line-clamp-2 text-k-tinta">
                   {item.nombre}
                 </div>
 
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-base font-semibold text-slate-600">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mt-1">
+                  <span className="text-[24px] font-semibold text-k-tinta2">
                     {item.talla || item.selectedSize}
                   </span>
-                  {tienePromo && g.dto.mensajePromo && (
-                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-bold ${getPromoTheme(g.dto.tipoPromo).tag}`}>
-                      <PromoIcon tipo={g.dto.tipoPromo} className="w-4 h-4" />
-                      {g.dto.mensajePromo}
-                    </span>
-                  )}
+                  <span className={`text-[30px] font-bold ${tienePromo ? getPromoTheme(g.dto.tipoPromo).price : "text-k-acento"}`}>
+                    ${formatPrice(g.total)}
+                  </span>
                 </div>
 
-                {Array.isArray(item.modificadores) && item.modificadores.length > 0 && (
-                  <div className="text-base font-medium text-slate-600 truncate mt-1">
-                    {item.modificadores
-                      .map((m) => formatModifierLabelForView(m?.opcion?.nombre || m?.opcion?.name || ""))
-                      .filter(Boolean)
-                      .join(" • ")}
-                  </div>
+                {tienePromo && g.dto.mensajePromo && (
+                  <span className={`inline-flex items-center gap-2 mt-1 px-3 py-1 rounded-md text-[22px] font-bold ${getPromoTheme(g.dto.tipoPromo).tag}`}>
+                    <PromoIcon tipo={g.dto.tipoPromo} className="w-6 h-6" />
+                    {g.dto.mensajePromo}
+                  </span>
                 )}
 
-                <div className={`text-2xl font-extrabold mt-1 ${tienePromo ? getPromoTheme(g.dto.tipoPromo).price : "text-green-700"}`}>
-                  ${formatPrice(g.total)}
-                </div>
+                {mods && (
+                  <div className="text-[28px] leading-snug font-medium text-k-tinta2 line-clamp-2 mt-1">
+                    {mods}
+                  </div>
+                )}
               </div>
 
-              {/* Stepper -N+ y eliminar */}
-              <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                <div className="flex items-center gap-2 bg-slate-100 rounded-full p-1">
-                  <button
-                    onClick={() => removeItem(lastIdx)}
-                    disabled={isProcessing}
-                    title="Quitar uno"
-                    className="w-10 h-10 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-50 text-2xl font-bold transition-all"
-                  >
-                    −
-                  </button>
-                  <span className="w-7 text-center text-xl font-bold text-slate-800">{count}</span>
-                  <button
-                    onClick={() => duplicateItem(lastIdx)}
-                    disabled={isProcessing}
-                    title="Agregar uno"
-                    className="w-10 h-10 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 disabled:opacity-50 text-2xl font-bold transition-all"
-                  >
-                    +
-                  </button>
-                </div>
+              {/* Stepper − n + y eliminar */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <button
+                  onClick={() => removeItem(lastIdx)}
+                  disabled={isProcessing}
+                  title="Quitar uno"
+                  aria-label="Quitar uno"
+                  className={`${btnBase} bg-k-superficie border-[3px] border-k-acento text-k-primario`}
+                >
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </button>
+                <span className="w-14 text-center text-[36px] font-bold text-k-tinta" aria-live="polite">{count}</span>
+                <button
+                  onClick={() => duplicateItem(lastIdx)}
+                  disabled={isProcessing}
+                  title="Agregar uno"
+                  aria-label="Agregar uno"
+                  className={`${btnBase} bg-k-primario text-k-sobreprimario shadow-sm hover:brightness-110`}
+                >
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </button>
                 <button
                   onClick={() => removeByUniqueIds(g.uniqueIds)}
                   disabled={isProcessing}
                   title="Eliminar"
-                  className="w-9 h-9 grid place-items-center rounded-full bg-rose-100 text-rose-600 hover:bg-rose-200 active:scale-95 disabled:opacity-50 transition-all"
+                  aria-label="Eliminar"
+                  className={`${btnBase} ml-2 bg-transparent border-[3px] border-k-acento text-k-badge`}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M3 6h18" />
+                    <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                    <path d="M10 11v6M14 11v6" />
                   </svg>
                 </button>
               </div>

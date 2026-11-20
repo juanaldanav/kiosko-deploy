@@ -13,6 +13,10 @@ import useDragScroll from "../hooks/useDragScroll";
 
 // Importar configuración de temporada para el badge dinámico
 import seasonalConfig from "../data/seasonal_config.json";
+import AtrasFlotante from "../components/AtrasFlotante";
+
+// Great Vibes en MAYÚSCULAS no se lee: "BEBIDAS FRÍAS" -> "Bebidas Frías"
+const tituloScript = (t = "") => t.toLowerCase().replace(/(^|[\s/(-])(\S)/g, (_, a, c) => a + c.toUpperCase());
 
 // Tile mejorado para postres con diseño tipo tarjeta
 function ProductTile({ product, onClick, size = "default" }) {
@@ -37,8 +41,8 @@ function ProductTile({ product, onClick, size = "default" }) {
       container: "w-[180px]",
       imageHeight: "h-[140px]",
       padding: "p-3",
-      titleSize: "text-sm",
-      priceSize: "text-base"
+      titleSize: "text-base",
+      priceSize: "text-xl"
     }
   };
 
@@ -84,19 +88,18 @@ function ProductTile({ product, onClick, size = "default" }) {
 
     return (
       <div
-        className={`${config.container} relative bg-white rounded-2xl shadow-lg
-                  overflow-hidden transition-all duration-200 flex flex-col
-                  ${count > 0 ? "border-2 border-[#00B7C6] ring-2 ring-[#00B7C6]/30" : "border border-gray-200"}`}
+        className={`${config.container} k-card relative overflow-hidden transition-all duration-200 flex flex-col
+                  ${count > 0 ? "k-sel" : ""}`}
       >
         {count > 0 && (
-          <div className="absolute top-2 right-2 z-10 w-9 h-9 rounded-full bg-[#00B7C6] text-white text-lg font-bold grid place-items-center shadow-lg">
+          <div className="absolute top-2 right-2 z-10 w-9 h-9 rounded-full bg-k-primario text-k-sobreprimario text-lg font-bold grid place-items-center shadow-lg">
             {count}
           </div>
         )}
 
         <div
           onClick={inc}
-          className={`${config.imageHeight} w-full overflow-hidden bg-gray-100 cursor-pointer active:scale-95 transition-transform`}
+          className={`${config.imageHeight} k-foto w-full overflow-hidden cursor-pointer active:scale-95 transition-transform`}
         >
           <img
             src={product.foto || "./images/placeholder.png"}
@@ -107,28 +110,28 @@ function ProductTile({ product, onClick, size = "default" }) {
         </div>
 
         <div className={`${config.padding} flex flex-col justify-between flex-1`}>
-          <div onClick={inc} className="cursor-pointer">
-            <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
+          <div onClick={inc} className="cursor-pointer flex flex-col flex-1">
+            <h3 className={`${config.titleSize} font-semibold text-k-tinta text-center leading-tight mb-2 uppercase min-h-[3.75em] grid place-items-center`}>
               {product.nombre}
             </h3>
-            <p className={`${config.priceSize} font-bold text-[#00B7C6] text-center mb-2`}>
+            <p className={`${config.priceSize} font-bold text-k-acento text-center mb-2 mt-auto`}>
               ${product.precio || 0}
             </p>
           </div>
 
           {/* Stepper -N+ por postre (compacto) */}
-          <div className="flex items-center justify-center gap-3 bg-slate-100 rounded-full px-3 py-2 w-fit mx-auto">
+          <div className="flex items-center justify-center gap-3 bg-k-superficie2 rounded-full px-3 py-2 w-fit mx-auto">
             <button
               onClick={dec}
               disabled={count === 0}
-              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 text-2xl font-bold transition-all leading-none"
+              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-k-superficie text-k-primario border-2 border-k-acento active:scale-95 disabled:opacity-40 text-2xl font-bold transition-all leading-none"
             >
               −
             </button>
-            <span className="w-8 text-center text-xl font-bold text-slate-800">{count}</span>
+            <span className="w-8 text-center text-xl font-bold text-k-tinta">{count}</span>
             <button
               onClick={inc}
-              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-[#00B7C6] text-white shadow-sm hover:brightness-110 active:scale-95 text-2xl font-bold transition-all leading-none"
+              className="shrink-0 w-11 h-11 grid place-items-center rounded-full bg-k-primario text-k-sobreprimario shadow-sm active:scale-95 text-2xl font-bold transition-all leading-none"
             >
               +
             </button>
@@ -141,11 +144,10 @@ function ProductTile({ product, onClick, size = "default" }) {
   return (
     <button
       onClick={() => onClick(product)}
-      className={`${config.container} bg-white rounded-2xl shadow-lg hover:shadow-2xl
-                border border-gray-200 overflow-hidden transition-all duration-200
-                hover:scale-105 active:scale-95 flex flex-col`}
+      className={`${config.container} k-card overflow-hidden transition-all duration-200
+                active:scale-95 flex flex-col`}
     >
-      <div className={`${config.imageHeight} w-full overflow-hidden bg-gray-100`}>
+      <div className={`${config.imageHeight} k-foto w-full overflow-hidden`}>
         <img
           src={product.foto || "./images/placeholder.png"}
           onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
@@ -155,10 +157,10 @@ function ProductTile({ product, onClick, size = "default" }) {
       </div>
 
       <div className={`${config.padding} flex flex-col justify-between flex-1`}>
-        <h3 className={`${config.titleSize} font-semibold text-gray-800 text-center leading-tight mb-2`}>
+        <h3 className={`${config.titleSize} font-semibold text-k-tinta text-center leading-tight mb-2 uppercase min-h-[3.75em] grid place-items-center`}>
           {product.nombre}
         </h3>
-        <p className={`${config.priceSize} font-bold text-[#00B7C6] text-center`}>
+        <p className={`${config.priceSize} font-bold text-k-acento text-center mt-auto`}>
           ${product.precio || 0}
         </p>
       </div>
@@ -167,7 +169,7 @@ function ProductTile({ product, onClick, size = "default" }) {
 }
 
 // Tile genérico para categorías - BADGE DINÁMICO DESDE CONFIG
-function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeasonal = false, displayPrice, description, size = "default", badge }) {
+function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeasonal = false, displayPrice, description, size = "default", badge, sinEtiqueta = false }) {
   const sizeClasses = {
     default: 'w-[180px] h-[200px]',
     large: 'w-[240px] h-[240px]',
@@ -187,18 +189,17 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
     <div className={`relative ${sizeClasses[size]}`}>
     <button
       onClick={onClick}
-      className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200
-                active:scale-95 transition-all duration-200 hover:scale-105 overflow-hidden
+      className={`relative k-card active:scale-95 transition-all duration-200 overflow-hidden
                 w-full h-full flex flex-col`}
     >
       {/* Badge de precio para combos */}
       {isCombo && displayPrice && (
-        <div className="absolute top-2 right-2 z-10 bg-red-500 text-white text-sm px-3 py-1 rounded-full font-bold">
+        <div className="absolute top-2 right-2 z-10 bg-k-badge text-white text-sm px-3 py-1 rounded-full font-bold">
           ${displayPrice}
         </div>
       )}
       
-      <div className="flex-1 overflow-hidden bg-gray-50">
+      <div className="flex-1 min-h-0 overflow-hidden k-foto">
         <img
           src={img || "./images/placeholder.png"}
           onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
@@ -207,18 +208,18 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
         />
       </div>
       
-      <div className="p-3 bg-white">
-        <h3 className={`${textSizes[size]} font-semibold text-gray-800 text-center leading-tight`}>
+      <div className="p-3">
+        <h3 className={`${textSizes[size]} font-semibold text-k-tinta text-center leading-tight uppercase`}>
           {title}
         </h3>
         {/* Mostrar descripción para bebidas de temporada */}
         {isSeasonal && description && (
-          <p className="text-xs text-slate-500 mt-1 text-center">
+          <p className="text-xs text-k-tinta2 mt-1 text-center">
             {description}
           </p>
         )}
         {itemCount !== undefined && !isSeasonal && (
-          <p className="text-xs text-gray-500 mt-1 text-center">
+          <p className="text-xs text-k-tinta2 mt-1 text-center">
             ({itemCount} productos)
           </p>
         )}
@@ -226,8 +227,8 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
     </button>
 
     {/* Etiqueta de temporada: sobresale de la esquina. badge.image = logo PNG (ej. Nutella) */}
-    {(isSeasonal || badge) && (
-      <div className="absolute -top-4 -right-4 z-20 pointer-events-none">
+    {((isSeasonal && !sinEtiqueta) || badge) && (
+      <div className="absolute -top-3 -left-2 z-20 pointer-events-none">
         {badge && badge.image ? (
           <img
             src={badge.image}
@@ -236,7 +237,7 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
         ) : (
-          <span className="block bg-red-600 text-white text-[11px] leading-none font-extrabold uppercase tracking-wide px-2.5 py-1.5 rounded-md shadow-lg ring-2 ring-white -rotate-12">
+          <span className="k-badge-temporada -rotate-3">
             {seasonalText}
           </span>
         )}
@@ -248,35 +249,38 @@ function CategoryTile({ title, img, onClick, itemCount, isCombo = false, isSeaso
 
 function ConfirmOverlay({ orderNo, onClose }) {
   useEffect(() => {
+    // 7 s: la animacion termina a los ~2.5 s y el numero tiene que alcanzar a leerse.
     const timer = setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 7000);
 
     return () => clearTimeout(timer);
   }, []);
 
+  const mensaje = "Pasa a ventanilla por tu pedido".split(" ");
+
   return (
-    <div className="fixed inset-0 z-[60] bg-black/60 grid place-items-center p-6">
-      <div className="w-full max-w-[500px] bg-white rounded-2xl shadow-2xl p-8 text-center">
-        <div className="text-6xl mb-4">✅</div>
-        <h3 className="text-3xl font-bold mb-3">¡Orden lista!</h3>
-        <p className="text-xl text-slate-600 mb-3">
-          Tu orden ha sido procesada exitosamente
-        </p>
-        <div className="bg-[#E8FBFF] rounded-xl p-4 mb-6">
-          <p className="text-lg">Número de orden</p>
-          <p className="text-5xl font-bold text-[#00B7C6] mt-2">#{orderNo}</p>
-        </div>
-        <p className="text-lg text-slate-500 mb-6">
-          Por favor, pase a ventanilla para recoger su pedido.
-        </p>
-        <button
-          onClick={onClose}
-          className="px-10 py-4 text-xl rounded-xl bg-[#00B7C6] text-white font-bold hover:brightness-110"
-        >
-          Nueva orden
-        </button>
+    <div className="orden-lista" role="status">
+      <div className="k-nieve" aria-hidden="true" />
+      <div className="circulo">
+        <i className="k-destello d1" aria-hidden="true" />
+        <i className="k-destello d2" aria-hidden="true" />
+        <i className="k-destello d3" aria-hidden="true" />
+        <svg width="140" height="140" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+          <path className="check" d="M12 27l10 10 19-21" stroke="var(--k-exito-check)" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
+      <h2 className="k-script">¡Orden lista!</h2>
+      <div className="numero">
+        <small>Número de orden</small>
+        <strong>#{orderNo}</strong>
+      </div>
+      <p>
+        {mensaje.map((w, i) => (
+          <span key={i} style={{ "--i": i }}>{w}&nbsp;</span>
+        ))}
+      </p>
+      <button onClick={onClose}>Nueva orden</button>
     </div>
   );
 }
@@ -293,6 +297,7 @@ export default function MenuPage() {
   const [activeComboFlow, setActiveComboFlow] = useState(null);
   const [activeSeasonalDrink, setActiveSeasonalDrink] = useState(null);
   const contentRef = useDragScroll();
+  const [hayMasAbajo, setHayMasAbajo] = useState(false);
   
   const lastActivityRef = useRef(Date.now());
   const [showInactivity, setShowInactivity] = useState(false);
@@ -608,6 +613,17 @@ const getPromoVideoSources = () => {
   return [...fixedVideos, ...dailyVideos];
 };
 
+  // Al cambiar de vista: lista arriba y aviso "desliza" solo si de verdad hay más abajo
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    el.scrollTop = 0;
+    const revisa = () => setHayMasAbajo(el.scrollHeight - el.scrollTop - el.clientHeight > 8);
+    const raf = requestAnimationFrame(revisa);
+    el.addEventListener('scroll', revisa, { passive: true });
+    return () => { cancelAnimationFrame(raf); el.removeEventListener('scroll', revisa); };
+  }, [openFolder, openSubFolder, contentRef]);
+
   const showNavFooter = openFolder || openSubFolder;
   const isAnyFlowOverlayOpen = Boolean(selected || activeComboFlow || activeSeasonalDrink || showConfirm);
 
@@ -624,9 +640,26 @@ const getPromoVideoSources = () => {
     return "Populares";
   };
 
+  // Qué bebida de temporada está en cada tercio de la foto del encabezado (izq, centro, der)
+  const FOTO_TEMPORADA_ORDEN = ["PISTACHE", "SPANISH LATTE", "CARAMELO SALADO"];
+  const FOTO_TEMPORADA_NOMBRE = ["Pistacchio Latte", "Spanish Latte", "Caramelo Salado"]; // como dice el video
+  const FOTO_TEMPORADA_CENTRO = [19.6, 50.6, 81.9]; // % del ancho donde está el centro de cada vaso en la foto
+  const fotoTemporada = featured.some(p => p.isSeasonal)
+    ? FOTO_TEMPORADA_ORDEN.map(n => featured.find(p => p.isSeasonal && p.nombre?.toUpperCase() === n) || null)
+    : [];
+
+  const tituloCarpeta = openSubFolder
+    ? `${openFolder.title} - ${openSubFolder.title}`
+    : openFolder?.title;
+  const conteoCarpeta = (openSubFolder || openFolder)?.isContainer
+    ? null
+    : (openSubFolder || openFolder)?.items?.length;
+
   return (
-    <div className="min-h-screen bg-[#EAF7FA] text-ink">
-      {/* CONTENEDOR CON ZOOM 125% - SOLO CONTENIDO PRINCIPAL */}
+    <div className="min-h-screen k-app text-ink">
+      {/* CONTENEDOR CON ZOOM 125% - SOLO CONTENIDO PRINCIPAL
+          Medidas en px de esta caja (x1.25 = px reales de la pantalla 1080x1920):
+          encabezado 480 (=600) | banda de alcance 720 (=900, y 600-1500) | pie 336 (=420) */}
       <div 
         style={{
           transform: 'scale(1.25)',
@@ -636,10 +669,84 @@ const getPromoVideoSources = () => {
         }}
       >
         <div className="flex flex-col h-[80vh]" style={{ height: '80vh' }}> {/* 100vh / 1.25 = 80vh */}
-          {/* Área de contenido scrolleable con DRAG-TO-SCROLL */}
+          {/* Encabezado decorativo (y 0-600 real): no lleva nada tocable, el cliente de auto no alcanza */}
+          <header className={`relative h-[480px] shrink-0 flex flex-col items-center text-center px-6 select-none ${openFolder ? "justify-center" : "justify-start pt-9"}`}>
+            <div className="k-nieve" aria-hidden="true" />
+            {!openFolder ? (
+              <>
+                <span className="k-logo w-[260px] relative" role="img" aria-label="Lamarque Repostería & Café" />
+                {fotoTemporada.length > 0 && (
+                  <>
+                    <p className="relative mt-3 flex items-center gap-2 text-[15px] font-bold uppercase tracking-[.14em] text-k-sobrefondo2">
+                      <i className="k-destello text-[12px]" aria-hidden="true" />
+                      De temporada · toca la tuya para pedirla
+                      <i className="k-destello text-[12px]" aria-hidden="true" />
+                    </p>
+                    {/* Foto real de las bebidas de temporada (cuadro del video NAVIDAD). Cambiarla cada temporada
+                        junto con FOTO_TEMPORADA_ORDEN (qué bebida está en cada tercio de la foto). */}
+                    <div className="absolute left-0 right-0 bottom-0 h-[340px]">
+                      <img
+                        src="./images/tema/bebidas-temporada.jpg"
+                        alt=""
+                        aria-hidden="true"
+                        onError={(e) => { e.currentTarget.parentElement.style.display = 'none'; }}
+                        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                        style={{
+                          objectPosition: '50% 15%',
+                          WebkitMaskImage: 'linear-gradient(180deg, transparent 0, #000 22%, #000 70%, transparent 100%)',
+                          maskImage: 'linear-gradient(180deg, transparent 0, #000 22%, #000 70%, transparent 100%)'
+                        }}
+                      />
+                      <div className="absolute inset-0">
+                        {fotoTemporada.map((p, i) => p ? (
+                          <button
+                            key={p.id}
+                            onClick={() => handleProductClick(p)}
+                            className="absolute top-0 bottom-0 flex items-end justify-center pb-4 active:scale-95 transition-transform"
+                            style={{ left: `${FOTO_TEMPORADA_CENTRO[i] - 16}%`, width: '32%' }}
+                            aria-label={`Pedir ${p.nombre}`}
+                          >
+                            <span
+                              className="k-script whitespace-nowrap rounded-xl h-[50px] px-5 inline-flex items-center justify-center shadow-lg"
+                              style={{
+                                '--fs': '34px',
+                                lineHeight: 1,
+                                paddingTop: '4px', // Great Vibes carga la letra hacia arriba: compensa el centro óptico
+                                color: '#E4C9A0',
+                                background: 'rgba(62, 13, 14, .55)',
+                                textShadow: '0 1px 2px rgba(0,0,0,.35)'
+                              }}
+                            >
+                              {FOTO_TEMPORADA_NOMBRE[i]}
+                            </span>
+                          </button>
+                        ) : <span key={i} />)}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <span className="k-logo w-[200px] mb-8" role="img" aria-label="Lamarque Repostería & Café" />
+                <h2 className="k-script text-k-sobrefondo px-4" style={{ '--fs': openSubFolder ? '60px' : '72px' }}>
+                  {tituloScript(tituloCarpeta)}
+                </h2>
+                {conteoCarpeta ? (
+                  <p className="mt-4 flex items-center gap-4 text-lg font-medium text-k-sobrefondo2">
+                    <span className="w-20 h-px bg-current opacity-60" />
+                    {conteoCarpeta} productos
+                    <span className="w-20 h-px bg-current opacity-60" />
+                  </p>
+                ) : null}
+              </>
+            )}
+          </header>
+
+          {/* Banda de alcance (y 600-1500 real): todo lo tocable vive aqui, con scroll propio */}
           <div 
             ref={contentRef}
-            className="flex-1 overflow-y-auto"
+            className="h-[720px] shrink-0 overflow-y-auto"
             style={{ 
               WebkitOverflowScrolling: 'touch',
               scrollBehavior: 'smooth',
@@ -648,39 +755,39 @@ const getPromoVideoSources = () => {
           >
             {/* Vista principal */}
             {!openFolder && !openSubFolder && (
-              <div className="min-h-full flex flex-col">
-                <div className="w-full space-y-8 my-auto py-8">
-                {/* Botón de Combos */}
+              <div className="w-full space-y-8 pt-3 pb-8">
+                {/* Botón de Combos (un combo no es "oferta especial": sin título de sección) */}
                 {combos.length > 0 && (
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-slate-700 mb-4">Ofertas Especiales</h2>
-                    <div className="flex justify-center">
-                      <button
-                        onClick={() => handleProductClick(combos[0])}
-                        className="relative rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 overflow-hidden w-[900px] h-[200px]"
+                  <div className="flex justify-center px-4">
+                    <button
+                      onClick={() => handleProductClick(combos[0])}
+                      className="relative k-card w-full max-w-[820px] h-[170px] overflow-hidden flex active:scale-95 transition-transform duration-200 text-left"
+                    >
+                      <div
+                        className="w-[42%] h-full shrink-0"
                         style={{
                           backgroundImage: `url(${comboButtonImage})`,
                           backgroundSize: 'cover',
                           backgroundPosition: 'center'
                         }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/20" />
-                        <div className="relative h-full flex items-center justify-center">
-                          <div className="text-center">
-                            <h3 className="text-3xl font-bold text-white drop-shadow-lg">COMBOS</h3>
-                            <p className="text-white/90 text-lg mt-2 drop-shadow-md">COMBO ALIMENTO + BEBIDA</p>
-                          </div>
-                        </div>
-                      </button>
-                    </div>
+                      />
+                      <div className="flex-1 h-full bg-k-primario text-k-sobreprimario flex flex-col items-center justify-center gap-2">
+                        <h3 className="text-4xl font-extrabold tracking-[.08em] flex items-center gap-3">
+                          <i className="k-destello text-xl opacity-70" aria-hidden="true" />
+                          COMBOS
+                          <i className="k-destello text-xl opacity-70" aria-hidden="true" />
+                        </h3>
+                        <p className="text-lg font-semibold opacity-90">COMBO ALIMENTO + BEBIDA</p>
+                      </div>
+                    </button>
                   </div>
                 )}
 
                 {/* Populares / De temporada - TÍTULO DINÁMICO */}
                 {featured.length > 0 && (
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-slate-700 mb-4">{getSectionTitle()}</h2>
-                    <div className="flex flex-wrap justify-center gap-5">
+                  <div>
+                    <h2 className="k-script text-k-sobrefondo mb-4 px-4" style={{ '--fs': '56px' }}>{getSectionTitle()}</h2>
+                    <div className="flex flex-wrap justify-center gap-5 pt-2">
                       {featured.slice(0, 16).map((p) => (
                         <CategoryTile 
                           key={p.id} 
@@ -689,6 +796,7 @@ const getPromoVideoSources = () => {
                           onClick={() => handleProductClick(p)}
                           isSeasonal={p.isSeasonal}
                           badge={p.badge}
+                          sinEtiqueta={p.sinEtiqueta}
                           description={p.description}
                           size="default"
                         />
@@ -699,7 +807,7 @@ const getPromoVideoSources = () => {
 
                 {/* Explorar */}
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-700 mb-4">Explorar</h2>
+                  <h2 className="k-script text-k-sobrefondo mb-4 px-4" style={{ '--fs': '56px' }}>Explorar</h2>
                   <div className="flex flex-wrap justify-center gap-5">
                     {folders.map((f) => (
                       <CategoryTile 
@@ -713,17 +821,12 @@ const getPromoVideoSources = () => {
                     ))}
                   </div>
                 </div>
-                </div>
               </div>
             )}
 
-            {/* Vista de carpeta abierta */}
+            {/* Vista de carpeta abierta (el título va en el encabezado decorativo) */}
             {openFolder && !openSubFolder && (
-              <div className="min-h-[calc(80vh-200px)] flex flex-col justify-center px-6">
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold">{openFolder.title}</h2>
-                </div>
-
+              <div className={`min-h-full flex flex-col px-6 py-4 ${openFolder.isContainer ? "justify-center" : ""}`}>
                 {openFolder.isContainer && openFolder.subCategories ? (
                   <div className="flex flex-wrap justify-center gap-8">
                     {openFolder.subCategories.map((sub) => (
@@ -733,7 +836,7 @@ const getPromoVideoSources = () => {
                         img={sub.image || sub.foto}
                         itemCount={sub.items?.length}
                         onClick={() => setOpenSubFolder(sub)}
-                        size="default"
+                        size="large"
                       />
                     ))}
                   </div>
@@ -754,11 +857,7 @@ const getPromoVideoSources = () => {
 
             {/* Vista de subcarpeta */}
             {openSubFolder && (
-              <div className="min-h-[calc(80vh-200px)] flex flex-col justify-center px-6">
-                <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold">{openFolder.title} - {openSubFolder.title}</h2>
-                </div>
-
+              <div className="px-6 py-4">
                 <div className="flex flex-wrap justify-center gap-6">
                   {openSubFolder.items.map((p) => (
                     <ProductTile 
@@ -773,10 +872,24 @@ const getPromoVideoSources = () => {
             )}
           </div>
 
-          {/* FOOTER ESTÁTICO CON BOTONES DE NAVEGACIÓN */}
+          {/* Pie decorativo bajo la banda */}
+          <div className="flex-1 min-h-0 flex items-center justify-center select-none" aria-hidden="true">
+            {showNavFooter ? (
+              hayMasAbajo && (
+                <p className="flex items-center gap-2 text-xl font-medium text-k-sobrefondo2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 15 12 9 18 15"></polyline></svg>
+                  Desliza hacia arriba para ver más
+                </p>
+              )
+            ) : (
+              <p className="k-script text-k-sobrefondo" style={{ '--fs': '64px' }}>Hoy es un buen día.</p>
+            )}
+          </div>
+
+          {/* FOOTER ESTÁTICO CON BOTONES DE NAVEGACIÓN: Atrás = contorno, Inicio = relleno */}
           {showNavFooter && (
-            <div className="h-[120px] bg-white/95 backdrop-blur-sm border-t-2 border-gray-200 flex items-center justify-center px-8">
-              <div className="flex gap-6">
+            <div className="h-[136px] shrink-0 k-barra flex items-center justify-center px-8">
+              <div className="flex gap-8">
                 <button
                   onClick={() => {
                     if (openSubFolder) {
@@ -785,10 +898,11 @@ const getPromoVideoSources = () => {
                       setOpenFolder(null);
                     }
                   }}
-                  className="w-32 h-32 rounded-full bg-[#67CDD9] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+                  className="w-[104px] h-[104px] rounded-full k-btn-atras shadow-lg active:scale-95 flex items-center justify-center"
                   title="Volver"
+                  aria-label="Volver"
                 >
-                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                   </svg>
@@ -796,10 +910,11 @@ const getPromoVideoSources = () => {
 
                 <button
                   onClick={handleGoHome}
-                  className="w-32 h-32 rounded-full bg-[#00B7C6] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+                  className="w-[104px] h-[104px] rounded-full k-btn-inicio shadow-lg active:scale-95 flex items-center justify-center"
                   title="Inicio"
+                  aria-label="Inicio"
                 >
-                  <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3 9.5L12 3l9 6.5"></path>
                     <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
                     <path d="M9 21v-6h6v6"></path>
@@ -874,8 +989,13 @@ const getPromoVideoSources = () => {
         timeoutSeconds={30}
       />
 
+      {/* Atrás flotante a media altura (fuera del zoom: el transform movería el "fixed") */}
+      {showNavFooter && !isAnyFlowOverlayOpen && !showPromoVideo && (
+        <AtrasFlotante onClick={() => (openSubFolder ? setOpenSubFolder(null) : setOpenFolder(null))} />
+      )}
+
       {/* Carrito Flotante - SIN ZOOM */}
-      {!isAnyFlowOverlayOpen && <FloatingCart onPay={handlePay} />}
+      {!isAnyFlowOverlayOpen && <FloatingCart onPay={handlePay} ocultarPestana={showInactivity} />}
     </div>
   );
 }

@@ -1,0 +1,222 @@
+/* Kiosko Lamarque · tema de temporada (handoff Claude Design v2, 13-nov-2026)
+   Interruptor en index.html: <html data-tema="navidad"> ↔ <html data-tema="base">
+   La banda de alcance (y 600–1500 de 1920) NO depende del tema: se queda en enero. */
+
+:root, [data-tema="base"] {
+  --k-fondo: #EAF7FA;
+  --k-fondo-grad: #EAF7FA;
+  --k-superficie: #FFFFFF;
+  --k-superficie-2: #F7FAFC;
+  --k-foto: #F3F4F6;
+  --k-foto-pad: 0px;
+  --k-card-borde: 1px solid #E2E8F0;
+  --k-tinta: #1F2937;
+  --k-tinta-2: #64748B;
+  --k-sobre-fondo: #334155;
+  --k-sobre-fondo-2: #64748B;
+  --k-acento: #00A5B3;
+  --k-borde: #E2E8F0;
+  --k-primario: #00B7C6;
+  --k-primario-2: #00A5B3;
+  --k-sobre-primario: #FFFFFF;
+  --k-barra: #FFFFFF;
+  --k-sel: #00B7C6;
+  --k-sel-suave: #E8FBFF;
+  --k-badge: #DC2626;
+  --k-badge-borde: 2px solid #FFFFFF;
+  --k-info: #334155;
+  --k-sobre-info: #FFFFFF;
+  --k-flota: #00B7C6;
+  --k-sobre-flota: #FFFFFF;
+  --k-paso-bg: #BFF0F7;
+  --k-paso-color: #1F2937;
+  --k-paso-borde: 0 solid transparent;
+  --k-sombra: 0 8px 20px rgba(0,0,0,.08);
+  --k-radio: 16px;
+  --k-f-script: 'Figtree', system-ui, sans-serif;
+  --k-f-sans: 'Figtree', system-ui, sans-serif;
+  --k-esc: .62;             /* títulos script → sans: misma caja, menos tamaño */
+  --k-script-peso: 800;
+  --k-logo: #00A5B3;
+  --k-exito-fondo: #1DB25E;
+  --k-exito-tinta: #0B0B0B;
+  --k-exito-tinta-2: #0B0B0B;
+  --k-exito-circulo: #FFFFFF;
+  --k-exito-check: #1DB25E;
+  --k-exito-btn: #0B0B0B;
+  --k-sobre-exito-btn: #FFFFFF;
+  --k-atras-bg: #67CDD9;
+  --k-atras-borde: 0 solid transparent;
+  --k-atras-color: #FFFFFF;
+  --k-sel-sombra: 0 0 0 4px #00B7C6;
+  --k-borde-fuerte: 3px solid #CBD5E0;
+  --k-paso-texto: #475569;
+  --k-nieve: none;
+  --k-adorno: none;
+}
+
+/* Fuente script de marketing (13-nov). OJO LICENCIA: el archivo es PERSONAL USE ONLY;
+   para los kioskos (uso comercial) hay que comprar la licencia en mansgreback.com/last-christmas.
+   Si no carga, cae a Great Vibes. */
+@font-face {
+  font-family: 'Last Christmas';
+  src: url('/fonts/LastChristmas-Regular_PERSONAL_USE_ONLY.otf') format('opentype');
+  font-display: swap;
+}
+
+[data-tema="navidad"] {
+  --k-fondo: #3E0D0E;
+  --k-fondo-grad: radial-gradient(130% 55% at 50% 0%, #621513 0%, #4A1011 45%, #3E0D0E 100%);
+  --k-superficie: #FDFCE7;
+  --k-superficie-2: #F5EED3;
+  --k-foto: #FFFFFF;
+  --k-foto-pad: 8px;
+  --k-card-borde: 1px solid #D3B18E;
+  --k-tinta: #3E0D0E;
+  --k-tinta-2: #662720;
+  --k-sobre-fondo: #FDFCE7;
+  --k-sobre-fondo-2: #D3B18E;
+  --k-acento: #92432B;
+  --k-borde: #D3B18E;
+  --k-primario: #621513;
+  --k-primario-2: #662720;
+  --k-sobre-primario: #FDFCE7;
+  --k-barra: #FDFCE7;
+  --k-sel: #92432B;
+  --k-sel-suave: #F5EED3;
+  --k-badge: #A70D18;
+  --k-badge-borde: 2px solid #D3B18E;
+  --k-info: #9AB8D2;
+  --k-sobre-info: #3E0D0E;
+  --k-flota: #FDFCE7;
+  --k-sobre-flota: #621513;
+  --k-paso-bg: #3E0D0E;
+  --k-paso-color: #FDFCE7;
+  --k-paso-borde: 2px solid #D3B18E;
+  --k-sombra: 0 1px 0 rgba(255,255,255,.6) inset, 0 10px 24px rgba(20,2,3,.35);
+  --k-radio: 18px;
+  --k-f-script: 'Last Christmas', 'Great Vibes', cursive;
+  --k-esc: 1;
+  --k-script-peso: 400;
+  --k-logo: #FDFCE7;
+  --k-exito-fondo: radial-gradient(120% 70% at 50% 100%, #621513 0%, #3E0D0E 70%);
+  --k-exito-tinta: #FDFCE7;
+  --k-exito-tinta-2: #D3B18E;
+  --k-exito-circulo: #FDFCE7;
+  --k-exito-check: #621513;
+  --k-exito-btn: #FDFCE7;
+  --k-sobre-exito-btn: #621513;
+  --k-atras-bg: #FDFCE7;
+  --k-atras-borde: 3px solid #621513;
+  --k-atras-color: #621513;
+  --k-sel-sombra: 0 0 0 6px #D3B18E, inset 0 0 0 4px #621513;
+  --k-borde-fuerte: 3px solid #92432B;
+  --k-paso-texto: #3E0D0E;
+  --k-nieve: url('/images/tema/nieve-tile.svg');
+  --k-adorno: inline-block;
+}
+
+body { font-family: var(--k-f-sans); }
+
+/* ---------- piezas comunes ---------- */
+
+.k-app { background: var(--k-fondo-grad); background-color: var(--k-fondo); color: var(--k-sobre-fondo); }
+
+/* Logo oficial (vector) teñido con el color del tema */
+.k-logo {
+  display: block;
+  aspect-ratio: 2584 / 640;
+  background-color: var(--k-logo);
+  -webkit-mask: url('/images/tema/logo-lamarque.svg') center / contain no-repeat;
+          mask: url('/images/tema/logo-lamarque.svg') center / contain no-repeat;
+}
+
+/* Título en script (Great Vibes en navidad, Figtree 800 en base). Tamaño vía --fs */
+.k-script {
+  font-family: var(--k-f-script);
+  font-weight: var(--k-script-peso);
+  font-size: calc(var(--fs, 64px) * var(--k-esc));
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.k-card {
+  background: var(--k-superficie);
+  border: var(--k-card-borde);
+  border-radius: var(--k-radio);
+  box-shadow: var(--k-sombra);
+  color: var(--k-tinta);
+}
+.k-foto { background: var(--k-foto); padding: var(--k-foto-pad); }
+.k-foto > img { border-radius: calc(var(--k-radio) - 8px); }
+
+/* Badge TEMPORADA: copo + Figtree 800 con tracking */
+.k-badge-temporada {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--k-badge); color: #fff;
+  border: var(--k-badge-borde); border-radius: 999px;
+  font: 800 12px/1 var(--k-f-sans); letter-spacing: .12em; text-transform: uppercase;
+  padding: 6px 10px 6px 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+}
+.k-badge-temporada::before {
+  content: ""; width: 12px; height: 12px; flex: none;
+  background: currentColor;
+  -webkit-mask: url('/images/tema/copo.svg') center / contain no-repeat;
+          mask: url('/images/tema/copo.svg') center / contain no-repeat;
+}
+
+/* Barra inferior: Atrás (contorno) ≠ Inicio (relleno) */
+.k-btn-atras { background: var(--k-atras-bg); border: var(--k-atras-borde); color: var(--k-atras-color); }
+.k-btn-inicio { background: var(--k-primario); color: var(--k-sobre-primario); border: 0; }
+.k-barra { background: var(--k-barra); border-top: var(--k-card-borde); }
+
+.k-sel { box-shadow: var(--k-sel-sombra) !important; }
+
+/* ---------- nieve ----------
+   Una capa con mosaico SVG que se desplaza con transform (compositor, sin repintar).
+   Máscara: solo márgenes laterales, nunca sobre el contenido central. */
+.k-nieve {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 16%, transparent 26% 74%, #000 84%);
+          mask-image: linear-gradient(90deg, #000 0 16%, transparent 26% 74%, #000 84%);
+}
+.k-nieve::before, .k-nieve::after {
+  content: ""; position: absolute; left: 0; right: 0; top: -600px; bottom: 0;
+  background-image: var(--k-nieve);
+  background-size: 540px 600px;
+  will-change: transform;
+  animation: k-nieve 40s linear infinite;
+}
+.k-nieve::after { background-size: 360px 400px; background-position: 120px 80px; opacity: .55; animation-duration: 26s; top: -400px; }
+@keyframes k-nieve { to { transform: translate3d(0, 600px, 0); } }
+@keyframes k-nieve-chica { to { transform: translate3d(0, 400px, 0); } }
+.k-nieve::after { animation-name: k-nieve-chica; }
+[data-tema="base"] .k-nieve, :root:not([data-tema]) .k-nieve { display: none; }
+@media (prefers-reduced-motion: reduce) { .k-nieve::before, .k-nieve::after { animation: none; } }
+
+/* Destello decorativo (✦) */
+.k-destello {
+  display: var(--k-adorno); width: 1em; height: 1em; background: currentColor; vertical-align: middle;
+  -webkit-mask: url('/images/tema/destello.svg') center / contain no-repeat;
+          mask: url('/images/tema/destello.svg') center / contain no-repeat;
+}
+
+/* ---------- modo vitrina (solo con ?vitrina en la URL) ----------
+   Para enseñar el kiosko en un monitor normal: la app se dibuja en su tamaño real 1080×1920
+   y se escala completa para caber. El transform de #root hace que los overlays "fixed" se queden adentro.
+   En los kioskos no se activa (no llevan ?vitrina). */
+html.k-vitrina body { background: #111; }
+html.k-vitrina #root {
+  position: absolute; left: 50%; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+  transform: translateX(-50%) scale(var(--k-vitrina, 1)); transform-origin: top center;
+}
+html.k-vitrina .h-screen { height: 1920px !important; }
+html.k-vitrina .min-h-screen { min-height: 1920px !important; }
+html.k-vitrina .h-\[80vh\] { height: 1536px !important; }
+html.k-vitrina .w-screen { width: 1080px !important; }
+html.k-vitrina .h-\[100dvh\] { height: 1920px !important; }
+
+/* Bebida de temporada: CustomizePage va debajo de la barrita "TEMPORADA · …" (56px);
+   sin esto su h-screen se pasa de la pantalla y se corta el "Paso X de N". */
+.k-con-barra .h-screen { height: 100% !important; }

@@ -2844,6 +2844,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -3196,6 +3235,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -5457,6 +5535,58 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2415,
+              "name": "COLD FOAM COCO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2415,
+                "XL": 2415
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -6016,6 +6146,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -6369,6 +6538,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -6732,6 +6940,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -6919,6 +7166,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -7286,6 +7572,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -9740,6 +10065,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -9927,6 +10291,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -11459,6 +11862,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -11772,6 +12214,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -12096,6 +12577,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -12410,6 +12930,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,
@@ -17014,6 +17573,45 @@
                 "Grande": 20,
                 "XL": 20
               }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
             }
           ]
         },
@@ -17328,6 +17926,45 @@
               "idsPerSize": {
                 "Grande": 2477,
                 "XL": 2477
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2504,
+              "name": "COLD FOAM PISTACHE",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2504,
+                "XL": 2504
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2505,
+              "name": "COLD FOAM CARAMELO SALADO",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2505,
+                "XL": 2505
+              },
+              "pricesPerSize": {
+                "Grande": 20,
+                "XL": 20
+              }
+            },
+            {
+              "id": 2506,
+              "name": "COLD FOAM LECHERITA",
+              "basePrice": 20,
+              "idsPerSize": {
+                "Grande": 2506,
+                "XL": 2506
               },
               "pricesPerSize": {
                 "Grande": 20,

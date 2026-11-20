@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import CustomizePage from "../pages/CustomizePage";
 import { getProductById, getHiddenProducts } from "../data/products";
 import { useCart } from "../context/CartContext";
+import AtrasFlotante from "./AtrasFlotante";
 
 // Único flujo: el cliente arma su combo eligiendo 1 alimento salado + 1 bebida.
 // Las opciones bloqueadas en AdminVisibilidad se filtran solas (getHiddenProducts).
@@ -37,33 +38,58 @@ const COMBO_FLOWS = {
   }
 };
 
-// Selector de opciones: tarjetas del MISMO tamaño, 2 por fila, centradas en vertical.
-function OptionSelector({ options, onSelect, title, onBack, onHome }) {
+// Title Case para nombres en MAYÚSCULAS (mismo helper que MenuPage)
+// Great Vibes: solo la primera letra en mayúscula ("Elige tu alimento salado"); en Title Case la "A" se lee "Cl"
+const tituloScript = (t = "") => { const s = t.toLowerCase(); return s.charAt(0).toUpperCase() + s.slice(1); };
+
+// Selector de opciones: tarjetas del MISMO tamaño, 2 por fila, dentro de la banda 600–1500 (scroll propio).
+function OptionSelector({ options, onSelect, title, paso, onBack, onHome }) {
   return (
-    <div className="h-full flex flex-col bg-[#E8FBFF] pt-6 pb-32">
-      <h2 className="text-4xl font-bold text-center mb-8 text-slate-700 flex-shrink-0 px-6">
-        {title}
-      </h2>
+    <div className="relative h-full flex flex-col k-app overflow-hidden">
+      <div className="k-nieve" aria-hidden="true" />
+
+      {/* y 0–600: decorativo. "Arma tu combo" en sans: la A en Great Vibes se lee "Cl". */}
+      <header className="relative h-[600px] shrink-0 flex flex-col items-center justify-center text-center px-10 select-none">
+        <span className="k-logo w-[220px] mb-10" role="img" aria-label="Lamarque Repostería & Café" />
+        <p className="flex items-center gap-5 text-[56px] leading-none font-extrabold text-k-sobrefondo mb-6">
+          <span className="k-destello text-[32px] text-k-sobrefondo2" aria-hidden="true" />
+          Arma tu combo
+          <span className="k-destello text-[32px] text-k-sobrefondo2" aria-hidden="true" />
+        </p>
+        <h2 className="k-script text-k-sobrefondo2 mb-8" style={{ '--fs': '64px' }}>
+          {tituloScript(title)}
+        </h2>
+        <span
+          className="inline-block rounded-full px-8 py-3 text-[28px] font-semibold"
+          style={{ background: 'var(--k-paso-bg)', color: 'var(--k-paso-color)', border: 'var(--k-paso-borde)' }}
+        >
+          {paso}
+        </span>
+      </header>
+
+      {/* y 600–1500: banda de alcance con scroll propio */}
       <div
-        className="flex-1 overflow-y-auto px-6"
+        className="relative flex-[0_1_900px] min-h-0 overflow-y-auto px-10"
         style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
       >
         {/* min-h-full + center => centrado vertical cuando caben, scroll cuando no */}
-        <div className="min-h-full flex items-center justify-center py-4">
-          <div className="flex flex-wrap justify-center gap-6 max-w-[680px]">
+        <div className="min-h-full flex items-center justify-center py-6">
+          <div className="grid grid-cols-2 gap-8 w-[880px]">
             {options.map((option) => (
               <button
                 key={option.productId}
                 onClick={() => onSelect(option)}
-                className="w-[300px] bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all p-4 border-2 border-transparent hover:border-[#00B7C6] group active:scale-95 flex flex-col"
+                className="k-card p-4 flex flex-col active:scale-[.98] active:[box-shadow:var(--k-sel-sombra)] transition-transform duration-150"
               >
-                <img
-                  src={option.image || "./images/placeholder.png"}
-                  alt={option.name}
-                  className="w-full h-[200px] object-cover rounded-2xl group-hover:brightness-110 transition-all"
-                  onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
-                />
-                <h3 className="text-2xl font-bold text-slate-700 text-center mt-4 h-[68px] flex items-center justify-center leading-tight">
+                <div className="k-foto rounded-[calc(var(--k-radio)_-_4px)] h-[240px] flex items-center justify-center">
+                  <img
+                    src={option.image || "./images/placeholder.png"}
+                    alt=""
+                    className="w-full h-full object-contain"
+                    onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
+                  />
+                </div>
+                <h3 className="text-[30px] font-bold text-k-tinta text-center mt-4 min-h-[80px] flex items-center justify-center leading-tight px-2 uppercase">
                   {option.name}
                 </h3>
               </button>
@@ -72,32 +98,38 @@ function OptionSelector({ options, onSelect, title, onBack, onHome }) {
         </div>
       </div>
 
-      {/* Navegación */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex gap-4">
-        <button
-          onClick={onBack}
-          className="w-20 h-20 rounded-full bg-[#67CDD9] text-white shadow-lg hover:brightness-110 active:scale-95 flex items-center justify-center"
-          aria-label="Regresar"
-          title="Regresar"
-        >
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-        </button>
-        <button
-          onClick={onHome}
-          className="w-20 h-20 rounded-full bg-[#00B7C6] text-white shadow-lg hover:brightness-110 active:scale-95 flex items-center justify-center"
-          aria-label="Inicio"
-          title="Ir al inicio"
-        >
-          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 9.5L12 3l9 6.5"></path>
-            <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
-            <path d="M9 21v-6h6v6"></path>
-          </svg>
-        </button>
-      </div>
+      <div className="flex-1" />
+
+      <AtrasFlotante onClick={onBack} />
+
+      {/* Pie: Atrás (contorno) ≠ Inicio (relleno) */}
+      <footer className="h-[140px] shrink-0 k-barra flex items-center justify-center px-8">
+        <div className="flex gap-8">
+          <button
+            onClick={onBack}
+            className="w-[104px] h-[104px] rounded-full k-btn-atras shadow-lg active:scale-95 flex items-center justify-center"
+            aria-label="Regresar"
+            title="Regresar"
+          >
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </button>
+          <button
+            onClick={onHome}
+            className="w-[104px] h-[104px] rounded-full k-btn-inicio shadow-lg active:scale-95 flex items-center justify-center"
+            aria-label="Inicio"
+            title="Ir al inicio"
+          >
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M3 9.5L12 3l9 6.5"></path>
+              <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
+              <path d="M9 21v-6h6v6"></path>
+            </svg>
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -141,14 +173,18 @@ export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
   const justBuiltRef = useRef(false);
 
   const comboDefinition = COMBO_FLOWS[flowKey];
-  if (!comboDefinition) {
-    console.error(`Combo no definido: ${flowKey}`);
-    onClose();
-    return null;
-  }
+  // Combo no definido: cerrar DESPUÉS del render (antes se llamaba onClose en pleno render
+  // y el return temprano iba antes de los hooks).
+  useEffect(() => {
+    if (!comboDefinition) {
+      console.error(`Combo no definido: ${flowKey}`);
+      onClose();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [comboDefinition]);
 
-  const currentStep = comboDefinition.steps[currentStepIndex];
-  const isLastStep = currentStepIndex === comboDefinition.steps.length - 1;
+  const currentStep = comboDefinition?.steps[currentStepIndex];
+  const isLastStep = comboDefinition ? currentStepIndex === comboDefinition.steps.length - 1 : false;
 
   const getVisibleStepOptions = (step) => {
     if (!step?.options) return [];
@@ -273,43 +309,46 @@ export default function ComboFlowOverlay({ flowKey, onClose, onComplete }) {
     onClose();
   };
 
+  if (!comboDefinition) return null;
+
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-50 bg-white flex items-center justify-center">
+      <div className="fixed inset-0 z-50 k-app flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00B7C6] mx-auto"></div>
-          <p className="mt-4 text-slate-600">Cargando {currentStep?.name || "producto"}...</p>
+          <div className="animate-spin rounded-full h-20 w-20 border-b-4 border-k-sobrefondo mx-auto"></div>
+          <p className="mt-8 text-[30px] text-k-sobrefondo2">Cargando {currentStep?.name || "producto"}...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-white">
-      {/* Header con progreso */}
-      <div className="absolute top-0 left-0 right-0 z-[60] bg-[#00B7C6] text-white shadow-lg pointer-events-none">
-        <div className="flex items-center justify-between px-4 py-2">
-          <div className="flex-1">
-            <h2 className="text-base font-bold">{comboDefinition.name}</h2>
-            <p className="text-xs opacity-90">
-              {currentStepIndex + 1}/{comboDefinition.steps.length}
+    <div className="fixed inset-0 z-50 k-app">
+      {/* Barra de progreso del combo: solo al personalizar (en las opciones el progreso va en la cabecera) */}
+      {!showOptions && (
+        <div className="absolute top-0 left-0 right-0 z-[60] bg-k-primario text-k-sobreprimario shadow-lg pointer-events-none">
+          <div className="h-[52px] flex items-center gap-4 px-6">
+            <h2 className="text-lg font-extrabold">Arma tu combo</h2>
+            <p className="text-lg opacity-80">
+              {currentStepIndex + 1} de {comboDefinition.steps.length}
             </p>
           </div>
+          <div className="h-1" style={{ backgroundColor: 'color-mix(in srgb, currentColor 25%, transparent)' }}>
+            <div
+              className="h-full bg-current transition-all duration-300"
+              style={{ width: `${((currentStepIndex + 1) / comboDefinition.steps.length) * 100}%` }}
+            />
+          </div>
         </div>
-        <div className="h-1 bg-white/30">
-          <div
-            className="h-full bg-white transition-all duration-300"
-            style={{ width: `${((currentStepIndex + 1) / comboDefinition.steps.length) * 100}%` }}
-          />
-        </div>
-      </div>
+      )}
 
-      <div className="pt-14 h-full">
+      <div className={showOptions ? "h-full" : "pt-14 h-full"}>
         {showOptions ? (
           <OptionSelector
             options={visibleOptions}
             onSelect={handleOptionSelected}
             title={currentStep.name}
+            paso={`Paso ${currentStepIndex + 1} de ${comboDefinition.steps.length}`}
             onBack={goBack}
             onHome={handleHome}
           />

@@ -161,6 +161,7 @@ const SEASONAL_DRINK_DEFINITIONS = seasonalConfig.enabled && seasonalConfig.drin
       isSeasonal: true,
       description: drink.description,
       badge: drink.badge,
+      sinEtiqueta: !!drink.sinEtiqueta,
       variantIds: Object.values(drink.variants || {}).map(v => Number(v.productId))
     }))
   : [];
@@ -601,7 +602,8 @@ export async function loadCatalog() {
           description: seasonal.description,
           isSeasonal: true,
           seasonalKey: seasonal.seasonalKey,
-          badge: seasonal.badge
+          badge: seasonal.badge,
+          sinEtiqueta: seasonal.sinEtiqueta
         });
       }
     }

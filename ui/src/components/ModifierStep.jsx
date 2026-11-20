@@ -45,165 +45,52 @@ function normOpt(raw = {}) {
   };
 }
 
-// Función para determinar el tamaño óptimo según la cantidad de opciones y tipo de modificador
+// Tamaños por cantidad de opciones y tipo. Todo debe caber en la banda de alcance (900px de alto);
+// si no cabe, la banda hace scroll. Texto de modificador siempre ≥28px (regla de Juan).
+const G3 = "gap-x-[22px] gap-y-[28px]";
 function getOptimalLayout(optionCount, groupType = "") {
   const typeU = (groupType || "").toUpperCase();
-  
-  // 🕯️ LAYOUT ESPECIAL PARA VELAS - COMPACTO SIN SCROLL (MÁS PEQUEÑO PARA EVITAR CORTES)
+
+  // VELAS: 12 opciones en 3×4 caben en la banda
   if (typeU.includes("FORMA") || typeU.includes("VELA") || typeU.includes("MARKELAN") || typeU.includes("NUMERO")) {
     if (optionCount <= 4) {
-      return {
-        columns: 2,
-        tileWidth: "w-[360px]",      // Reducido más
-        tileHeight: "h-[260px]",     // Reducido más
-        iconSize: "w-44 h-44",       // 176px
-        textSize: "text-lg",
-        priceSize: "text-base",
-        gap: "gap-6"                 // Buena separación
-      };
-    } else if (optionCount <= 6) {
-      return {
-        columns: 2,
-        tileWidth: "w-[340px]",      // Reducido más
-        tileHeight: "h-[240px]",     // Reducido más
-        iconSize: "w-40 h-40",       // 160px
-        textSize: "text-base",
-        priceSize: "text-sm",
-        gap: "gap-5"
-      };
-    } else if (optionCount <= 10) {
-      // VELA DE CERA (10 números) - MÁS COMPACTO
-      return {
-        columns: 2,
-        tileWidth: "w-[320px]",      // Reducido de 340px
-        tileHeight: "h-[220px]",     // Reducido de 240px
-        iconSize: "w-36 h-36",       // 144px - Compacto pero visible
-        textSize: "text-base",
-        priceSize: "text-sm",
-        gap: "gap-6"                 // Buena separación
-      };
-    } else {
-      // VELA MARKELAN (12 opciones) - MÁS COMPACTO
-      return {
-        columns: 3,
-        tileWidth: "w-[280px]",      // Reducido de 300px
-        tileHeight: "h-[200px]",     // Reducido de 220px
-        iconSize: "w-32 h-32",       // 128px - Compacto pero visible
-        textSize: "text-sm",
-        priceSize: "text-xs",
-        gap: "gap-5"                 // Buena separación
-      };
+      return { columns: 2, tileWidth: "w-[404px]", tileHeight: "h-[300px]", iconSize: "w-40 h-40", gap: "gap-8" };
     }
+    return { columns: 3, tileWidth: "w-[296px]", tileHeight: "h-[196px]", iconSize: "w-[104px] h-[104px]", gap: "gap-x-[22px] gap-y-4" };
   }
-  
-  //  LAYOUTS ESPECIALES PARA LECHE, COLD FOAM, VASO Y AZÚCAR (ICONOS GRANDES, CONTENEDORES COMPACTOS)
-  const isSpecialCategory = 
-    typeU.includes("LECHE") || 
+
+  // LECHE, COLD FOAM, VASO, AZÚCAR, TERMO: íconos grandes
+  const isSpecialCategory =
+    typeU.includes("LECHE") ||
     typeU.includes("MILK") ||
     typeU.includes("AZUCAR") ||
     (typeU.includes("COLD") && typeU.includes("FOAM")) ||
     typeU.includes("VASO") ||
     typeU.includes("TERMO");
-  
+
   if (isSpecialCategory) {
-    if (optionCount <= 2) {
-      return {
-        columns: 2,
-        tileWidth: "w-[380px]",      
-        tileHeight: "h-[320px]",     // ⬆ MÁS ALTURA para que quepa todo
-        iconSize: "w-48 h-48",       //  Icono grande (192px)
-        textSize: "text-lg",
-        priceSize: "text-base",
-        gap: "gap-3"
-      };
-    } else if (optionCount <= 4) {
-      return {
-        columns: 2,
-        tileWidth: "w-[360px]",      
-        tileHeight: "h-[300px]",     // ⬆ MÁS ALTURA
-        iconSize: "w-44 h-44",       //  Icono grande (176px)
-        textSize: "text-base",
-        priceSize: "text-sm",
-        gap: "gap-3"
-      };
-    } else if (optionCount <= 6) {
-      return {
-        columns: 3,
-        tileWidth: "w-[300px]",      
-        tileHeight: "h-[280px]",     // ⬆ MÁS ALTURA
-        iconSize: "w-40 h-40",       //  Icono grande (160px)
-        textSize: "text-base",
-        priceSize: "text-sm",
-        gap: "gap-3"
-      };
-    } else {
-      return {
-        columns: 3,
-        tileWidth: "w-[280px]",      
-        tileHeight: "h-[260px]",     // ⬆️ MÁS ALTURA
-        iconSize: "w-36 h-36",       // 🔥 Icono grande (144px)
-        textSize: "text-sm",
-        priceSize: "text-xs",
-        gap: "gap-3"
-      };
-    }
+    if (optionCount <= 2) return { columns: 2, tileWidth: "w-[404px]", tileHeight: "h-[360px]", iconSize: "w-48 h-48", gap: "gap-8" };
+    if (optionCount <= 4) return { columns: 2, tileWidth: "w-[404px]", tileHeight: "h-[320px]", iconSize: "w-44 h-44", gap: "gap-8" };
+    return { columns: 3, tileWidth: "w-[296px]", tileHeight: "h-[290px]", iconSize: "w-[120px] h-[120px]", gap: G3 };
   }
-  
-  // LAYOUTS NORMALES para otros modificadores
-  if (optionCount <= 2) {
-    return {
-      columns: 2,
-      tileWidth: "w-[400px]",
-      tileHeight: "h-[260px]",
-      iconSize: "w-48 h-48",
-      textSize: "text-xl",
-      priceSize: "text-lg",
-      gap: "gap-1"
-    };
-  } else if (optionCount <= 4) {
-    return {
-      columns: 2,
-      tileWidth: "w-[360px]",
-      tileHeight: "h-[240px]",
-      iconSize: "w-40 h-40",
-      textSize: "text-lg",
-      priceSize: "text-base",
-      gap: "gap-1"
-    };
-  } else if (optionCount <= 6) {
-    return {
-      columns: 3,
-      tileWidth: "w-[300px]",
-      tileHeight: "h-[200px]",
-      iconSize: "w-32 h-32",
-      textSize: "text-base",
-      priceSize: "text-sm",
-      gap: "gap-1"
-    };
-  } else if (optionCount <= 9) {
-    return {
-      columns: 3,
-      tileWidth: "w-[260px]",
-      tileHeight: "h-[180px]",
-      iconSize: "w-28 h-28",
-      textSize: "text-sm",
-      priceSize: "text-xs",
-      gap: "gap-1"
-    };
-  } else {
-    return {
-      columns: 4,
-      tileWidth: "w-[200px]",
-      tileHeight: "h-[140px]",
-      iconSize: "w-20 h-20",
-      textSize: "text-xs",
-      priceSize: "text-xs",
-      gap: "gap-1"
-    };
-  }
+
+  // Resto de modificadores
+  if (optionCount <= 2) return { columns: 2, tileWidth: "w-[404px]", tileHeight: "h-[320px]", iconSize: "w-40 h-40", gap: "gap-8" };
+  if (optionCount <= 4) return { columns: 2, tileWidth: "w-[404px]", tileHeight: "h-[300px]", iconSize: "w-36 h-36", gap: "gap-8" };
+  if (optionCount <= 9) return { columns: 3, tileWidth: "w-[296px]", tileHeight: "h-[260px]", iconSize: "w-28 h-28", gap: G3 };
+  return { columns: 3, tileWidth: "w-[296px]", tileHeight: "h-[232px]", iconSize: "w-20 h-20", gap: G3 };
 }
 
-function OptTile({ tipo, opt, onClick, product, group, layout }) {
+// Palomita de "opción elegida" (esquina superior derecha, 64px)
+function Palomita() {
+  return (
+    <span className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-k-primario text-k-sobreprimario border-4 border-k-superficie flex items-center justify-center pointer-events-none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5 10 17.5 19.5 7" /></svg>
+    </span>
+  );
+}
+
+function OptTile({ tipo, opt, onClick, product, group, layout, isSel }) {
   const o = normOpt(opt);
   const displayName = formatModifierLabelForView(o.nombre);
 
@@ -214,7 +101,6 @@ function OptTile({ tipo, opt, onClick, product, group, layout }) {
   // 🎯 USAR EL SISTEMA INTELIGENTE DE ICONOS
   const iconSrc = getModifierIcon(group, product, o.nombre);
   const hasRealIcon = iconSrc && iconSrc !== "./images/placeholder.png" && iconSrc !== "./images/mods/placeholder.png";
-  const isLecheProteina = String(o.nombre || "").toUpperCase().includes("LECHE PROTEINA");
 
   // Si la imagen ya estaba en cache (complete), marcarla cargada de una
   useEffect(() => {
@@ -234,16 +120,15 @@ function OptTile({ tipo, opt, onClick, product, group, layout }) {
       onClick={handle}
       disabled={o.disabled}
       className={`
+        k-card relative
         ${layout.tileWidth} ${layout.tileHeight}
-        rounded-2xl bg-white shadow-lg border-2 border-slate-200
-        flex flex-col items-center p-4
-        ${!hasRealIcon ? "justify-center gap-2" : "justify-between"}
-        overflow-hidden
-        active:scale-95 transition-all
-        ${o.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl hover:border-[#00B7C6] hover:scale-105"}
+        flex flex-col items-center justify-center gap-[10px] p-4
+        active:scale-95 transition-transform
+        ${isSel ? "k-sel" : ""}
+        ${o.disabled ? "opacity-50 cursor-not-allowed" : ""}
       `}
     >
-      {/* Icono con skeleton mientras carga */}
+      {/* Icono original de la diseñadora, con skeleton mientras carga */}
       {hasRealIcon && (
         <div className={`flex-shrink-0 relative ${layout.iconSize}`}>
           {!iconLoaded && (
@@ -258,29 +143,29 @@ function OptTile({ tipo, opt, onClick, product, group, layout }) {
               setIconLoaded(true);
             }}
             alt={displayName}
-            className={`${layout.iconSize} object-contain transition-opacity duration-200 ${iconLoaded ? "opacity-100" : "opacity-0"}`}
-            style={{ imageRendering: 'auto', WebkitImageRendering: '-webkit-optimize-contrast' }}
+            className={`${layout.iconSize} object-contain mix-blend-multiply transition-opacity duration-200 ${iconLoaded ? "opacity-100" : "opacity-0"}`}
           />
         </div>
       )}
-      
+
       {/* Texto */}
-      <div className={`text-slate-700 font-bold ${layout.textSize} text-center leading-snug px-2 flex-shrink-0`}
-        style={{ WebkitFontSmoothing: 'antialiased', MozOsxFontSmoothing: 'grayscale', textRendering: 'geometricPrecision' }}>
+      <div className="text-k-tinta font-semibold text-[28px] uppercase text-center leading-[1.1] px-1 flex-shrink-0 line-clamp-2">
         {displayName.split("\n")[0]}
       </div>
-      
+
       {/* Precio */}
       {o.priceDelta > 0 && (
-        <div className={`${layout.priceSize} text-slate-500 font-medium flex-shrink-0`}>
+        <div className="text-[30px] text-k-acento font-bold leading-none flex-shrink-0">
           +${o.priceDelta}
         </div>
       )}
+
+      {isSel && <Palomita />}
     </button>
   );
 }
 
-function SizeTile({ opt, onClick, layout }) {
+function SizeTile({ opt, onClick, layout, isSel }) {
   const o = normOpt(opt);
   const sizeLabel = o.nombre || String(o.id || "");
 
@@ -294,28 +179,29 @@ function SizeTile({ opt, onClick, layout }) {
       onClick={handle}
       disabled={o.disabled}
       className={`
+        k-card relative
         ${layout.tileWidth} ${layout.tileHeight}
-        rounded-2xl bg-white shadow-lg border-2 border-slate-200
-        flex flex-col items-center justify-center ${layout.gap}
-        overflow-hidden
-        active:scale-95 transition-all
-        ${o.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl hover:border-[#00B7C6] hover:scale-105"}
+        flex flex-col items-center justify-center gap-3
+        active:scale-95 transition-transform
+        ${isSel ? "k-sel" : ""}
+        ${o.disabled ? "opacity-50 cursor-not-allowed" : ""}
       `}
     >
-      <div className="text-slate-700 font-bold text-3xl flex-shrink-0">
+      <div className="text-k-tinta font-bold text-[44px] flex-shrink-0">
         {sizeLabel}
       </div>
       {o.basePrice > 0 && (
-        <div className="text-[#00B7C6] font-bold text-2xl flex-shrink-0">
+        <div className="text-k-acento font-extrabold text-[34px] flex-shrink-0">
           ${o.basePrice}
         </div>
       )}
+      {isSel && <Palomita />}
     </button>
   );
 }
 
 // Rectangulo alargado para EXTRAS: nombre y luego icono pequeno a la derecha.
-function ExtraRow({ opt, onClick, product, group }) {
+function ExtraRow({ opt, onClick, product, group, isSel }) {
   const o = normOpt(opt);
   const displayName = formatModifierLabelForView(o.nombre);
   const iconSrc = getModifierIcon(group, product, o.nombre);
@@ -324,23 +210,39 @@ function ExtraRow({ opt, onClick, product, group }) {
     <button
       onClick={() => { if (!o.disabled) onClick?.(o); }}
       disabled={o.disabled}
-      className={`w-[620px] max-w-[86vw] h-[92px] rounded-2xl bg-white shadow-lg border-2 border-slate-200
-        flex items-center justify-center gap-4 px-8 transition-all
-        ${o.disabled ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl hover:border-[#00B7C6] hover:scale-[1.02] active:scale-95"}`}
+      className={`k-card relative w-[760px] max-w-full min-h-[104px] py-3
+        flex items-center justify-center gap-4 px-8 transition-transform
+        ${isSel ? "k-sel" : ""}
+        ${o.disabled ? "opacity-50 cursor-not-allowed" : "active:scale-95"}`}
     >
-      <span className="text-2xl font-bold text-slate-700 leading-none">{displayName.split("\n")[0]}</span>
+      <span className="text-[28px] font-semibold uppercase text-k-tinta leading-tight">{displayName.split("\n")[0]}</span>
       {hasRealIcon && (
-        <img src={iconSrc} alt="" className="w-12 h-12 object-contain flex-shrink-0"
+        <img src={iconSrc} alt="" className="w-14 h-14 object-contain mix-blend-multiply flex-shrink-0"
           onError={(e) => { e.currentTarget.style.display = "none"; }} />
       )}
       {o.priceDelta > 0 && (
-        <span className="text-xl font-bold text-[#00B7C6] ml-1 flex-shrink-0">+${o.priceDelta}</span>
+        <span className="text-[30px] font-bold text-k-acento ml-1 flex-shrink-0">+${o.priceDelta}</span>
       )}
+      {isSel && <Palomita />}
     </button>
   );
 }
 
-export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
+// Pastilla de paso (solo si el contenedor no la pinta en su encabezado)
+function PasoTitulo({ titulo }) {
+  return (
+    <h2 className="mb-10 text-center">
+      <span
+        className="inline-flex items-center gap-[18px] h-[72px] px-10 rounded-full font-semibold text-[40px]"
+        style={{ background: 'var(--k-paso-bg)', color: 'var(--k-paso-color)', border: 'var(--k-paso-borde)' }}
+      >
+        {titulo}
+      </span>
+    </h2>
+  );
+}
+
+export default function ModifierStep({ grupo, onPick, product, sizeLabel, showTitle = true, selected = null }) {
   if (!grupo) return null;
 
   const tipo = (grupo.tipo || grupo.type || "").toString();
@@ -368,21 +270,27 @@ export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
     }
   );
 
+  // Opción ya elegida (al regresar con Atrás): solo visual
+  const esElegida = (opt) => {
+    if (!selected) return false;
+    const o = normOpt(opt);
+    return String(o.id) === String(selected.id ?? "") || (!!selected.nombre && o.nombre === selected.nombre);
+  };
+
   // EXTRAS: layout de rectangulos alargados (nombre + icono pequeno a la derecha)
   const isExtras = ["extras", "extrashot"].includes(tipo.toLowerCase());
   if (isExtras) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center px-8 pb-32">
-        <h2 className="text-3xl font-bold text-slate-700 mb-8 text-center">
-          <span className="bg-[#BFF0F7] px-8 py-4 rounded-full">{titulo}</span>
-        </h2>
-        <div className="flex flex-col gap-4 items-center">
+      <div className="w-full flex flex-col items-center">
+        {showTitle && <PasoTitulo titulo={titulo} />}
+        <div className="flex flex-col gap-5 items-center w-full">
           {visibleOptions.map((opt, idx) => (
             <ExtraRow
               key={`extra_${String(normOpt(opt).id || normOpt(opt).nombre || idx)}_${idx}`}
               opt={opt}
               product={product}
               group={grupo}
+              isSel={esElegida(opt)}
               onClick={(o) => onPick?.(o)}
             />
           ))}
@@ -395,10 +303,8 @@ export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
   const layout = getOptimalLayout(visibleOptions.length, tipo || titulo);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-8 pb-32">
-      <h2 className="text-3xl font-bold text-slate-700 mb-8 text-center">
-        <span className="bg-[#BFF0F7] px-8 py-4 rounded-full">{titulo}</span>
-      </h2>
+    <div className="w-full flex flex-col items-center">
+      {showTitle && <PasoTitulo titulo={titulo} />}
 
       <div
         className={`grid ${layout.gap}`}
@@ -412,7 +318,7 @@ export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
           const k = `${tipo}_${String(normOpt(opt).id || idx)}_${idx}`;
 
           if (isSize) {
-            return <SizeTile key={k} opt={opt} onClick={(o) => onPick?.(o)} layout={layout} />;
+            return <SizeTile key={k} opt={opt} isSel={esElegida(opt)} onClick={(o) => onPick?.(o)} layout={layout} />;
           }
 
           return (
@@ -422,6 +328,7 @@ export default function ModifierStep({ grupo, onPick, product, sizeLabel }) {
               opt={opt}
               product={product}
               group={grupo}
+              isSel={esElegida(opt)}
               onClick={(o) => onPick?.(o)}
               layout={layout}
             />

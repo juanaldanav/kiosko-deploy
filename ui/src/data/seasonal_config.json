@@ -1,5 +1,5 @@
 {
-  "_nota": "Bebidas navidenas 2026 (lanzamiento viernes 13-nov). Las 4 de otono (Iced Lotus, Iced Pumpkin, Aerocano, Iced Matchapan) salieron de aqui el 12-nov y siguen en el menu en su categoria; respaldo en seasonal_config_bak_20261112.json. Imagenes locales en public/images/bebidas (no CDN).",
+  "_nota": "Bebidas navidenas 2026 (lanzamiento viernes 13-nov). Las 4 de otono (Iced Lotus, Iced Pumpkin, Aerocano, Iced Matchapan) salieron de aqui el 12-nov y siguen en el menu en su categoria; respaldo en seasonal_config_bak_20261112.json. Imagenes locales en public/images/bebidas (no CDN). 20-nov: entra PUMPKIN (caliente 2491 + rocas 2471) como 4o de Populares, pedido de Laura (Conquista). sinEtiqueta = mismo paso caliente/rocas pero SIN la etiqueta TEMPORADA (no es de temporada).",
   "enabled": true,
   "badge": {
     "emoji": "",
@@ -54,6 +54,23 @@
         "rocas": {
           "productId": "2502",
           "name": "ICED SPANISH LATTE GDE"
+        }
+      }
+    },
+    {
+      "seasonalKey": "pumpkin",
+      "name": "PUMPKIN",
+      "displayName": "PUMPKIN",
+      "image": "/images/bebidas/iced-pumpkin.jpg",
+      "sinEtiqueta": true,
+      "variants": {
+        "caliente": {
+          "productId": "2491",
+          "name": "PUMPKIN SPICE LATTE MED"
+        },
+        "rocas": {
+          "productId": "2471",
+          "name": "ICED PUMPKIN GDE"
         }
       }
     }

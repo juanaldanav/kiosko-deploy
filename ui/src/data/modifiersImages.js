@@ -448,7 +448,7 @@ function matchIcon(optionName, groupType, product) {
     if (optU.includes("VAINILLA") || optU.includes("VANILLA")) {
       return ICON_PATHS.COLD_FOAM.VAINILLA;
     }
-    if (optU.includes("LECHE") || optU.includes("MILK")) {
+    if ((optU.includes("LECHE") && !optU.includes("LECHERITA")) || optU.includes("MILK")) {
       return ICON_PATHS.COLD_FOAM.LECHE;
     }
   }

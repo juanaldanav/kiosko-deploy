@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- Tema de temporada: data-tema="navidad" | "base" (enero en adelante) -->
+<html lang="es" data-tema="navidad">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#3E0D0E">
+  
+  <title>Lamarque - Kiosko</title>
+  
+  <!-- Estilos críticos inline para scroll táctil -->
+  <style>
+    /* Reset y configuración base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
+      overscroll-behavior: none;
+      touch-action: none;
+    }
+    
+    #root {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Mejoras para scroll táctil */
+    [data-scroll="true"],
+    .overflow-y-auto,
+    .overflow-y-scroll {
+      -webkit-overflow-scrolling: touch !important;
+      overflow-y: auto !important;
+      overscroll-behavior-y: contain !important;
+      touch-action: pan-y !important;
+      scroll-behavior: smooth !important;
+    }
+    
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(211, 177, 142, 0.15);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(146, 67, 43, 0.55);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(146, 67, 43, 0.75);
+    }
+    
+    /* Prevenir zoom en inputs */
+    input, textarea, select {
+      font-size: 16px !important;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Optimización de botones */
+    button {
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+    
+    /* Hardware acceleration */
+    .will-change-transform {
+      will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  </style>
+  
+  <!-- Google Fonts: Figtree (texto) + Great Vibes (títulos navideños); Playfair queda por pantallas viejas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=Great+Vibes&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- Script para mejorar el comportamiento táctil -->
+  <script>
+    // Prevenir el comportamiento de pull-to-refresh
+    document.addEventListener('touchmove', function(e) {
+      if (e.target.closest('[data-scroll="true"]') || 
+          e.target.closest('.overflow-y-auto') || 
+          e.target.closest('.overflow-y-scroll')) {
+        // Permitir scroll en contenedores específicos
+        return;
+      }
+      e.preventDefault();
+    }, { passive: false });
+    
+    // Mejorar respuesta táctil
+    document.addEventListener('DOMContentLoaded', function() {
+      // Añadir data-scroll a contenedores principales
+      setTimeout(() => {
+        const scrollContainers = document.querySelectorAll('.overflow-y-auto, .overflow-y-scroll');
+        scrollContainers.forEach(el => {
+          el.setAttribute('data-scroll', 'true');
+          el.style.webkitOverflowScrolling = 'touch';
+        });
+      }, 100);
+    });
+    
+    // Prevenir doble tap zoom
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+    
+    // Mejorar el rendimiento del scroll
+    let ticking = false;
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    }
+    
+    function updateScroll() {
+      ticking = false;
+    }
+    
+    const scrollElements = document.querySelectorAll('[data-scroll="true"]');
+    scrollElements.forEach(el => {
+      el.addEventListener('scroll', requestTick, { passive: true });
+    });
+  </script>
+  
+  <!-- Módulo principal de React -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

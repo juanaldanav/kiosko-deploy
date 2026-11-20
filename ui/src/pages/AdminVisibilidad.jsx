@@ -49,8 +49,9 @@ export default function AdminVisibilidad() {
     const raiz = document.documentElement;
     raiz.setAttribute('data-tema', tema);
     try { localStorage.setItem('adminTema', tema); } catch {}
-    // Al salir del admin se quita: el menu del kiosko no usa estas variables.
-    return () => raiz.removeAttribute('data-tema');
+    // Al salir del admin se regresa el tema del kiosko (navidad/base de index.html),
+    // si no, el menu se queda sin piel hasta recargar.
+    return () => raiz.setAttribute('data-tema', TEMA_KIOSKO);
   }, [tema]);
 
   const products = catalogData.catalog || [];
@@ -756,6 +757,8 @@ const TEMA_CSS = `
 }
 body{background:var(--app)}
 `;
+// Tema del kiosko tal como lo deja index.html, leido antes de que el admin lo cambie.
+const TEMA_KIOSKO = document.documentElement.getAttribute('data-tema') || 'base';
 const LETRA = "'Carlito', Calibri, Candara, system-ui, sans-serif";
 const MONO  = "Consolas, 'Courier New', monospace";
 // Etiqueta de seccion: 12.5px, versalita, tracking abierto.

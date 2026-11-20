@@ -4,6 +4,10 @@ import { useCart } from "../context/CartContext";
 import useSteps from "../lib/useSteps.js";
 import ModifierStep from "../components/ModifierStep";
 import SuggestedItemsOverlay from "../components/SuggestedItemsOverlay";
+import AtrasFlotante from "../components/AtrasFlotante";
+
+// Great Vibes en MAYÚSCULAS no se lee: Title Case para .k-script (mismo helper que MenuPage)
+const tituloScript = (t = "") => String(t || "").toLowerCase().replace(/(^|[\s/(-])(\S)/g, (_, a, c) => a + c.toUpperCase());
 
 function formatModifierLabelForView(text = "") {
   const value = String(text || "").trim();
@@ -250,259 +254,252 @@ const handleAddAndSend = async () => {
     handleAdd();
   }, [autoAddOnFinal, current?.kind, stepIndex, producto?.id, producto?.nombre]);
 
+  // Título del paso: vive en la pastilla del encabezado decorativo (no en la banda tocable)
+  const stepTitle =
+    current?.kind === "size" ? (producto?.sizeStepTitle || "Elige el tamaño")
+    : current?.kind === "color" ? "Elige el color"
+    : current?.kind === "mod" ? (current.grupo.titulo || current.grupo.title || "Elige una opción")
+    : current?.kind === "final" ? (autoAddOnFinal ? "Agregando" : "Listo para agregar")
+    : "";
+
+  const palomita = (
+    <span className="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-k-primario text-k-sobreprimario border-4 border-k-superficie flex items-center justify-center pointer-events-none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5 10 17.5 19.5 7" /></svg>
+    </span>
+  );
+
   return (
-    <div className="h-screen w-full bg-[#E8FBFF] relative overflow-hidden flex flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-5 bg-white/90 backdrop-blur border-b-2 border-gray-200">
-        <div className="flex items-center gap-5">
+    <div className="h-screen w-full k-app relative overflow-hidden flex flex-col">
+      {/* Encabezado decorativo (y 0–600): nada tocable, el cliente de auto no alcanza */}
+      <header className="relative h-[600px] shrink-0 flex flex-col items-center pt-[44px] px-8 text-center select-none">
+        <div className="k-nieve" aria-hidden="true" />
+        <span className="k-logo w-[220px] relative" role="img" aria-label="Lamarque Repostería & Café" />
+        <div className="k-foto relative mt-6 w-[150px] h-[150px] rounded-[26px] border-[3px] border-k-borde overflow-hidden">
           <img
             src={producto.foto || "./images/placeholder.png"}
             alt={producto.displayName}
-            className="w-28 h-28 rounded-xl object-cover shadow-md"
+            className="w-full h-full object-contain"
             onError={(e) => {
               e.currentTarget.src = "./images/placeholder.png";
             }}
           />
-          <div>
-            <div className="text-sm text-slate-500 font-medium">Lamarque</div>
-            <h1 className="text-3xl font-bold text-slate-800">{producto.displayName}</h1>
-          </div>
         </div>
-        <div className="px-8 py-4 rounded-full bg-gradient-to-r from-[#00B7C6] to-[#00A5B3] text-white font-bold text-2xl shadow-lg">
+        <h1 className="k-script relative mt-3 px-4 pb-3 text-k-sobrefondo max-w-[860px] truncate" style={{ '--fs': '72px' }}>
+          {tituloScript(producto.displayName)}
+        </h1>
+        <div className="relative mt-2 h-[60px] px-[30px] rounded-full border-2 border-k-borde text-k-sobrefondo font-extrabold text-[30px] flex items-center">
           Total: ${total}
         </div>
+        {stepTitle && (
+          <div
+            className="absolute bottom-[22px] left-1/2 -translate-x-1/2 max-w-[1000px] whitespace-nowrap h-[72px] px-10 rounded-full flex items-center gap-[18px] font-semibold text-[40px]"
+            style={{ background: 'var(--k-paso-bg)', color: 'var(--k-paso-color)', border: 'var(--k-paso-borde)' }}
+          >
+            <span className="k-destello text-k-sobrefondo2 text-[22px] shrink-0" aria-hidden="true" />
+            <span className="truncate">{stepTitle}</span>
+            <span className="k-destello text-k-sobrefondo2 text-[22px] shrink-0" aria-hidden="true" />
+          </div>
+        )}
       </header>
 
-      {/* Main Content - Con altura calculada para dejar espacio al footer MÁS ALTO */}
-      <main 
+      {/* Banda de alcance (y 600–1500): todo lo tocable vive aquí, con scroll propio */}
+      <main
         ref={contentRef}
-        className="flex-1 overflow-y-auto flex items-center justify-center"
-        style={{ 
+        className="h-[900px] shrink-0 overflow-y-auto flex flex-col"
+        style={{
           WebkitOverflowScrolling: 'touch',
           touchAction: 'pan-y',
-          overflowY: 'auto',
-          paddingBottom: '30px' // Más espacio para el footer más alto
+          overflowY: 'auto'
         }}
       >
-        <div className="w-full px-8">
+        <div className="w-full px-8 py-10 my-auto">
           {/* Paso de Tamaño */}
           {current?.kind === "size" && (
-            <div className="w-full flex flex-col items-center justify-center">
-              <h2 className="text-4xl font-semibold text-slate-700 mb-12 text-center">
-                <span className="bg-[#BFF0F7] px-10 py-5 rounded-full">{producto?.sizeStepTitle || "Elige el tamaño"}</span>
-              </h2>
-              
-              <div className="grid gap-8" 
-                   style={{
-                     gridTemplateColumns: `repeat(${Math.min(variants.length, 3)}, minmax(0, max-content))`,
-                     justifyContent: 'center'
-                   }}>
-                {variants.map((variant) => {
-                  // Usar disabled del variant (viene de products.js basado en hidden_sizes.json)
-                  const isDisabled = variant.disabled === true;
-                  
-                  return (
-                    <button
-                      key={variant.label}
-                      onClick={() => !isDisabled && handleSizeSelect(variant.label, variant)}
-                      disabled={isDisabled}
-                      className={`w-[320px] h-[220px] rounded-3xl bg-white shadow-xl border-3 flex flex-col items-center justify-center gap-4 transition-all
-                        ${isDisabled 
-                          ? 'opacity-50 cursor-not-allowed border-gray-300 bg-gray-100' 
-                          : 'border-gray-200 hover:shadow-2xl hover:border-[#00B7C6] hover:scale-105 active:scale-95'}`}
-                    >
-                      <div className={`font-bold text-4xl ${isDisabled ? 'text-gray-400' : 'text-slate-700'}`}>
-                        {variant.label}
-                      </div>
-                      <div className={`font-bold text-3xl ${isDisabled ? 'text-gray-400' : 'text-[#00B7C6]'}`}>
-                        ${variant.BasePrice}
-                      </div>
-                      {isDisabled && (
-                        <div className="text-base text-red-500 font-medium">No disponible</div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+            <div className="grid gap-8"
+                 style={{
+                   gridTemplateColumns: `repeat(${Math.min(variants.length, 3)}, minmax(0, max-content))`,
+                   justifyContent: 'center'
+                 }}>
+              {variants.map((variant) => {
+                // Usar disabled del variant (viene de products.js basado en hidden_sizes.json)
+                const isDisabled = variant.disabled === true;
+
+                return (
+                  <button
+                    key={variant.label}
+                    onClick={() => !isDisabled && handleSizeSelect(variant.label, variant)}
+                    disabled={isDisabled}
+                    className={`k-card w-[320px] h-[240px] flex flex-col items-center justify-center gap-3 transition-transform
+                      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'active:scale-95'}`}
+                  >
+                    <div className="font-bold text-[44px] text-k-tinta">
+                      {variant.label}
+                    </div>
+                    <div className={`font-extrabold text-[34px] ${isDisabled ? 'text-k-tinta2' : 'text-k-acento'}`}>
+                      ${variant.BasePrice}
+                    </div>
+                    {isDisabled && (
+                      <div className="text-[28px] font-semibold text-k-tinta2">No disponible</div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           )}
 
           {/* Paso de Color */}
           {current?.kind === "color" && (
-            <div className="w-full flex flex-col items-center justify-center">
-              <h2 className="text-4xl font-semibold text-slate-700 mb-12 text-center">
-                <span className="bg-[#BFF0F7] px-10 py-5 rounded-full">Elige el color</span>
-              </h2>
-              <div className="flex gap-8 flex-wrap justify-center">
-                {visibleColors.map((color) => (
-                  <button
-                    key={color.id}
-                    onClick={() => { setSelectedColor(color.id); next(); }}
-                    className="flex flex-col items-center gap-4 w-[260px] bg-white rounded-3xl shadow-xl border-3 border-gray-200 p-5 hover:shadow-2xl hover:border-[#00B7C6] hover:scale-105 active:scale-95 transition-all"
-                  >
-                    <img
-                      src={color.image}
-                      alt={color.label}
-                      className="w-[200px] h-[200px] object-cover rounded-2xl"
-                      onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
-                    />
-                    <span className="text-3xl font-bold text-slate-700">{color.label}</span>
-                  </button>
-                ))}
-              </div>
+            <div className="flex gap-8 flex-wrap justify-center">
+              {visibleColors.map((color) => (
+                <button
+                  key={color.id}
+                  onClick={() => { setSelectedColor(color.id); next(); }}
+                  className={`k-card relative flex flex-col items-center gap-4 w-[260px] p-5 active:scale-95 transition-transform ${selectedColor === color.id ? 'k-sel' : ''}`}
+                >
+                  <img
+                    src={color.image}
+                    alt={color.label}
+                    className="w-[200px] h-[200px] object-cover rounded-2xl"
+                    onError={(e) => { e.currentTarget.src = "./images/placeholder.png"; }}
+                  />
+                  <span className="text-[30px] font-bold text-k-tinta">{color.label}</span>
+                  {selectedColor === color.id && palomita}
+                </button>
+              ))}
             </div>
           )}
 
-          {/* Pasos de Modificadores - Se renderiza sin el footer ya que está separado */}
+          {/* Pasos de Modificadores (el título va en la pastilla del encabezado) */}
           {current?.kind === "mod" && (
-            <div className="w-full">
-              <ModifierStep
-                key={(current.grupo.tipo || current.grupo.type) + "_step"}
-                grupo={current.grupo} 
-                product={producto} 
-                sizeLabel={selectedSize}
-                onPick={(opt) => setPick(current.grupo.tipo || current.grupo.type, opt)} 
-              />
-            </div>
+            <ModifierStep
+              key={(current.grupo.tipo || current.grupo.type) + "_step"}
+              grupo={current.grupo}
+              product={producto}
+              sizeLabel={selectedSize}
+              showTitle={false}
+              selected={pickedMap[current.grupo.tipo || current.grupo.type]}
+              onPick={(opt) => setPick(current.grupo.tipo || current.grupo.type, opt)}
+            />
           )}
 
           {/* Paso Final */}
           {current?.kind === "final" && (
             autoAddOnFinal ? (
-              <div className="w-full flex flex-col items-center justify-center py-8">
-                <div className="bg-white rounded-3xl shadow-xl p-10 max-w-2xl w-full text-center">
-                  <div className="animate-spin rounded-full h-14 w-14 border-b-2 border-[#00B7C6] mx-auto" />
-                  <p className="text-2xl text-slate-700 font-semibold mt-6">Agregando al carrito...</p>
-                </div>
+              <div className="k-card max-w-2xl w-full mx-auto p-10 text-center">
+                <div className="animate-spin rounded-full h-14 w-14 border-b-4 border-k-primario mx-auto" />
+                <p className="text-[30px] text-k-tinta font-semibold mt-6">Agregando al carrito...</p>
               </div>
             ) : (
-            <div className="w-full flex flex-col items-center justify-center py-8">
-              <h2 className="text-4xl font-semibold text-slate-700 mb-10">
-                <span className="bg-[#BFF0F7] px-10 py-5 rounded-full">Listo para agregar</span>
-              </h2>
-              
-              <div className="bg-white rounded-3xl shadow-xl p-8 max-w-2xl w-full">
-                <div className="text-center mb-8">
-                  <p className="text-2xl text-slate-700 font-medium">
-                    {producto.displayName}
+            <div className="k-card w-[720px] max-w-full mx-auto px-9 py-8 flex flex-col gap-[18px]">
+              <div className="text-center flex flex-col gap-1">
+                <p className="text-[38px] font-bold text-k-tinta leading-tight">
+                  {producto.displayName}
+                </p>
+                <p className="text-[28px] font-medium text-k-tinta2">
+                  Tamaño: {selectedSize}
+                </p>
+                {selectedColor && (
+                  <p className="text-[28px] font-semibold text-k-acento">
+                    Color: {selectedColor}
                   </p>
-                  <p className="text-xl text-slate-500 mt-2">
-                    Tamaño: {selectedSize}
-                  </p>
-                  {selectedColor && (
-                    <p className="text-xl font-semibold mt-2" style={{ color: '#00B7C6' }}>
-                      Color: {selectedColor}
-                    </p>
-                  )}
-                </div>
-                
-                {/* Resumen de modificadores */}
-                {Object.keys(pickedMap).length > 0 && (
-                  <div className="mb-8 p-4 bg-gray-50 rounded-xl">
-                    <p className="text-lg font-semibold text-slate-700 mb-3">Modificadores:</p>
-                    <div className="space-y-2">
-                      {Object.entries(pickedMap).map(([tipo, opt]) => (
-                        <div key={tipo} className="flex justify-between text-base">
-                          <span className="text-slate-600">{formatModifierLabelForView(opt.nombre)}</span>
-                          {opt.priceDelta > 0 && (
-                            <span className="text-slate-500">+${opt.priceDelta}</span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {/* Contador de cantidad para minipostres */}
-                {isMinipostre && (
-                  <div className="flex items-center justify-center gap-8 mb-8">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-20 h-20 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-4xl font-bold transition-colors"
-                    >
-                      -
-                    </button>
-                    <span className="text-4xl font-bold w-24 text-center">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="w-20 h-20 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-4xl font-bold transition-colors"
-                    >
-                      +
-                    </button>
-                  </div>
-                )}
-                
-                {/* Botón Agregar y Seguir Comprando */}
-                <button
-                  onClick={handleAdd}
-                  disabled={isSending || isProcessing}
-                  className="w-full py-6 mt-4 rounded-2xl bg-gradient-to-r from-[#00B7C6] to-[#00A5B3] text-white text-3xl font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
-                >
-                  Agregar y Seguir Comprando • ${total * quantity}
-                </button>
-
-                {/* Botón Agregar y Enviar */}
-                {showSendButton && (
-                  <button
-                    onClick={handleAddAndSend}
-                    disabled={isSending || isProcessing}
-                    className="w-full py-6 mt-4 rounded-2xl bg-white border-4 border-[#00B7C6] text-[#00B7C6] text-3xl font-bold shadow-lg hover:bg-gray-50 active:scale-95 transition-all disabled:opacity-50"
-                  >
-                    {isSending || isProcessing ? "Enviando..." : "Enviar Pedido"}
-                  </button>
                 )}
               </div>
+
+              {/* Resumen de modificadores */}
+              {Object.keys(pickedMap).length > 0 && (
+                <div className="bg-k-superficie2 border border-k-borde rounded-[18px] px-[26px] py-5 flex flex-col gap-1">
+                  <p className="text-[28px] font-bold text-k-tinta mb-1">Modificadores:</p>
+                  {Object.entries(pickedMap).map(([tipo, opt]) => (
+                    <div key={tipo} className="flex justify-between gap-4 text-[28px] font-medium leading-snug text-k-tinta">
+                      <span>{formatModifierLabelForView(opt.nombre)}</span>
+                      {opt.priceDelta > 0 && (
+                        <span className="text-k-acento font-bold shrink-0">+${opt.priceDelta}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Contador de cantidad para minipostres */}
+              {isMinipostre && (
+                <div className="flex items-center justify-center gap-8">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-[120px] h-[120px] rounded-full bg-k-superficie border-[3px] border-k-acento text-k-acento flex items-center justify-center active:scale-95 transition-transform"
+                    aria-label="Menos"
+                  >
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14" /></svg>
+                  </button>
+                  <span className="text-[56px] font-bold w-24 text-center text-k-tinta">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-[120px] h-[120px] rounded-full bg-k-superficie border-[3px] border-k-acento text-k-acento flex items-center justify-center active:scale-95 transition-transform"
+                    aria-label="Más"
+                  >
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
+                  </button>
+                </div>
+              )}
+
+              {/* Botón Agregar y Seguir Comprando */}
+              <button
+                onClick={handleAdd}
+                disabled={isSending || isProcessing}
+                className="w-full h-[128px] rounded-[22px] bg-k-primario text-k-sobreprimario text-[36px] font-bold shadow-lg active:scale-95 transition-transform disabled:opacity-50"
+              >
+                Agregar y Seguir Comprando • ${total * quantity}
+              </button>
+
+              {/* Botón Agregar y Enviar */}
+              {showSendButton && (
+                <button
+                  onClick={handleAddAndSend}
+                  disabled={isSending || isProcessing}
+                  className="w-full h-[128px] rounded-[22px] bg-k-superficie border-[3px] border-k-acento text-k-acento text-[36px] font-bold active:scale-95 transition-transform disabled:opacity-50"
+                >
+                  {isSending || isProcessing ? "Enviando..." : "Enviar Pedido"}
+                </button>
+              )}
             </div>
             )
           )}
         </div>
       </main>
 
-      {/* Footer ESTÁTICO SIEMPRE VISIBLE - BOTONES ARRIBA, PROGRESO ABAJO */}
-      <footer className="h-[160px] bg-white/95 backdrop-blur-sm border-t-2 border-gray-200 px-8 flex-shrink-0">
-        {/* Botones de navegación ARRIBA */}
-        <div className="flex items-center justify-center gap-6 pt-4 pb-3">
+      {/* Zona muerta 1500–pie: solo fondo */}
+      <div className="flex-1 min-h-0" aria-hidden="true" />
+
+      <AtrasFlotante onClick={handleBack} />
+
+      {/* Pie: Atrás (contorno) ≠ Inicio (relleno), progreso abajo */}
+      <footer className="k-barra shrink-0 flex flex-col items-center gap-[10px] pt-[22px] pb-[40px]">
+        <div className="flex gap-8">
           <button
             onClick={handleBack}
-            className="w-24 h-24 rounded-full bg-[#67CDD9] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+            className="w-[120px] h-[120px] rounded-full k-btn-atras shadow-lg active:scale-95 flex items-center justify-center"
             aria-label="Regresar"
             title="Regresar"
           >
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M11 6l-6 6 6 6" />
             </svg>
           </button>
           {onGoHome && (
             <button
               onClick={onGoHome}
-              className="w-24 h-24 rounded-full bg-[#00B7C6] text-white shadow-xl hover:brightness-110 active:scale-95 flex items-center justify-center"
+              className="w-[120px] h-[120px] rounded-full k-btn-inicio shadow-lg active:scale-95 flex items-center justify-center"
               aria-label="Inicio"
               title="Ir al inicio"
             >
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 9.5L12 3l9 6.5"></path>
-                <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path>
-                <path d="M9 21v-6h6v6"></path>
+              <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3.5 11 12 4l8.5 7M5.5 9.5V20h13V9.5M10 20v-5.5h4V20" />
               </svg>
             </button>
           )}
         </div>
-        
-        {/* Barra de progreso ABAJO */}
-        <div className="pt-2 pb-4">
-          <div className="flex items-center justify-center mb-2">
-            <span className="text-lg text-slate-600 font-medium">
-              Paso {Math.min(stepIndex + 1, steps.length)} de {steps.length}
-            </span>
-          </div>
-          <div className="w-full max-w-2xl mx-auto h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-[#00B7C6] to-[#00A5B3] transition-all duration-300"
-              style={{ width: `${((stepIndex + 1) / steps.length) * 100}%` }}
-            />
-          </div>
-        </div>
+        <span className="text-[28px] font-semibold" style={{ color: 'var(--k-paso-texto)' }}>
+          Paso {Math.min(stepIndex + 1, steps.length)} de {steps.length}
+        </span>
       </footer>
 
       {/* Overlay de venta sugerida */}
