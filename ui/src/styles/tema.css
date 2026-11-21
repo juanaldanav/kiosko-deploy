@@ -182,6 +182,15 @@ body { font-family: var(--k-f-sans); }
 .k-flecha-sub { background: var(--k-superficie); color: var(--k-tinta); border-color: var(--k-primario); }
 .k-flecha-hoja { background: var(--k-sobre-primario); color: var(--k-primario); }
 @media (prefers-reduced-motion: reduce) { .k-flecha { transition: none; } .k-flecha:active { transform: none; } }
+
+/* Barra de scroll gruesa: la de 8 px casi no se agarra en los kioskos. 24 px es el tope: con 30 el menu baja a 3 columnas */
+.k-app ::-webkit-scrollbar { width: 24px; }
+.k-app ::-webkit-scrollbar-track { background: rgba(128,128,128,.2); background: color-mix(in srgb, var(--k-sobre-fondo) 16%, transparent); border-radius: 12px; }
+.k-app ::-webkit-scrollbar-thumb {
+  background: var(--k-sobre-fondo-2); border: 4px solid transparent; background-clip: padding-box;
+  border-radius: 12px; min-height: 140px;
+}
+.k-app ::-webkit-scrollbar-thumb:hover, .k-app ::-webkit-scrollbar-thumb:active { background: var(--k-sobre-fondo); background-clip: padding-box; }
 .k-barra { background: var(--k-barra); border-top: var(--k-card-borde); }
 
 .k-sel { box-shadow: var(--k-sel-sombra) !important; }
