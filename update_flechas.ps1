@@ -1,13 +1,13 @@
 <#
   update_flechas.ps1 — Botones "Ver mas" / "Subir" en las bandas con scroll (20-nov, emergencia).
   Kioskos viejos cuyo touch llega como mouse no arrastran ni agarran la barra; el clic si sirve.
-  Toca: FlechasScroll.jsx (nuevo), tema.css (.k-flecha), MenuPage, CustomizePage, ComboFlowOverlay, FloatingCart.
+  Toca: FlechasScroll.jsx (nuevo), tema.css (.k-flecha + barra de scroll de 24 px), MenuPage, CustomizePage, ComboFlowOverlay, FloatingCart.
   Requiere la piel del 20-nov ya instalada. NO toca api.js, order.js, .env ni hidden_*.json.
   Uso:  irm "<url de este script>" | iex     (luego F5 al Chrome del kiosko)
 #>
 param(
   [string]$AppRoot = "",
-  [string]$Ref     = "c9f625bb1853e8158f75d458ac9ec600f8c60cc0"
+  [string]$Ref     = "8776c9a29e2f0455c04bb9cbf7550792a039f44c"
 )
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
