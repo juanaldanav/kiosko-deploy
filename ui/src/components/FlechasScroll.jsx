@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 
 // Botones de hoja arriba/abajo para las bandas con scroll.
 // Hay kioskos viejos cuyo touch llega como mouse: no arrastran ni agarran la barra,
-// pero el clic sí funciona. Va como ULTIMO hijo del contenedor con scroll (sticky abajo).
-const RESERVA = 136; // 96 de pastilla + 20 de margen + 20 de aire: la ultima fila sube por encima
+// pero el clic sí funciona. Va JUSTO DEBAJO del contenedor con scroll (no encima de los
+// productos) y cada toque deja arriba la fila que estaba cortada o era la siguiente.
+const AIRE = 12; // separacion entre el borde de la banda y la fila alineada
 
 export default function FlechasScroll({ target }) {
-  const [st, setSt] = useState({ arriba: false, abajo: false, hoja: 1, hojas: 1 });
+  const [st, setSt] = useState({ arriba: false, abajo: false });
   const ocupado = useRef(false);
 
   useEffect(() => {
@@ -14,17 +15,7 @@ export default function FlechasScroll({ target }) {
     if (!el) return;
     const medir = () => {
       const max = el.scrollHeight - el.clientHeight;
-      const reserva = el.querySelector(":scope > [data-reserva]") ? RESERVA : 0;
-      if (max - reserva <= 4) { setSt({ arriba: false, abajo: false, hoja: 1, hojas: 1 }); return; }
-      const paso = el.clientHeight * 0.8;
-      const hojas = Math.ceil(max / paso) + 1;
-      const alFinal = el.scrollTop >= max - 4;
-      setSt({
-        arriba: el.scrollTop > 4,
-        abajo: !alFinal,
-        hoja: alFinal ? hojas : Math.min(hojas, Math.round(el.scrollTop / paso) + 1),
-        hojas,
-      });
+      setSt({ arriba: max > 4 && el.scrollTop > 4, abajo: max > 4 && el.scrollTop < max - 4 });
     };
     medir();
     el.addEventListener("scroll", medir, { passive: true });
@@ -41,7 +32,23 @@ export default function FlechasScroll({ target }) {
     };
   }, [target]);
 
-  if (st.hojas <= 1) return null;
+  if (!st.arriba && !st.abajo) return null;
+
+  // Tops de tarjetas y titulos, medidos dentro del contenido con scroll
+  const filas = (el) => {
+    const caja = el.getBoundingClientRect();
+    const k = caja.height / el.offsetHeight || 1; // modo vitrina escala con transform
+    const sel = ".k-card, button, h2, h3, li, [data-fila]";
+    // solo la tarjeta completa, no los botones −/+ que trae adentro
+    const externos = [...el.querySelectorAll(sel)].filter((n) => {
+      const padre = n.parentElement.closest(sel);
+      return !padre || !el.contains(padre);
+    });
+    return externos.map((n) => {
+      const r = n.getBoundingClientRect();
+      return { top: (r.top - caja.top) / k + el.scrollTop, bottom: (r.bottom - caja.top) / k + el.scrollTop };
+    });
+  };
 
   // 350 ms de antirrebote: el touch que llega como mouse a veces manda dos clics
   const ir = (dir) => {
@@ -49,40 +56,44 @@ export default function FlechasScroll({ target }) {
     if (!el || ocupado.current) return;
     ocupado.current = true;
     setTimeout(() => { ocupado.current = false; }, 350);
+    const max = el.scrollHeight - el.clientHeight;
+    const vista = el.scrollTop, alto = el.clientHeight;
+    const fs = filas(el);
+    let top;
+    if (dir === 0) top = 0;
+    else if (dir > 0) {
+      // primera fila que no se ve completa: queda arriba
+      const cortadas = fs.filter((f) => f.top > vista + AIRE + 2 && f.bottom > vista + alto + 1).map((f) => f.top);
+      top = cortadas.length ? Math.min(...cortadas) - AIRE : vista + alto * 0.8;
+    } else {
+      // la hoja anterior: la fila mas alta que cabe completa arriba de la actual
+      const caben = fs.filter((f) => f.top >= vista - alto + AIRE && f.top < vista).map((f) => f.top);
+      top = caben.length ? Math.min(...caben) - AIRE : vista - alto * 0.8;
+    }
     const suave = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-    if (dir === 0) el.scrollTo({ top: 0, behavior: suave });
-    else el.scrollBy({ top: dir * el.clientHeight * 0.8, behavior: suave });
+    el.scrollTo({ top: Math.max(0, Math.min(max, top)), behavior: suave });
   };
   const final = !st.abajo;
 
   return (
-    <>
-      <div data-reserva="" aria-hidden="true" className="!mt-0" style={{ height: RESERVA }} />
-      <div className="sticky bottom-0 h-0 w-full !mt-0 z-30 pointer-events-none">
-        <div className="absolute bottom-5 inset-x-0 flex justify-center items-center gap-5">
-          {st.arriba && !final && (
-            <button type="button" onClick={() => ir(-1)} aria-label="Subir"
-              className="k-flecha k-flecha-sub pointer-events-auto w-24 h-24 rounded-full">
-              <Chevron arriba />
-            </button>
-          )}
-          <button type="button" onClick={() => ir(final ? 0 : 1)}
-            aria-label={final ? "Volver arriba" : `Ver más, hoja ${st.hoja} de ${st.hojas}`}
-            className="k-flecha pointer-events-auto h-24 pl-10 pr-4 rounded-full gap-4 text-[30px] font-extrabold">
-            {final ? "Volver arriba" : "Ver más"}
-            <Chevron arriba={final} />
-            <span className="k-flecha-hoja h-16 min-w-24 px-4 rounded-full flex items-center justify-center text-[26px] font-extrabold tabular-nums">
-              {st.hoja}/{st.hojas}
-            </span>
-          </button>
-        </div>
-      </div>
-    </>
+    <div className="flex justify-center items-center gap-4 py-3">
+      {st.arriba && !final && (
+        <button type="button" onClick={() => ir(-1)} aria-label="Subir"
+          className="k-flecha k-flecha-sub w-16 h-16 rounded-full">
+          <Chevron arriba />
+        </button>
+      )}
+      <button type="button" onClick={() => ir(final ? 0 : 1)}
+        className="k-flecha h-16 pl-7 pr-5 rounded-full gap-2 text-[24px] font-extrabold">
+        {final ? "Volver arriba" : "Ver más"}
+        <Chevron arriba={final} />
+      </button>
+    </div>
   );
 }
 
 const Chevron = ({ arriba }) => (
-  <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d={arriba ? "M6 15l6-6 6 6" : "M6 9l6 6 6-6"} />
   </svg>
 );

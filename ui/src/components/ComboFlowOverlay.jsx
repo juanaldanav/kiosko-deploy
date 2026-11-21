@@ -99,10 +99,11 @@ function OptionSelector({ options, onSelect, title, paso, onBack, onHome }) {
             ))}
           </div>
         </div>
-        <FlechasScroll target={bandaRef} />
       </div>
 
-      <div className="flex-1" />
+      <div className="flex-1">
+        <FlechasScroll target={bandaRef} />
+      </div>
 
       <AtrasFlotante onClick={onBack} />
 

@@ -871,11 +871,11 @@ const getPromoVideoSources = () => {
                 </div>
               </div>
             )}
-            <FlechasScroll target={contentRef} />
           </div>
 
           {/* Pie decorativo bajo la banda */}
-          <div className="flex-1 min-h-0 flex items-center justify-center select-none" aria-hidden="true">
+          <div className="flex-1 min-h-0 flex flex-col items-center justify-start select-none">
+            <FlechasScroll target={contentRef} />
             {showNavFooter ? null : (
               <p className="k-script text-k-sobrefondo" style={{ '--fs': '64px' }}>Hoy es un buen día.</p>
             )}

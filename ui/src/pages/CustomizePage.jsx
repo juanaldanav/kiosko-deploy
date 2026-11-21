@@ -465,11 +465,12 @@ const handleAddAndSend = async () => {
             )
           )}
         </div>
-        <FlechasScroll target={contentRef} />
       </main>
 
       {/* Zona muerta 1500–pie: solo fondo */}
-      <div className="flex-1 min-h-0" aria-hidden="true" />
+      <div className="flex-1 min-h-0">
+        <FlechasScroll target={contentRef} />
+      </div>
 
       <AtrasFlotante onClick={handleBack} />
 

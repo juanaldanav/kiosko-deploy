@@ -98,8 +98,8 @@ export default function FloatingCart({ onPay, ocultarPestana = false }) {
               style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
             >
               <CartSummary className="h-auto" hideActions={true} />
-              <FlechasScroll target={listaRef} />
             </div>
+            <FlechasScroll target={listaRef} />
 
             <div className="shrink-0 border-t-[3px] border-k-borde px-6 pt-5 pb-6 space-y-4">
               <div className="flex items-baseline justify-between">
